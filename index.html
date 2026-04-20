@@ -273,7 +273,7 @@ The button should be round, smooth, and rubbery with clean stitching.
 |fakeBtn2>[ &lt;img src=&quot;images/button-fake.png&quot; width=&quot;250&quot;&gt; ](click: ?fakeBtn2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style button&quot;))(go-to: &quot;adidas-neck&quot;)] 
 
 [[ I don&#39;t have a button. -&gt;adidas-neck ]]
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Button style check&quot;))(go-to: &quot;adidas-neck&quot;)] </tw-passagedata><tw-passagedata pid="5" name=" neck " tags="" position="250,775" size="100,100">Can you see the Adidas/Fanatics logo through the neck?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Button style check&quot;))(go-to: &quot;adidas-neck&quot;)] </tw-passagedata><tw-passagedata pid="5" name=" neck " tags="" position="250,775" size="100,100">Can you see the Adidas/Fanatics logo through the neck?
 
 The Adidas or Fanatics logo should be a patch on the back of the jersey. It should not be embroidered directly to the jersey.
 The exception to this is the 2016 World Cup of Hockey jerseys. 
@@ -284,7 +284,7 @@ The exception to this is the 2016 World Cup of Hockey jerseys.
 [[ ❌ No -&gt; band ]]
 [[ &lt;img src=&quot;images/inside-legit.png&quot;&gt; -&gt; band ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)] </tw-passagedata><tw-passagedata pid="6" name=" band " tags="" position="250,950" size="100,100">What does the information band look like?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)] </tw-passagedata><tw-passagedata pid="6" name=" band " tags="" position="250,950" size="100,100">What does the information band look like?
 
 The band should be flat and matte, with clear, legible text. 
 
@@ -297,7 +297,7 @@ The band should be flat and matte, with clear, legible text.
 [[ ✅ Band is flat, text and stitching are clear and clean -&gt; hangar ]]
 [[ &lt;img src=&quot;images/band-legit.png&quot; width=&quot;300&quot;&gt; -&gt; hangar ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Information band check&quot;))(go-to: &quot; hangar &quot;)] </tw-passagedata><tw-passagedata pid="7" name=" hangar " tags="" position="400,775" size="100,100">What is the hangar text like?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Information band check&quot;))(go-to: &quot; hangar &quot;)] </tw-passagedata><tw-passagedata pid="7" name=" hangar " tags="" position="400,775" size="100,100">What is the hangar text like?
 
 Hangar text should be either screenprinted or sublimated, and should be clean and legible.
 
@@ -309,7 +309,7 @@ Hangar text should be either screenprinted or sublimated, and should be clean an
 
 [[ My jersey does not have hangar text-&gt; shield ]] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Hangar text check&quot;))(go-to: &quot; shield &quot;)] </tw-passagedata><tw-passagedata pid="8" name=" shield " tags="" position="400,950" size="100,100">Does the jersey have an NHL Shield on the front?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Hangar text check&quot;))(go-to: &quot; shield &quot;)] </tw-passagedata><tw-passagedata pid="8" name=" shield " tags="" position="400,950" size="100,100">Does the jersey have an NHL Shield on the front?
 
 [[ ✅ Yes -&gt; shield-present ]]
 [[ ❌ No -&gt;Fake]]</tw-passagedata><tw-passagedata pid="9" name=" shield-present " tags="" position="525,775" size="100,100">What does your shield look like?
@@ -322,11 +322,11 @@ The NHL shield should be smooth, flat, and uniform. The stitching should be basi
 (if: $manu is &quot;fanatics&quot;)[
   [[ ✅ Flat, clean stitching -&gt;fanatics-box]]
   [[ &lt;img src=&quot;images/adidas-shield-legit.png&quot; -&gt;fanatics-box]]
-  (link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;NHL shield check&quot;))(go-to: &quot;fanatics-box&quot;)]
+  (link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;NHL shield check&quot;))(go-to: &quot;fanatics-box&quot;)]
 ](else:)[
   [[ ✅ Flat, clean stitching | box ]]
   [[ &lt;img src=&quot;images/adidas-shield-legit.png&quot; | box ]]
-  (link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;NHL shield check&quot;))(go-to: &quot; box &quot;)]
+  (link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;NHL shield check&quot;))(go-to: &quot; box &quot;)]
 ]</tw-passagedata><tw-passagedata pid="10" name=" box " tags="" position="525,950" size="100,100">Let&#39;s look at the back of your jersey.
 
 Look at the adidas logo on the back of the neck.
@@ -343,7 +343,7 @@ What describes your logo?
 [[ ✅ Flat, centered | dimples ]]
 [[ &lt;img src=&quot;images/neck-legit.png&quot; | dimples ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; dimples &quot;)] </tw-passagedata><tw-passagedata pid="11" name=" dimples " tags="" position="650,775" size="100,100">(if: $manu is &quot;fanatics&quot;)[(go-to: &quot; laces &quot;)](else:)[
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; dimples &quot;)] </tw-passagedata><tw-passagedata pid="11" name=" dimples " tags="" position="650,775" size="100,100">(if: $manu is &quot;fanatics&quot;)[(go-to: &quot; laces &quot;)](else:)[
 Look at the shoulder dimples. What are they like?
 
 The dimples on jerseys are an odd feature, and are often a giveaway for fakes. They should be subtle, even, and part of the fabric. Shiny or printed dimples are a sign of a fake jersey.
@@ -354,7 +354,7 @@ The dimples on jerseys are an odd feature, and are often a giveaway for fakes. T
 [[ ✅ Subtle &amp; even, part of the fabric | laces ]]
 [[ &lt;img src=&quot;images/dimples-legit.png&quot; | laces ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Shoulder dimples check&quot;))(go-to: &quot; laces &quot;)] ]</tw-passagedata><tw-passagedata pid="12" name=" cut " tags="" position="650,950" size="100,100">Overall, what does the cut look like?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Shoulder dimples check&quot;))(go-to: &quot; laces &quot;)] ]</tw-passagedata><tw-passagedata pid="12" name=" cut " tags="" position="650,950" size="100,100">Overall, what does the cut look like?
 It should smoothly taper out towards the bottom, sort of like a bell shape. It should not be boxy or straight cut.
 
 |fakeCut1>[ &lt;img src=&quot;images/adidas-cut-fake-01.png&quot; height=&quot;300&quot;&gt; ](click: ?fakeCut1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Wrong jersey cut shape&quot;))(go-to: &quot;legit-disclaimer&quot;)]
@@ -363,7 +363,7 @@ It should smoothly taper out towards the bottom, sort of like a bell shape. It s
 
 [[ &lt;img src=&quot;images/adidas-cut-legit.png&quot; height=&quot;300&quot;&gt; -&gt;legit-disclaimer]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Jersey cut check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="13" name="legit-disclaimer" tags="" position="1125,1025" size="100,100">(go-to: &quot;result&quot;)</tw-passagedata><tw-passagedata pid="14" name="fight-strap" tags="" position="825,425" size="100,100">&#39;&#39;What does your fight strap look like:&#39;&#39;
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Jersey cut check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="13" name="legit-disclaimer" tags="" position="1125,1025" size="100,100">(go-to: &quot;result&quot;)</tw-passagedata><tw-passagedata pid="14" name="fight-strap" tags="" position="825,425" size="100,100">&#39;&#39;What does your fight strap look like:&#39;&#39;
 
 [[ Just kidding, I don&#39;t have a fight strap -&gt;no-strap]] 
 (link: &quot;I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Fight strap check&quot;))(go-to: &quot;Lettering&quot;)] 
@@ -443,7 +443,7 @@ Proper twill is usually flat and matte, and the stitching should be clean and ti
 (link: &quot;❌ Yes, looks like one of these&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or oily lettering&quot;))(go-to: &quot;crest&quot;)]
 [[ ✅ No -&gt;crest]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Lettering check&quot;))(go-to: &quot;crest&quot;)]
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Lettering check&quot;))(go-to: &quot;crest&quot;)]
 
 &lt;img src=&quot;images/lettering-fake.png&quot; width=&quot;400&quot;&gt;
 &lt;img src=&quot;images/lettering-fake-patch.png&quot; width=&quot;400&quot;&gt;</tw-passagedata><tw-passagedata pid="21" name=" laces " tags="" position="774,800" size="100,100">If your jersey has laces, what do they look like?
@@ -459,7 +459,7 @@ Laces should be tight, flat, and securely attached to the jersey. They should no
 
 [[ I don&#39;t have laces -&gt; cut ]] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Neck laces check&quot;))(go-to: &quot; cut &quot;)] </tw-passagedata><tw-passagedata pid="22" name="crest" tags="" position="975,600" size="100,100">How does the crest on the front look?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Neck laces check&quot;))(go-to: &quot; cut &quot;)] </tw-passagedata><tw-passagedata pid="22" name="crest" tags="" position="975,600" size="100,100">How does the crest on the front look?
 
 The crest should be flat and smooth, with clean stitching. Shiny, oily, bubbly, or diagonal streaks on the crest are a sign of a fake jersey.
 
@@ -469,7 +469,7 @@ The crest should be flat and smooth, with clean stitching. Shiny, oily, bubbly, 
 [[ ✅ Flat, smooth -&gt;crap-design]]
 [[ &lt;img src=&quot;images/crest-legit.png&quot; width=&quot;300&quot; -&gt;crap-design]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;crap-design&quot;)] </tw-passagedata><tw-passagedata pid="23" name="pause" tags="" position="1125,700" size="100,100">Overall, things are looking ok if you&#39;ve gotten this far!
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;crap-design&quot;)] </tw-passagedata><tw-passagedata pid="23" name="pause" tags="" position="1125,700" size="100,100">Overall, things are looking ok if you&#39;ve gotten this far!
 
 [[ Let&#39;s continue with some manufacturer specific traits -&gt; manu-switch]]</tw-passagedata><tw-passagedata pid="24" name=" manu-switch" tags="" position="1000,800" size="100,100">(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;edgeorno&quot;)]
 (else-if: $manu is &#39;adidas&#39; ) [(go-to: &quot;adidas-size&quot;)]
@@ -544,7 +544,7 @@ Reebok used two different shields. Earlier shields used a plain black and silver
 |fakeEdge1>[ &lt;img src=&quot;images/reebok-shield-fake-01.png&quot; width=&quot;300&quot;&gt; ](click: ?fakeEdge1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style NHL shield (Reebok)&quot;))(go-to: &quot;reebok-neck&quot;)]
 |fakeEdge2>[ &lt;img src=&quot;images/reebok-shield-fake-02.png&quot; width=&quot;300&quot;&gt; ](click: ?fakeEdge2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style NHL shield (Reebok)&quot;))(go-to: &quot;reebok-neck&quot;)] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok NHL shield check&quot;))(go-to: &quot;reebok-neck&quot;)] </tw-passagedata><tw-passagedata pid="40" name="ccm-novintage" tags="" position="1694,376" size="100,100">Is it a lettered size (S/M/L/XL)?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok NHL shield check&quot;))(go-to: &quot;reebok-neck&quot;)] </tw-passagedata><tw-passagedata pid="40" name="ccm-novintage" tags="" position="1694,376" size="100,100">Is it a lettered size (S/M/L/XL)?
 
 [[ ✅ Yes -&gt;ccm-novintage-sizes]] 
 [[ ❌ No -&gt;legit-disclaimer]] </tw-passagedata><tw-passagedata pid="41" name="6100" tags="" position="1825,375" size="100,100">The Reebok 6100 was used in 2005-07, and has same boxy style as older CCM/Koho jerseys. Generally not faked, but it is best to ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;. They are *extremely* rare, especially in size 48.
@@ -555,7 +555,7 @@ Reebok used two different shields. Earlier shields used a plain black and silver
 - [[ Premier -&gt;Fake-premier]] 
 - [[ 6100 -&gt;6100]] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok Edge/Premier/6100 identification&quot;))(go-to: &quot;edge&quot;)] </tw-passagedata><tw-passagedata pid="43" name="reebok-laces-ask" tags="" position="2075,625" size="100,100">Does your jersey have neck laces?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok Edge/Premier/6100 identification&quot;))(go-to: &quot;edge&quot;)] </tw-passagedata><tw-passagedata pid="43" name="reebok-laces-ask" tags="" position="2075,625" size="100,100">Does your jersey have neck laces?
 
 [[ ✅ Yes -&gt;reebok-laces-yes]]
 [[ ✅ No -&gt;reebok-laces-no]]</tw-passagedata><tw-passagedata pid="44" name="reebok-laces-yes" tags="" position="1950,650" size="100,100">How does the NHL Shield sit behind the laces?
@@ -568,7 +568,7 @@ The NHL should never sit behind the laces. It should be on its own piece of fabr
 [[ ✅ Above -&gt;legit-disclaimer]] 
 [[ &lt;img src=&quot;images/reebok-laces-legit.png&quot; width=&quot;300&quot; -&gt;legit-disclaimer]] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok laces shield position check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="45" name="reebok-laces-no" tags="" position="1950,525" size="100,100">Is the NHL Shield on its own piece of fabric, centered and well above the &quot;V&quot; of the neck?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok laces shield position check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="45" name="reebok-laces-no" tags="" position="1950,525" size="100,100">Is the NHL Shield on its own piece of fabric, centered and well above the &quot;V&quot; of the neck?
 
 The NHL should never sit behind the laces. It should be on its own piece of fabric, centered and well above the "V" of the neck.
 
@@ -578,7 +578,7 @@ The NHL should never sit behind the laces. It should be on its own piece of fabr
 (link: &quot;❌ No&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield poorly placed on V-neck&quot;))(go-to: &quot;legit-disclaimer&quot;)]
 |fakeRVneck1>[ &lt;img src=&quot;images/reebok-vneck-fake.png&quot; width=&quot;300&quot;&gt; ](click: ?fakeRVneck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield poorly placed on V-neck&quot;))(go-to: &quot;legit-disclaimer&quot;)] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok V-neck shield position check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="46" name="reebok-neck" tags="" position="2075,300" size="100,100">Look at the back of the neck of your jersey.
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok V-neck shield position check&quot;))(go-to: &quot;ask&quot;)] </tw-passagedata><tw-passagedata pid="46" name="reebok-neck" tags="" position="2075,300" size="100,100">Look at the back of the neck of your jersey.
 
 Which logo does it have? 
 
@@ -596,7 +596,7 @@ On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing m
 (link: &quot;❌ Stitched Directly&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok vector logo stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
 |fakeRVec1>[ &lt;img src=&quot;images/reebok-vector-fake.png&quot; width=&quot;400&quot;&gt; ](click: ?fakeRVec1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok vector logo stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata><tw-passagedata pid="48" name="reebok-neck-wordmark" tags="" position="2225,475" size="100,100">Is the Wordmark logo a patch or stitched directly?
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata><tw-passagedata pid="48" name="reebok-neck-wordmark" tags="" position="2225,475" size="100,100">Is the Wordmark logo a patch or stitched directly?
 
 On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing material being the same color as the jersey itself (in most cases). The logo should sit level and centered on the neck.
 
@@ -606,7 +606,7 @@ On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing m
 (link: &quot;❌ Stitched Directly&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok wordmark stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
 |fakeRWord1>[ &lt;img src=&quot;images/reebok-wordmark-fake.png&quot; width=&quot;400&quot;&gt; ](click: ?fakeRWord1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok wordmark stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)] 
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata><tw-passagedata pid="49" name="site-check" tags="" position="1375,50" size="100,100">Is the website something like &quot;officialpredtorsshop.com&quot; or &quot;legitnhljerseys.com&quot;? Or is it DHGate/AliExpress/Ecrater? 
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata><tw-passagedata pid="49" name="site-check" tags="" position="1375,50" size="100,100">Is the website something like &quot;officialpredtorsshop.com&quot; or &quot;legitnhljerseys.com&quot;? Or is it DHGate/AliExpress/Ecrater? 
 
 [[❌ Yes-&gt;Fake-site]] 
 [[✅ No-&gt;ddos]]</tw-passagedata><tw-passagedata pid="50" name="Fake-site" tags="" position="50,125" size="100,100">This is a fake site or seller. 
@@ -696,7 +696,7 @@ Proper customization should be flat and smooth, with clean stitching. Bubbly, sh
 
 - (link: &quot;❌ Yes, bubbly or off&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Bubbly or off-color CCM customization&quot;))(go-to: &quot;legit-disclaimer&quot;)] 
 - [[No, clean -&gt;legit-disclaimer]]
-- (link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;CCM lettering check&quot;))(go-to: &quot;legit-disclaimer&quot;)]</tw-passagedata><tw-passagedata pid="67" name="fanatics-ask" tags="" position="1675,800" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Fanatics&quot;&gt;&lt;/div&gt;
+- (link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;CCM lettering check&quot;))(go-to: &quot;legit-disclaimer&quot;)]</tw-passagedata><tw-passagedata pid="67" name="fanatics-ask" tags="" position="1675,800" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Fanatics&quot;&gt;&lt;/div&gt;
 
 What type of Fanatics jersey are you checking?
 
@@ -834,7 +834,7 @@ The Fanatics logo should be a patch on the back of the jersey. It should not be 
 [[ ✅ No -&gt; band ]]
 [[ &lt;img src=&quot;images/inside-legit.png&quot;&gt; -&gt; band ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)]</tw-passagedata>
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)]</tw-passagedata>
 <tw-passagedata pid="81" name="fanatics-box" tags="" position="800,500" size="100,100">Let&#39;s look at the back of your jersey.
 
 Look at the Fanatics logo on the back of the neck.
@@ -849,7 +849,7 @@ What describes your logo?
 [[ ✅ Flat, centered -&gt; laces ]]
 [[ &lt;img src=&quot;images/neck-legit.png&quot; -&gt; laces ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; laces &quot;)]</tw-passagedata>
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; laces &quot;)]</tw-passagedata>
 <tw-passagedata pid="82" name="adidas-button" tags="" position="300,300" size="100,100">Does it have the adidas button?
 
 Only certain early Adidas jerseys have this button. If yours does, we need to check it.
@@ -867,7 +867,7 @@ The exception to this is the 2016 World Cup of Hockey jerseys.
 [[ ✅ No -&gt; band ]]
 [[ &lt;img src=&quot;images/inside-legit.png&quot;&gt; -&gt; band ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)]</tw-passagedata>
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot; band &quot;)]</tw-passagedata>
 <tw-passagedata pid="84" name="adidas-box" tags="" position="300,500" size="100,100">Let&#39;s look at the back of your jersey.
 
 Look at the Adidas logo on the back of the neck.
@@ -882,7 +882,7 @@ What describes your logo?
 [[ Flat, centered -&gt; dimples ]]
 [[ &lt;img src=&quot;images/neck-legit.png&quot; -&gt; dimples ]]
 
-(link: &quot;❔ I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; dimples &quot;)]</tw-passagedata>
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot; dimples &quot;)]</tw-passagedata>
 <tw-passagedata pid="85" name="Fanatics-auth" tags="" position="800,600" size="100,100">This is the Fanatics Authentic check section.
 
 (if: $manu is &quot;fanatics&quot;)[(go-to: &quot;legit-disclaimer&quot;)]
