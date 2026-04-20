@@ -180,6 +180,23 @@ tw-passage .enchantment-link:hover {
   font-size: 0.85em;
   opacity: 0.8;
 }
+
+/* ── Result verdict styling ── */
+.verdict-block {
+  padding: 0.8em 1em 0.8em 1.2em;
+  border-left: 4px solid;
+  border-radius: 0 0.4em 0.4em 0;
+  margin: 0.3em 0 1em;
+}
+.verdict-legit { border-color: #4ade80; background: rgba(74,222,128,0.07); }
+.verdict-warn  { border-color: #fb923c; background: rgba(251,146,60,0.07); }
+.verdict-fake  { border-color: #f87171; background: rgba(248,113,113,0.07); }
+
+/* ── Flag badge in footer ── */
+.flag-badge {
+  color: #f87171;
+  font-size: 0.85em;
+}
 .visited{color:#b0b0b0}tw-enchantment[style^="color"] .visited:not(:hover),tw-enchantment[style*=" color"] .visited:not(:hover){color:inherit}.visited:hover{color:#E3E}tw-broken-link{color:#993333;border-bottom:2px solid #993333;cursor:not-allowed}tw-enchantment[style^="color"] tw-broken-link:not(:hover),tw-enchantment[style*=" color"] tw-broken-link:not(:hover){color:inherit}.enchantment-mouseover{border-bottom:1px dashed #666}.enchantment-mouseout{border:rgba(64,149,191,0.25) 1px solid}.enchantment-mouseout:hover{background-color:rgba(64,149,191,0.25);border:transparent 1px solid;border-radius:0.2em}.enchantment-clickblock{box-shadow:inset 0 0 0 0.5vmax;display:block;color:rgba(65,105,225,0.5);transition:color 0.2s ease-in-out}.enchantment-clickblock:hover{color:rgba(0,191,255,0.5)}.enchantment-clickblock:active{color:rgba(222,78,59,0.5)}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;-moz-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font:100% Georgia, serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 20%;margin:0;background-color:#000;color:#fff}tw-passage{display:block}br+br{display:block;height:0;margin:0.8ex 0}tw-sidebar{left:-5em;width:3em;position:absolute;text-align:center;display:block}tw-icon{display:block;margin:0.5em 0;opacity:0.1;font-size:2.75em}tw-icon:hover{opacity:0.3}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:0.2em;padding:0.2em;font-size:1rem;cursor:help}tw-error.error{background-color:rgba(223,58,190,0.4);color:#fff}tw-error.warning{background-color:rgba(223,140,58,0.4);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:0.8rem;line-height:1rem}tw-error-explanation-button{cursor:pointer;line-height:0em;border-radius:1px;border:1px solid black;font-size:0.8rem;margin:0 0.4rem;opacity:0.5}tw-error-explanation-button .folddown-arrowhead{display:inline-block}tw-notifier{border-radius:0.2em;padding:0.2em;font-size:1rem;background-color:rgba(223,182,58,0.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid black;display:inline-block;width:1em;height:1em}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:0.3em 0 0.6em 0}pre{font-size:1rem}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,0.6);background-color:#ff9}ins{color:rgba(0,0,0,0.6);background-color:rgba(255,242,204,0.5);border-radius:0.5em;box-shadow:0em 0em 0.2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate;-webkit-animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;-moz-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-justify-content:space-between;justify-content:space-between}tw-outline{color:white;text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}tw-shadow{text-shadow:0.08em 0.08em 0.08em #000}tw-emboss{text-shadow:0.08em 0.08em 0em #000;color:white}tw-condense{letter-spacing:-0.08em}tw-expand{letter-spacing:0.1em}tw-blur{color:transparent;text-shadow:0em 0em 0.08em #000}tw-blurrier{color:transparent;text-shadow:0em 0em 0.2em #000}tw-blurrier::selection{background-color:transparent;color:transparent}tw-blurrier::-moz-selection{background-color:transparent;color:transparent}tw-smear{color:transparent;text-shadow:0em 0em 0.02em rgba(0,0,0,0.75),-0.2em 0em 0.5em rgba(0,0,0,0.5),0.2em 0em 0.5em rgba(0,0,0,0.5)}tw-mirror{display:inline-block;transform:scaleX(-1);-webkit-transform:scaleX(-1)}tw-upside-down{display:inline-block;transform:scaleY(-1);-webkit-transform:scaleY(-1)}tw-fade-in-out{text-decoration:none;animation:fade-in-out 2s ease-in-out infinite alternate;-webkit-animation:fade-in-out 2s ease-in-out infinite alternate}tw-rumble{-webkit-animation:rumble linear 0.1s 0s infinite;animation:rumble linear 0.1s 0s infinite;display:inline-block}tw-shudder{-webkit-animation:shudder linear 0.1s 0s infinite;animation:shudder linear 0.1s 0s infinite;display:inline-block}tw-shudder-in{animation:shudder-in 1s ease-out;-webkit-animation:shudder-in 1s ease-out}.transition-in{-webkit-animation:appear 0ms step-start;animation:appear 0ms step-start}.transition-out{-webkit-animation:appear 0ms step-end;animation:appear 0ms step-end}[data-t8n^=fade-in].transition-in{-webkit-animation:appear .8s;animation:appear .8s}[data-t8n^=fade-in].transition-out{display:none}[data-t8n^=dissolve].transition-in{-webkit-animation:appear .8s;animation:appear .8s}[data-t8n^=dissolve].transition-out{-webkit-animation:appear .8s reverse;animation:appear .8s reverse}[data-t8n^=shudder-in].transition-in,.transition-in[data-t8n^=shudder]{display:inline-block;-webkit-animation:shudder-in .8s;animation:shudder-in .8s}[data-t8n^=shudder-out].transition-out,.transition-out[data-t8n^=shudder]{display:inline-block;-webkit-animation:shudder-out .8s;animation:shudder-out .8s}[data-t8n^=boxflash].transition-in{-webkit-animation:box-flash .8s;animation:box-flash .8s}[data-t8n^=pulse].transition-in{-webkit-animation:pulse .8s;animation:pulse .8s;display:inline-block}[data-t8n^=pulse].transition-out{-webkit-animation:pulse .8s reverse;animation:pulse .8s reverse;display:inline-block}[data-t8n$=fast]{animation-duration:.4s;-webkit-animation-duration:.4s}[data-t8n$=slow]{animation-duration:1.6s;-webkit-animation-duration:1.6s}
 </style>
 </head>
@@ -232,9 +249,12 @@ color:#FFFFFF;
 
 
 
-</script><tw-passagedata pid="1" name="Fake" tags="" position="51,275" size="100,100">This is a definitive fake jersey based on a single clear indicator.
+</script><tw-passagedata pid="1" name="Fake" tags="" position="51,275" size="100,100">&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
+&lt;h2 style=&quot;color:#f87171&quot;&gt;&#x274C; Definitive Fake&lt;/h2&gt;
+This is a definitive fake jersey based on a single clear indicator.
 
 There is no ambiguity here — this jersey is not legitimate.
+&lt;/div&gt;
 
 (if: $unsure > 0)[
 &lt;hr&gt;
@@ -245,7 +265,7 @@ There is no ambiguity here — this jersey is not legitimate.
 Consider having an expert look at these specifically, or post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
 ]
 
-[[Start Over -&gt;manufacturer]]</tw-passagedata><tw-passagedata pid="2" name="Button" tags="" position="250,500" size="100,100">
+(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</tw-passagedata><tw-passagedata pid="2" name="Button" tags="" position="250,500" size="100,100">
  Does it have the adidas button?
 
 - (if: $manu is &quot;fanatics&quot;)[(link: &quot;❌ Yes&quot;)[(go-to: &quot;Fake&quot;)]](else:)[(link: &quot;✅ Yes&quot;)[(go-to: &quot; button-check &quot;)]]
@@ -489,7 +509,7 @@ If the jersey does &#39;&#39;not&#39;&#39; have a fight strap, and has a jock ta
 
 If you&#39;re not completely sure, you can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
 
-[[Start Over -&gt;manufacturer]]</tw-passagedata><tw-passagedata pid="27" name="strap" tags="" position="825,300" size="100,100">Does your jersey have a fight strap?
+(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</tw-passagedata><tw-passagedata pid="27" name="strap" tags="" position="825,300" size="100,100">Does your jersey have a fight strap?
 
 (link: &quot;✅ Yes&quot;)[(set: $strap to &quot;true&quot;)(go-to: &quot;fight-strap&quot;)]
 (link: &quot;❌ No&quot;)[(set: $strap to &quot;false&quot;)(go-to: &quot;no-strap&quot;)]</tw-passagedata><tw-passagedata pid="28" name="reebok-replica" tags="" position="1275,800" size="100,100">Does your jersey have a jock tag?
@@ -609,9 +629,10 @@ On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing m
 (link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata><tw-passagedata pid="49" name="site-check" tags="" position="1375,50" size="100,100">Is the website something like &quot;officialpredtorsshop.com&quot; or &quot;legitnhljerseys.com&quot;? Or is it DHGate/AliExpress/Ecrater? 
 
 [[❌ Yes-&gt;Fake-site]] 
-[[✅ No-&gt;ddos]]</tw-passagedata><tw-passagedata pid="50" name="Fake-site" tags="" position="50,125" size="100,100">This is a fake site or seller. 
-
+[[✅ No-&gt;ddos]]</tw-passagedata><tw-passagedata pid="50" name="Fake-site" tags="" position="50,125" size="100,100">&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
+&lt;h2 style=&quot;color:#f87171&quot;&gt;&#x274C; Fake Site or Seller&lt;/h2&gt;
 Do not order from them.
+&lt;/div&gt;
 
 Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; for a list of shops that are known to be trustworthy, or ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; if you&#39;re still unsure.</tw-passagedata><tw-passagedata pid="51" name="ebay" tags="" position="990,260" size="100,100">Where is the seller located?
 
@@ -641,6 +662,7 @@ If you have a jersey with a fight strap and a jock tag, it&#39;s one of the foll
 
 
 
+(if: $flags > 0)[&lt;div class=&quot;flag-badge&quot;&gt;🚩 $flags red flag(s) so far&lt;/div&gt;]
 &lt;div class=&quot;footer-nav&quot;&gt;(link: &quot;◀ Back&quot;)[(undo:)] &amp;nbsp;&amp;nbsp; (link: &quot;↺ Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;
 &lt;img src=&quot;images/logo.png&quot; id=&quot;site-logo&quot; alt=&quot;Logo&quot;&gt;
 </tw-passagedata><tw-passagedata pid="58" name="Starter" tags="" position="1267,594" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Starter / Pro Player&quot;&gt;&lt;/div&gt;
@@ -705,12 +727,15 @@ What type of Fanatics jersey are you checking?
 [[Pro Authentic (Made in Canada) -&gt;fanatics-source]]
 
 [[&lt; Back -&gt;manufacturer]]</tw-passagedata><tw-passagedata pid="61" name="result" tags="" position="300,1225" size="100,100">(if: $flags is 0)[
-&lt;h2 style=&quot;color:green&quot;&gt;&#x2705; Probably Legit&lt;/h2&gt;
+&lt;div class=&quot;verdict-block verdict-legit&quot;&gt;
+&lt;h2 style=&quot;color:#4ade80&quot;&gt;&#x2705; Probably Legit&lt;/h2&gt;
 No red flags were detected. Your jersey appears to be legitimate!
 
 If you&apos;re still not 100% sure, feel free to post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
+&lt;/div&gt;
 ](else-if: $flags &lt; 2)[
-&lt;h2 style=&quot;color:darkorange&quot;&gt;&#x26A0;&#xFE0F; One Red Flag &amp;mdash; Worth a Closer Look&lt;/h2&gt;
+&lt;div class=&quot;verdict-block verdict-warn&quot;&gt;
+&lt;h2 style=&quot;color:#fb923c&quot;&gt;&#x26A0;&#xFE0F; One Red Flag &amp;mdash; Worth a Closer Look&lt;/h2&gt;
 Only one issue was found. This could be a fake, a limited edition, or just wear and tear. We recommend getting a second opinion.
 
 &lt;b&gt;Red flag found:&lt;/b&gt;
@@ -719,8 +744,10 @@ Only one issue was found. This could be a fake, a limited edition, or just wear 
 ]
 
 For a second opinion, post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
+&lt;/div&gt;
 ](else-if: $flags &lt; 4)[
-&lt;h2 style=&quot;color:darkorange&quot;&gt;&#x26A0;&#xFE0F; Multiple Red Flags &amp;mdash; Check Closer&lt;/h2&gt;
+&lt;div class=&quot;verdict-block verdict-warn&quot;&gt;
+&lt;h2 style=&quot;color:#fb923c&quot;&gt;&#x26A0;&#xFE0F; Multiple Red Flags &amp;mdash; Check Closer&lt;/h2&gt;
 $flags red flags were found. This jersey is suspicious and should be verified further.
 
 &lt;b&gt;Red flags found:&lt;/b&gt;
@@ -729,8 +756,10 @@ $flags red flags were found. This jersey is suspicious and should be verified fu
 ]
 
 For a definitive answer, post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
+&lt;/div&gt;
 ](else:)[
-&lt;h2 style=&quot;color:red&quot;&gt;&#x274C; Very Likely Fake&lt;/h2&gt;
+&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
+&lt;h2 style=&quot;color:#f87171&quot;&gt;&#x274C; Very Likely Fake&lt;/h2&gt;
 $flags red flags were found. A jersey with this many issues is almost certainly not legitimate.
 
 &lt;b&gt;Red flags found:&lt;/b&gt;
@@ -739,9 +768,10 @@ $flags red flags were found. A jersey with this many issues is almost certainly 
 ]
 
 Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; if you&apos;re looking for a legitimate jersey.
+&lt;/div&gt;
 ]
 
-[[Start Over -&gt;manufacturer]]</tw-passagedata>
+(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</tw-passagedata>
 <tw-passagedata pid="68" name="about" tags="" position="600,100" size="100,100">&lt;h2&gt;About This Guide&lt;/h2&gt;
 
 This guide was researched, written, and maintained by &lt;a href=&quot;https://libertybelljerseys.com&quot; target=&quot;_blank&quot;&gt;Liberty Bell Jerseys&lt;/a&gt;. It exists because determining whether an NHL jersey is legitimate can be genuinely difficult, and there was no single comprehensive interactive resource to help people do that.
