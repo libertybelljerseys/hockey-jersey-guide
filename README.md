@@ -52,3 +52,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to report issues, suggest content
 ## License
 
 Brand logos are used solely to identify manufacturers and are the property of their respective owners. This guide is not affiliated with, endorsed by, or sponsored by Adidas, Fanatics, Reebok, CCM, Koho, or Starter.
+
+The source code is made publicly available for viewing and personal study only. You may not copy, deploy, host, repackage, or use this project (or any derivative) in any form — commercial or otherwise — without explicit written permission from Liberty Bell Jerseys.
+
+For licensing inquiries, contact Liberty Bell Jerseys.
+
+See the [LICENSE](./LICENSE) file for full legal text.
