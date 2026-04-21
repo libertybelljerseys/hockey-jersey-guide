@@ -86,8 +86,8 @@ All variables are reset to zero/empty on every manufacturer selection and on "St
 See `docs/passage-routing.md` for the complete routing map.
 
 ### The three terminal passages
-- **`Fake`** — Slam-dunk fake (single definitive indicator). Shows `$unsure` note if any.
-- **`Fake-site`** — Fake seller/website detected in source checks.
+- **`fake`** — Slam-dunk fake (single definitive indicator). Shows `$unsure` note if any.
+- **`fake-site`** — Fake seller/website detected in source checks.
 - **`result`** — All accumulated red flags evaluated. Shows verdict + flag list + unsure list.
 
 ### The result verdicts (in `result` passage)
@@ -98,19 +98,19 @@ See `docs/passage-routing.md` for the complete routing map.
 | 2–3 | ⚠️ Multiple Red Flags — Check Closer |
 | 4+ | ❌ Very Likely Fake |
 
-### Slam-dunk fakes (go directly to `Fake`, no flag accumulation)
-- Size 48 (Adidas `adidas-size` or Reebok `Reebok` passage)
+### Slam-dunk fakes (go directly to `fake`, no flag accumulation)
+- Size 48 (Adidas `adidas-size` or Reebok `reebok-intro` passage)
 - No NHL shield present (`shield` passage)
 - Fake fight strap image (`fight-strap` passage)
 - Fanatics jersey has a button (`fanatics-button` passage)
-- Crap/fantasy design (`crap-design` passage)
-- CCM: inconsistent size tag (`ccm-novintage-sizes`)
-- CCM: drop stitches on crest/patches (`ccm-novintage-stitching`)
-- CCM vintage: gray-banded neck tag (`vintage-number`)
+- Fantasy/crap design (`fantasy-design` passage)
+- CCM: inconsistent size tag (`ccm-non-vintage-sizes`)
+- CCM: drop stitches on crest/patches (`ccm-non-vintage-stitching`)
+- CCM vintage: gray-banded neck tag (`ccm-vintage-number`)
 
 ### Red flag checks (accumulate `$flags`, continue the guide)
 These passages add to `$flags` and `$flagnames` then continue to the next check:
-`button-check`, `button-older`, `adidas-neck`, `fanatics-neck`, `band`, `hangar`, `shield-present`, `adidas-box`, `fanatics-box`, `box`, `dimples`, `laces`, `cut`, `Lettering`, `crest`, `edge`, `reebok-neck-vector`, `reebok-neck-wordmark`, `reebok-laces-yes`, `reebok-laces-no`, `ccm-nonvintage-lettering`
+`button-check`, `button-older`, `adidas-neck`, `fanatics-neck`, `band`, `hangar`, `shield-present`, `adidas-box`, `fanatics-box`, `box`, `dimples`, `laces`, `cut`, `lettering`, `crest`, `reebok-edge`, `reebok-neck-vector`, `reebok-neck-wordmark`, `reebok-laces-yes`, `reebok-laces-no`, `ccm-non-vintage-lettering`
 
 ---
 
@@ -118,8 +118,8 @@ These passages add to `$flags` and `$flagnames` then continue to the next check:
 
 ### Adidas
 ```
-manufacturer → ebay-ask → [source checks] → strap → fight-strap/no-strap
-→ Lettering → crest → crap-design → pause → manu-switch → adidas-size
+manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
+→ lettering → crest → fantasy-design → checkpoint → manu-switch → adidas-size
 → adidas-button → [button checks if yes] → adidas-neck → band → hangar
 → shield → shield-present → adidas-box → dimples → laces → cut
 → legit-disclaimer → result
@@ -127,8 +127,8 @@ manufacturer → ebay-ask → [source checks] → strap → fight-strap/no-strap
 
 ### Fanatics Premium/Pro Authentic
 ```
-manufacturer → fanatics-ask → fanatics-source → [source checks] → strap
-→ fight-strap/no-strap → Lettering → crest → crap-design → pause
+manufacturer → fanatics-intro → fanatics-source-ask → [source checks] → strap
+→ fight-strap/no-strap → lettering → crest → fantasy-design → checkpoint
 → manu-switch → fanatics-size → fanatics-button → fanatics-neck → band
 → hangar → shield → shield-present → fanatics-box → laces → cut
 → legit-disclaimer → result
@@ -136,35 +136,35 @@ manufacturer → fanatics-ask → fanatics-source → [source checks] → strap
 
 ### Fanatics Breakaway
 ```
-manufacturer → fanatics-ask → fanatics → [dead end, start over]
+manufacturer → fanatics-intro → fanatics-breakaway → [dead end, start over]
 ```
-Breakaway jerseys are generally not faked — the `fanatics` passage says so and provides a jock tag reference image.
+Breakaway jerseys are generally not faked — the `fanatics-breakaway` passage says so and provides a jock tag reference image.
 
 ### Reebok Edge
 ```
-manufacturer → ebay-ask → [source checks] → strap → fight-strap/no-strap
-→ Lettering → crest → crap-design → pause → manu-switch → edgeorno
-→ Reebok → [size check, 48=Fake] → edge → reebok-neck → reebok-neck-vector
+manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
+→ lettering → crest → fantasy-design → checkpoint → manu-switch → reebok-edge-or-premier
+→ reebok-intro → [size check, 48=fake] → reebok-edge → reebok-neck → reebok-neck-vector
 or reebok-neck-wordmark → reebok-laces-ask → reebok-laces-yes/no
 → legit-disclaimer → result
 ```
 
 ### Reebok Premier/Replica
 ```
-... → edgeorno → Fake-premier (has strap) or reebok-replica → premier
+... → reebok-edge-or-premier → fake-premier (has strap) or reebok-replica → reebok-premier-legit
 ```
 
 ### CCM/Koho
 ```
-manufacturer → ebay-ask → [source checks] → strap → fight-strap/no-strap
-→ Lettering → crest → crap-design → pause → manu-switch → CCM
-→ ccm-vintage or ccm-novintage → [vintage/non-vintage checks]
+manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
+→ lettering → crest → fantasy-design → checkpoint → manu-switch → ccm-intro
+→ ccm-vintage or ccm-non-vintage → [vintage/non-vintage checks]
 → legit-disclaimer → result
 ```
 
 ### Starter/Pro Player
 ```
-manufacturer → Starter → strap → [shared checks] → manu-switch
+manufacturer → starter-intro → strap → [shared checks] → manu-switch
 → legit-disclaimer → result
 ```
 
@@ -215,18 +215,7 @@ img:not(#site-logo) { max-width: 100%; height: auto; }
 
 ## Known Passage Name Quirks
 
-Several passage names have leading/trailing spaces from the original Twine file. This matters when using `(go-to:)` macros — the name must match exactly:
-
-```
-' neck '        ' band '        ' hangar '      ' shield '
-' box '         ' dimples '     ' laces '       ' cut '
-' button-check '   ' button-older '   ' shield-present '
-' adidas-size'  (two leading spaces)
-' manu-switch'  (one leading space)
-'vintage-number ' (one trailing space)
-```
-
-The `[[ link -> passage ]]` syntax is more forgiving with spaces. The `(go-to: "passage name")` macro requires exact match. When adding new `(go-to:)` calls to these passages, include the spaces.
+All passage names now use consistent lowercase kebab-case with no leading/trailing spaces. There are no longer any whitespace-padded names to work around. Passage names match exactly what you write in `(go-to: "name")` macros.
 
 ---
 
