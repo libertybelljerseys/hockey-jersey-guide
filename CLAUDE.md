@@ -127,7 +127,7 @@ manufacturer → source-ask → [source checks] → strap → fight-strap/no-str
 
 ### Fanatics Premium/Pro Authentic
 ```
-manufacturer → fanatics-intro → fanatics-source-ask → [source checks] → strap
+manufacturer → fanatics-intro → source-ask → [source checks] → strap
 → fight-strap/no-strap → lettering → crest → fantasy-design → checkpoint
 → manu-switch → fanatics-size → fanatics-button → fanatics-neck → band
 → hangar → shield → shield-present → fanatics-box → laces → cut
