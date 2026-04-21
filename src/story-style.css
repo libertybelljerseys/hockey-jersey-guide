@@ -1,0 +1,16 @@
+tw-story {
+  background-color: #1c2228;
+  color: #ffffff;
+}
+
+tw-link
+{
+  color: #ffffff;
+}
+
+tw-link.hover {
+color:#c2c2c2;
+}
+tw-link.visited {
+color:#FFFFFF;
+}

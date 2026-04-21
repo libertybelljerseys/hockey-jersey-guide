@@ -1,0 +1,7 @@
+:: source-sketch {"position": "1225,425", "size": "100,100"}
+Is the ad kinda sketchy sounding, or offering something that's too good to be true, like this? 
+
+<img src='images/insta.png' height=400 alt="Example of a suspicious Instagram jersey ad"> 
+
+[[ ❌ Yes ->fake-site]] 
+[[ ✅ No ->source-ddos]] 

@@ -1,0 +1,7 @@
+:: source-ask {"position": "1225,50", "size": "100,100"}
+Did you or are you buying a jersey on eBay?
+
+[[✅ Yes->source-ebay]] 
+[[❌ No->source-insta]] 
+
+[[I'm not worried about the source, skip this step->strap]] 

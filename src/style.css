@@ -1,0 +1,321 @@
+/* ── Link colors (override Harlowe 3.x defaults back to ice-blue theme) ── */
+tw-link, .enchantment-link {
+  color: #e8e8e8;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+tw-link:hover, .enchantment-link:hover { color: #7ee8fa; }
+tw-link:active, .enchantment-link:active { color: #dd4b39; }
+a { color: #8dd4ea; text-decoration: underline; }
+a:hover { color: #7ee8fa; }
+
+#site-logo {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 32px !important;
+  max-width: 32px !important;
+  height: auto !important;
+  opacity: 0.6;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* ── Mobile-friendly improvements ── */
+
+/* Fluid images - never overflow container */
+img:not(#site-logo) {
+  max-width: 100%;
+  height: auto;
+}
+.BTG-header img {
+  width: 120px !important;
+  height: auto !important;
+}
+
+/* Clickable image hooks - visible tap target (named hooks only; anonymous if/for hooks must not match) */
+tw-hook[name] {
+  display: inline-block;
+  cursor: pointer;
+}
+tw-hook[name]:hover {
+  opacity: 0.8;
+  outline: 2px solid #7ee8fa;
+  outline-offset: 3px;
+}
+tw-hook[name^=m]:hover {
+  opacity: 1;
+  outline: none;
+}
+
+/* Responsive layout */
+@media (max-width: 700px) {
+  tw-story {
+    font-size: 1.1em;
+    padding: 4% 5% !important;
+  }
+  img {
+    max-width: 100% !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 1.3em; }
+  #site-logo {
+    width: 24px;
+    bottom: 6px;
+    right: 6px;
+  }
+  /* Stack images vertically on small screens */
+  tw-passage img + img {
+    display: block;
+    margin-top: 0.5em;
+  }
+}
+
+/* Slightly larger tap targets for links on touch devices */
+@media (hover: none) {
+  tw-link, .enchantment-link {
+    padding: 0.3em 0;
+    display: inline-block;
+    line-height: 1.8em;
+  }
+}
+
+/* ── Brand logos ── */
+.brand-logo-inline {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 0.4em;
+  display: inline !important;
+  max-width: none !important;
+}
+
+/* ── Manufacturer brand choice hooks ── */
+tw-hook[name=mAdidas], tw-hook[name=mFanatics], tw-hook[name=mReebok],
+tw-hook[name=mCCM], tw-hook[name=mKoho], tw-hook[name=mStarter] {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.4em 0.7em;
+  margin: 0.3em 0;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.4em;
+  background: rgba(255,255,255,0.05);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+tw-hook[name=mAdidas]:hover, tw-hook[name=mFanatics]:hover, tw-hook[name=mReebok]:hover,
+tw-hook[name=mCCM]:hover, tw-hook[name=mKoho]:hover, tw-hook[name=mStarter]:hover {
+  background: rgba(125,211,252,0.12);
+  border-color: #7ee8fa;
+}
+tw-hook[name=mAdidas] img, tw-hook[name=mFanatics] img, tw-hook[name=mReebok] img,
+tw-hook[name=mCCM] img, tw-hook[name=mKoho] img, tw-hook[name=mStarter] img {
+  width: auto;
+  height: auto;
+  max-width: none !important;
+  max-height: none !important;
+  flex-shrink: 0;
+}
+
+.brand-logo-header {
+  height: 3em;
+  width: auto;
+  display: block;
+  margin-bottom: 0.5em;
+  max-width: none !important;
+  opacity: 0.9;
+}
+.brand-header {
+  margin-bottom: 0.5em;
+}
+
+/* ── Choice options styled as tappable buttons ── */
+tw-passage tw-link,
+tw-passage .enchantment-link {
+  display: inline-block;
+  margin: 0.3em 0;
+  padding: 0.4em 0.7em;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0.4em;
+  background: rgba(255,255,255,0.05);
+  transition: background 0.15s ease, border-color 0.15s ease;
+  font-weight: normal;
+  min-width: 8em;
+}
+tw-passage tw-link:hover,
+tw-passage .enchantment-link:hover {
+  background: rgba(125,211,252,0.12);
+  border-color: #7ee8fa;
+  color: #7ee8fa;
+}
+/* Footer nav links should stay inline, not block */
+.footer-nav tw-link,
+.footer-nav .enchantment-link {
+  display: inline;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-nav tw-link:hover,
+.footer-nav .enchantment-link:hover {
+  background: none;
+  border: none;
+}
+/* Footer nav styling */
+.footer-nav {
+  margin-top: 2em;
+  padding-top: 0.8em;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+/* ── About page CTA links ── */
+.about-cta-link {
+  display: inline-block;
+  margin: 0.3em 0;
+  padding: 0.4em 0.9em;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 0.4em;
+  background: rgba(255,255,255,0.06);
+  color: #8dd4ea;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.about-cta-link:hover {
+  background: rgba(125,211,252,0.12);
+  border-color: #7ee8fa;
+  color: #7ee8fa;
+  text-decoration: none;
+}
+
+/* ── Checkpoint callout ── */
+.checkpoint-block {
+  padding: 0.8em 1em 0.8em 1.2em;
+  border-left: 4px solid #4ade80;
+  border-radius: 0 0.4em 0.4em 0;
+  background: rgba(74,222,128,0.07);
+  margin: 0.3em 0 1em;
+}
+
+/* ── Meta nav (About link on start page) ── */
+.meta-nav {
+  margin-top: 1em;
+  padding-top: 0.8em;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.meta-nav tw-link,
+.meta-nav .enchantment-link {
+  font-size: 0.8em;
+  opacity: 0.55;
+  background: none !important;
+  border: none !important;
+  padding: 0.2em 0 !important;
+  min-width: unset !important;
+}
+.meta-nav tw-link:hover,
+.meta-nav .enchantment-link:hover {
+  opacity: 1;
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Start Over (inline, on terminal/dead-end passages) ── */
+.start-over-wrap {
+  margin-top: 1.2em;
+}
+.start-over-wrap tw-link,
+.start-over-wrap .enchantment-link {
+  background: none !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+  color: rgba(255,255,255,0.45) !important;
+  font-size: 0.85em;
+  min-width: unset !important;
+}
+.start-over-wrap tw-link:hover,
+.start-over-wrap .enchantment-link:hover {
+  background: rgba(248,113,113,0.08) !important;
+  border-color: rgba(248,113,113,0.5) !important;
+  color: #f87171 !important;
+}
+
+/* ── HR styling ── */
+hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 1.2em 0;
+}
+
+/* ── Result verdict styling ── */
+.verdict-block {
+  padding: 0.8em 1em 0.8em 1.2em;
+  border-left: 4px solid;
+  border-radius: 0 0.4em 0.4em 0;
+  margin: 0.3em 0 1em;
+}
+.verdict-legit { border-color: #4ade80; background: rgba(74,222,128,0.07); }
+.verdict-warn  { border-color: #fb923c; background: rgba(251,146,60,0.07); }
+.verdict-fake  { border-color: #f87171; background: rgba(248,113,113,0.07); }
+
+/* ── Flag badge in footer ── */
+.flag-badge {
+  color: #f87171;
+  font-size: 0.85em;
+}
+.unsure-badge {
+  color: #fbbf24;
+  font-size: 0.85em;
+}
+
+/* ── Max-width content column ── */
+body { background-color: #1c2228; }
+tw-story {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  font-family: system-ui, -apple-system, sans-serif !important;
+}
+
+/* ── Size choices as horizontal pills ── */
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+.size-grid tw-link,
+.size-grid .enchantment-link {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0.35em 0.8em !important;
+  border-radius: 2em !important;
+  min-width: unset !important;
+}
+
+/* ── Manufacturer 2-column grid ── */
+.manu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  margin: 0.5em 0 0;
+}
+.manu-grid > br { display: none; }
+.manu-grid tw-hook[name^=m] { margin: 0; }
+@media (max-width: 500px) {
+  .manu-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Flag/unsure lists on result pages ── */
+.flags-list ul,
+.unsure-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.4em 0;
+}
+.flags-list ul li::before { content: "❌ "; }
+.unsure-list ul li::before { content: "🤔 "; }

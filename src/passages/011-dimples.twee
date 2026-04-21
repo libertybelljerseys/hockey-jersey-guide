@@ -1,0 +1,13 @@
+:: dimples {"position": "650,775", "size": "100,100"}
+(if: $manu is "fanatics")[(go-to: "laces")](else:)[
+Look at the shoulder dimples. What are they like?
+
+The dimples on jerseys are an odd feature, and are often a giveaway for fakes. They should be subtle, even, and part of the fabric. Shiny or printed dimples are a sign of a fake jersey.
+
+(link: "❌ Very shiny or printed")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Shoulder dimples shiny or printed"))(go-to: "laces")]
+|fakeDimples1>[ <img src="images/dimples-fake.png" alt="Fake jersey eyelets/dimples"> ](click: ?fakeDimples1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Shoulder dimples shiny or printed"))(go-to: "laces")]
+
+(link: "✅ Subtle & even, part of the fabric")[(go-to: "laces")]
+|legitDimples1>[ <img src="images/dimples-legit.png" alt="Legit jersey eyelets/dimples"> ](click: ?legitDimples1)[(go-to: "laces")]
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Shoulder dimples check"))(go-to: "laces")] ]

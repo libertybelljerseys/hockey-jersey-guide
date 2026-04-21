@@ -1,0 +1,12 @@
+:: reebok-laces-no {"position": "1950,525", "size": "100,100"}
+Is the NHL Shield on its own piece of fabric, centered and well above the "V" of the neck?
+
+The NHL should never sit behind the laces. It should be on its own piece of fabric, centered and well above the "V" of the neck.
+
+[[ ✅ Yes ->legit-disclaimer]] 
+|imgLink1>[ <img src="images/reebok-vneck-legit.png" width="300" alt="Legit Reebok v-neck interior"> ](click: ?imgLink1)[(go-to: "legit-disclaimer")] 
+
+(link: "❌ No")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "NHL shield poorly placed on V-neck"))(go-to: "legit-disclaimer")]
+|fakeRVneck1>[ <img src="images/reebok-vneck-fake.png" width="300" alt="Fake Reebok v-neck interior"> ](click: ?fakeRVneck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "NHL shield poorly placed on V-neck"))(go-to: "legit-disclaimer")] 
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok V-neck shield position check"))(go-to: "fringe-case")] 

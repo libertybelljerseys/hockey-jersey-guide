@@ -1,0 +1,4 @@
+:: adidas-size {"position": "425,325", "size": "100,100"}
+What size is it?
+
+<div class="size-grid">[[42 ->adidas-button]] [[44 ->adidas-button]] [[46 ->adidas-button]] [[48 ->fake]] [[50 ->adidas-button]] [[52 ->adidas-button]] [[54 ->adidas-button]] [[56 ->adidas-button]] [[58 ->adidas-button]] [[60 ->adidas-button]]</div>

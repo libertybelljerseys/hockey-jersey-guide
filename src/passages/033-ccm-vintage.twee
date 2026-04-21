@@ -1,0 +1,5 @@
+:: ccm-vintage {"position": "1575,375", "size": "100,100"}
+What kind of sizing does your jersey have?
+
+- [[ Numbered ->ccm-vintage-number]]
+- [[ Lettered ->ccm-vintage-lettered]]

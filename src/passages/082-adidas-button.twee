@@ -1,0 +1,7 @@
+:: adidas-button {"position": "300,300", "size": "100,100"}
+Does it have the adidas button?
+
+Only certain early Adidas jerseys have this button. If yours does, we need to check it.
+
+(link: "✅ Yes")[(go-to: "button-check")]
+(link: "❌ No")[(go-to: "adidas-neck")]

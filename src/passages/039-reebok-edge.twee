@@ -1,0 +1,13 @@
+:: reebok-edge {"position": "1975,150", "size": "100,100"}
+What does the NHL Shield look like?
+
+Reebok used two different shields. Earlier shields used a plain black and silver embroidered logo, and later designs used a felt-ish shield with a scalloped background design. Both are legitimate, but the plain embroidered shield is more commonly faked.
+
+<small>Tap the image that matches your shield.</small>
+
+|imgLink2>[ <img src="images/reebok-shield-legit-01.png" width="300" alt="Legit NHL shield on Reebok jersey — example 1"> ](click: ?imgLink2)[(go-to: "reebok-neck")] |imgLink1>[ <img src="images/reebok-shield-legit-02.png" width="300" alt="Legit NHL shield on Reebok jersey — example 2"> ](click: ?imgLink1)[(go-to: "reebok-neck")]
+
+|fakeEdge1>[ <img src="images/reebok-shield-fake-01.png" width="300" alt="Fake NHL shield on Reebok jersey — example 1"> ](click: ?fakeEdge1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style NHL shield (Reebok)"))(go-to: "reebok-neck")]
+|fakeEdge2>[ <img src="images/reebok-shield-fake-02.png" width="300" alt="Fake NHL shield on Reebok jersey — example 2"> ](click: ?fakeEdge2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style NHL shield (Reebok)"))(go-to: "reebok-neck")] 
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok NHL shield check"))(go-to: "reebok-neck")] 

@@ -1,0 +1,17 @@
+:: shield-present {"position": "525,775", "size": "100,100"}
+What does your shield look like?
+
+The NHL shield should be smooth, flat, and uniform. The stitching should be basically invisible. 
+
+(link: "❌ Oddly shaped, rough stitching")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Poorly stitched NHL shield"))(if: $manu is "fanatics")[(go-to: "fanatics-box")](else:)[(go-to: "box")]]
+|fakeShield1>[ <img src="images/adidas-shield-fake.png" alt="Fake NHL shield on Adidas jersey"> ](click: ?fakeShield1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Poorly stitched NHL shield"))(if: $manu is "fanatics")[(go-to: "fanatics-box")](else:)[(go-to: "box")]]
+
+(if: $manu is "fanatics")[
+  (link: "✅ Flat, clean stitching")[(go-to: "fanatics-box")]
+  |legitShieldF>[ <img src="images/adidas-shield-legit.png" alt="Legit NHL shield on Adidas jersey"> ](click: ?legitShieldF)[(go-to: "fanatics-box")]
+  (link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "NHL shield check"))(go-to: "fanatics-box")]
+](else:)[
+  (link: "✅ Flat, clean stitching")[(go-to: "box")]
+  |legitShieldB>[ <img src="images/adidas-shield-legit.png" alt="Legit NHL shield on Adidas jersey"> ](click: ?legitShieldB)[(go-to: "box")]
+  (link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "NHL shield check"))(go-to: "box")]
+]

@@ -1,0 +1,8 @@
+:: fake-design {"position": "1125,580", "size": "100,100"}
+Is it one of these designs? A fake jersey will sometimes use a design the team never actually wore.
+
+<img src="images/crap-design-01.png" width="300" alt="Fantasy/fake jersey design example 1"><img src="images/crap-design-02.png" width="300" alt="Fantasy/fake jersey design example 2">
+<img src="images/crap-design-03.png" width="300" alt="Fantasy/fake jersey design example 3"><img src="images/crap-design-04.png" width="300" alt="Fantasy/fake jersey design example 4">
+
+[[ ❌ Yes, it matches one of these ->fake]]
+[[ ✅ No ->checkpoint]]

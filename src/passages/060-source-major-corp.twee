@@ -1,0 +1,5 @@
+:: source-major-corp {"position": "1225,300", "size": "100,100"}
+Is the ad for a reputable corporation like Fanatics or Dick's Sporting Goods?
+
+[[ ✅ Yes ->strap]] 
+[[ ❌ No ->source-sketch]]

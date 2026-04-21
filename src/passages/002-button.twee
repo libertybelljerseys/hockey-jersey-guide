@@ -1,0 +1,6 @@
+:: button {"position": "250,500", "size": "100,100"}
+
+ Does it have the adidas button?
+
+- (if: $manu is "fanatics")[(link: "❌ Yes")[(go-to: "fake")]](else:)[(link: "✅ Yes")[(go-to: "button-check")]]
+- (link: "❌ No")[(go-to: "neck")]

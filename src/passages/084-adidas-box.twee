@@ -1,0 +1,16 @@
+:: adidas-box {"position": "300,500", "size": "100,100"}
+Let's look at the back of your jersey.
+
+Look at the Adidas logo on the back of the neck.
+
+It should be a patch, with the backing material being the same color as the jersey itself (in most cases). The "box" it sits in should be just big enough for it, and the logo should sit level.
+
+What describes your logo?
+
+(link: "❌ Crooked or box too big")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Back logo crooked or box too large"))(go-to: "dimples")]
+|fakeABox1>[ <img src="images/neck-fake.png" alt="Fake back-of-neck logo placement"> ](click: ?fakeABox1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Back logo crooked or box too large"))(go-to: "dimples")]
+
+[[ Flat, centered ->dimples]]
+|legitABox1>[ <img src="images/neck-legit.png" alt="Legit back-of-neck logo placement"> ](click: ?legitABox1)[(go-to: "dimples")]
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Back logo box check"))(go-to: "dimples")]

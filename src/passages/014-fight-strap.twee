@@ -1,0 +1,15 @@
+:: fight-strap {"position": "825,425", "size": "100,100"}
+''What does your fight strap look like:''
+
+[[ Just kidding, I don't have a fight strap ->no-strap]] 
+(link: "I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Fight strap check"))(go-to: "lettering")] 
+
+<small>Tap the image that matches your strap.</small>
+
+|imgLink4>[ <img src="images/fightstrap-fake.png" width="400" alt="Fake fight strap"> ](click: ?imgLink4)[(go-to: "fake")] 
+
+|imgLink3>[ <img src="images/fightstrap-indo.png" width="400" alt="Indo-style fight strap"> ](click: ?imgLink3)[(go-to: "lettering")]
+
+|imgLink2>[ <img src="images/fightstrap-retail.png" width="400" alt="Legit retail fight strap"> ](click: ?imgLink2)[(go-to: "lettering")]
+
+|imgLink1>[ <img src="images/fightstrap-ti.png" width="400" alt="Legit TI fight strap"> ](click: ?imgLink1)[(go-to: "lettering")] 

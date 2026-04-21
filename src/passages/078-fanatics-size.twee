@@ -1,0 +1,4 @@
+:: fanatics-size {"position": "800,200", "size": "100,100"}
+What size is it?
+
+<div class="size-grid">[[44 ->fanatics-button]] [[46 ->fanatics-button]] [[48 ->fanatics-button]] [[50 ->fanatics-button]] [[52 ->fanatics-button]] [[54 ->fanatics-button]] [[56 ->fanatics-button]] [[58 ->fanatics-button]] [[60 ->fanatics-button]]</div>

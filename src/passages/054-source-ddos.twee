@@ -1,0 +1,5 @@
+:: source-ddos {"position": "1375,175", "size": "100,100"}
+Did you have to go through DDOS protection to get to the site, like CloudFlare?
+
+[[❌ Yes->fake-site]] 
+[[✅ No->source-whois]] 

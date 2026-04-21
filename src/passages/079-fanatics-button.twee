@@ -1,0 +1,7 @@
+:: fanatics-button {"position": "800,300", "size": "100,100"}
+Does your jersey have a button at the bottom?
+
+Fanatics Authentic jerseys should never have a button. If it does, it is a fake.
+
+[[ ❌ Yes, it has a button ->fake]]
+[[ ✅ No button ->fanatics-neck]]

@@ -1,0 +1,13 @@
+:: cut {"position": "650,950", "size": "100,100"}
+Overall, what does the cut look like?
+It should smoothly taper out towards the bottom, sort of like a bell shape. It should not be boxy or straight cut.
+
+<small>Tap the image that matches your jersey&apos;s cut.</small>
+
+|fakeCut1>[ <img src="images/adidas-cut-fake-01.png" height="300" alt="Fake Adidas jersey cut — example 1"> ](click: ?fakeCut1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Wrong jersey cut shape"))(go-to: "legit-disclaimer")]
+
+|fakeCut2>[ <img src="images/adidas-cut-fake-02.png" height="300" alt="Fake Adidas jersey cut — example 2"> ](click: ?fakeCut2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Wrong jersey cut shape"))(go-to: "legit-disclaimer")]
+
+|imgLink1>[ <img src="images/adidas-cut-legit.png" height="300" alt="Legit Adidas jersey cut"> ](click: ?imgLink1)[(go-to: "legit-disclaimer")]
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Jersey cut check"))(go-to: "fringe-case")] 

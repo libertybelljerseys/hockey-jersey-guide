@@ -1,6 +1,6 @@
 # NHL Jersey Legit Check Guide
 
-An interactive guide for authenticating NHL hockey jerseys — built with [Twine/Harlowe 2.1.0](https://twinery.org/), hosted as a single self-contained HTML file.
+An interactive guide for authenticating NHL hockey jerseys — built with [Twine/Harlowe 3.3.9](https://twinery.org/), hosted as a single self-contained HTML file.
 
 **[legitcheck.libertybelljerseys.com](https://legitcheck.libertybelljerseys.com/)**
 
@@ -24,7 +24,24 @@ Built and maintained by [Liberty Bell Jerseys](https://libertybelljerseys.com/).
 
 ## Tech Stack
 
-The entire guide lives in one file: `index.html`. It includes the Twine/Harlowe 2.1.0 runtime, all passage content, and custom CSS. There is no build step — edit the file, push to GitHub, and changes are live.
+`index.html` is the build output — it includes the Harlowe 3.3.9 runtime, all passage content, and CSS, and is what gets deployed. The source lives in `src/`:
+
+| Path | Purpose |
+|------|---------|
+| `src/passages/*.twee` | One file per passage (Twee 3 format) |
+| `src/style.css` | Custom CSS |
+| `src/story-style.css` | Twine user stylesheet |
+| `src/story-meta.json` | Story name, IFID, start passage |
+| `harlowe/harlowe-3.3.9-engine.*` | Harlowe runtime (do not edit) |
+| `build.py` | Assembles everything into `index.html` |
+
+**To rebuild after editing source files:**
+
+```
+python3 build.py
+```
+
+Then push `index.html` to deploy.
 
 Hosted on GitHub Pages with a custom domain via Cloudflare DNS.
 

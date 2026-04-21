@@ -1,0 +1,12 @@
+:: lettering {"position": "825,600", "size": "100,100"}
+Do the letters look shiny or oily, like this?
+
+Proper twill is usually flat and matte, and the stitching should be clean and tight. Shiny, bubbly, or "oily" lettering is a sign of a fake jersey.
+
+(link: "❌ Yes, looks like one of these")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Shiny or oily lettering"))(go-to: "crest")]
+[[ ✅ No ->crest]]
+
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Lettering check"))(go-to: "crest")]
+
+<img src="images/lettering-fake.png" width="400" alt="Fake jersey lettering">
+<img src="images/lettering-fake-patch.png" width="400" alt="Fake jersey lettering — patch style">

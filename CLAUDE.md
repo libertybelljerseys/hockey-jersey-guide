@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is an interactive NHL jersey authentication guide built with **Twine/Harlowe 2.1.0**, hosted as a single self-contained HTML file at:
+This is an interactive NHL jersey authentication guide built with **Twine/Harlowe 3.3.9**, hosted as a single self-contained HTML file at:
 
 **https://legitcheck.libertybelljerseys.com/**
 
@@ -19,28 +19,45 @@ The guide was originally "the r/hockeyjerseys guide" but has been fully rebrande
 
 | Component | Detail |
 |-----------|--------|
-| Engine | Twine + Harlowe 2.1.0 |
-| Format | Single HTML file (`index.html`) |
+| Engine | Twine + Harlowe 3.3.9 |
+| Format | Single HTML file (`index.html`) — assembled by `build.py` |
+| Source | Passages in `src/passages/*.twee`, CSS in `src/style.css` |
 | Hosting | GitHub Pages with custom domain via Cloudflare DNS |
 | Images | Hosted in `images/` folder in the GitHub repo (formerly S3) |
 | Brand logos | `images/logos/$brand.png` — pre-processed 32px transparent PNGs |
 
-The entire guide — engine, CSS, all passage content, and Harlowe runtime — lives in one `index.html` file. There is no build step.
+`index.html` is the **build output** — do not edit it directly. Edit source files in `src/` and run `python3 build.py` to regenerate it.
 
 ---
 
 ## File Structure (repo)
 
 ```
-index.html          # The entire guide
+index.html              # Build output (do not edit directly)
+build.py                # Assembles index.html from src/
+split.py                # One-time extraction from a legacy index.html
+src/
+  style.css             # Our custom CSS
+  story-style.css       # Twine user stylesheet (tw-story colors, link colors)
+  story-script.js       # Twine user JS (currently empty)
+  story-meta.json       # Story name, IFID, startpassage, format version
+  passages/
+    001-fake.twee       # One file per passage, pid-prefixed for sort order
+    002-button.twee
+    ...                 # 75 passages total
+harlowe/
+  harlowe-3.3.9-engine.css   # Harlowe runtime CSS (do not edit)
+  harlowe-3.3.9-engine.js    # Harlowe runtime JS (do not edit)
+  harlowe-2.1.0-engine.*     # Archived originals
+  format-3.3.9.js            # Harlowe Twine format source (reference only)
 images/
   logos/
-    adidas.png      # 48x32px transparent PNG
-    ccm.png         # 80x19px transparent PNG
-    fanatics.png    # 37x32px transparent PNG
-    koho.png        # 80x20px transparent PNG
-    reebok.png      # 57x32px transparent PNG
-    starter.png     # 66x32px transparent PNG
+    adidas.png          # 48x32px transparent PNG
+    ccm.png             # 80x19px transparent PNG
+    fanatics.png        # 37x32px transparent PNG
+    koho.png            # 80x20px transparent PNG
+    reebok.png          # 57x32px transparent PNG
+    starter.png         # 66x32px transparent PNG
   [all other guide images referenced in passages]
 ```
 
@@ -221,35 +238,44 @@ All passage names now use consistent lowercase kebab-case with no leading/traili
 
 ## Editing Patterns
 
+**Workflow**: edit files in `src/`, then run `python3 build.py` to regenerate `index.html`.
+
+### To edit a passage
+Open `src/passages/<pid>-<name>.twee`. The file starts with a Twee 3 header:
+```
+:: passage-name [tags] {"position":"x,y","size":"w,h"}
+```
+Content follows on the next line. Write real HTML and Harlowe macros — no XML escaping needed here. The build script handles that.
+
+### To add a new passage
+Create `src/passages/<pid>-<name>.twee` with the next available pid (currently max is 85, available gaps: 16, 66, 69–77).
+```
+:: my-passage {"position":"100,100","size":"100,100"}
+passage content here
+```
+Then run `python3 build.py`.
+
 ### To add a new red-flag check to a passage
 ```
-(link: "&lt;flag text&gt;")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "&lt;label for result page&gt;"))(go-to: "&lt;next passage&gt;")]
+(link: "<flag text>")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "<label for result page>"))(go-to: "<next passage>")]
 ```
 
 ### To make an image clickable (flag-triggering)
 ```
-|hookName>[ &lt;img src="images/example.png"&gt; ](click: ?hookName)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "&lt;label&gt;"))(go-to: "&lt;next passage&gt;")]
+|hookName>[ <img src="images/example.png" alt="description"> ](click: ?hookName)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "<label>"))(go-to: "<next passage>")]
 ```
 
 ### To add an "I'm not sure" link
 ```
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "&lt;check name&gt;"))(go-to: "&lt;next passage&gt;")]
-```
-
-### To add a new passage
-Add a `<tw-passagedata>` element before `</tw-storydata>`. Use the next available pid (currently max is 85).
-```html
-<tw-passagedata pid="86" name="my-passage" tags="" position="x,y" size="100,100">
-passage content here
-</tw-passagedata>
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "<check name>"))(go-to: "<next passage>")]
 ```
 
 ---
 
 ## Important Notes
 
-- **No build step** — edit `index.html` directly. Changes are live after pushing to GitHub.
-- **Max pid is 85** — increment for any new passages.
+- **Build step required** — edit source files in `src/`, run `python3 build.py`, then push `index.html` to GitHub.
+- **Max pid is 85** — next available gaps are 16, 66, 69–77. Use the next available when adding passages.
 - **Harlowe does not support HTML inside `(link: "...")` text** — using `&quot;` inside link text breaks parsing. Use named hook + `(click:)` pattern for clickable images/complex elements.
 - **`[[ ]]` link syntax** can sometimes fail with emoji in display text. Prefer `(link:)` macro for choices that include emoji.
 - **Session state** is saved in the URL hash by Harlowe. Users resuming from a bookmarked URL will pick up where they left off. "Start Over" resets all variables and navigates to `manufacturer`.

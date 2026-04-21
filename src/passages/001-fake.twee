@@ -1,0 +1,18 @@
+:: fake {"position": "51,275", "size": "100,100"}
+<div class="verdict-block verdict-fake">
+<h2 style="color:#f87171">❌ Definitive Fake</h2>
+This is a definitive fake jersey based on a single clear indicator.
+
+There is no ambiguity here — this jersey is not legitimate.
+</div>
+
+(if: $unsure > 0)[
+<hr>
+<b>You answered "not sure" on $unsure check(s):</b>
+<div class="unsure-list">(for: each _item, ...$unsurenames)[
+- _item
+]</div>
+Consider having an expert look at these specifically, or post photos in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a> for a second opinion.
+]
+
+<div class="start-over-wrap">(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>

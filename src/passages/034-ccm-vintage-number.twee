@@ -1,0 +1,9 @@
+:: ccm-vintage-number {"position": "1625,625", "size": "100,100"}
+What color are the bands on the neck tag?
+
+The gray banded tag is a fake. The blue banded tag is legitimate.
+
+|imgLink2>[ <img src="images/ccmvintage-fake.png" width="300" alt="Fake CCM vintage jersey neck tag"> ](click: ?imgLink2)[(go-to: "fake")]
+|imgLink1>[ <img src="images/ccmvintage-legit.png" width="300" alt="Courtesy of classicvintagejerseys on ebay"> ](click: ?imgLink1)[(go-to: "legit-disclaimer")]
+
+Gray bands = Fake | Blue bands = Legit

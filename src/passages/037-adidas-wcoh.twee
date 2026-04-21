@@ -1,0 +1,5 @@
+:: adidas-wcoh {"position": "1675,1025", "size": "100,100"}
+Is your jersey from the World Cup of Hockey (WCH)?
+
+[[ ✅ Yes ->adidas-wcoh-check]]
+[[ ❌ No ->fringe-case]]
