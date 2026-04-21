@@ -255,10 +255,3 @@ passage content here
 - **Session state** is saved in the URL hash by Harlowe. Users resuming from a bookmarked URL will pick up where they left off. "Start Over" resets all variables and navigates to `manufacturer`.
 - **The `FOOTER` passage** (tagged `footer`) renders on every page. It contains the Back `(undo:)` button, Start Over link, and the watermark logo.
 
----
-
-## Disclaimer To Add (Pending)
-
-The `about` passage should include this disclaimer (not yet added):
-
-> Brand logos are used solely to identify manufacturers and are the property of their respective owners. This guide is not affiliated with, endorsed by, or sponsored by Adidas, Fanatics, Reebok, CCM, Koho, or Starter.
