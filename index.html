@@ -57,7 +57,7 @@ tw-hook[name^=m]:hover {
 @media (max-width: 700px) {
   tw-story {
     font-size: 1.1em;
-    padding: 4% 5% !important;
+    padding: 1.2em 1em !important;
   }
   img {
     max-width: 100% !important;
@@ -273,6 +273,57 @@ hr {
   color: #f87171;
   font-size: 0.85em;
 }
+.unsure-badge {
+  color: #fbbf24;
+  font-size: 0.85em;
+}
+
+/* ── Max-width content column ── */
+body { background-color: #1c2228; }
+tw-story {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2em 2em;
+}
+
+/* ── Size choices as horizontal pills ── */
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 0.5em 0;
+}
+.size-grid tw-link,
+.size-grid .enchantment-link {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0.35em 0.8em !important;
+  border-radius: 2em !important;
+  min-width: unset !important;
+}
+
+/* ── Manufacturer 2-column grid ── */
+.manu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em;
+  margin: 0.5em 0 0;
+}
+.manu-grid > br { display: none; }
+.manu-grid tw-hook[name^=m] { margin: 0; }
+@media (max-width: 500px) {
+  .manu-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Flag/unsure lists on result pages ── */
+.flags-list ul,
+.unsure-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.4em 0;
+}
+.flags-list ul li::before { content: "❌ "; }
+.unsure-list ul li::before { content: "🤔 "; }
 .visited{color:#b0b0b0}tw-enchantment[style^="color"] .visited:not(:hover),tw-enchantment[style*=" color"] .visited:not(:hover){color:inherit}.visited:hover{color:#E3E}tw-broken-link{color:#993333;border-bottom:2px solid #993333;cursor:not-allowed}tw-enchantment[style^="color"] tw-broken-link:not(:hover),tw-enchantment[style*=" color"] tw-broken-link:not(:hover){color:inherit}.enchantment-mouseover{border-bottom:1px dashed #666}.enchantment-mouseout{border:rgba(64,149,191,0.25) 1px solid}.enchantment-mouseout:hover{background-color:rgba(64,149,191,0.25);border:transparent 1px solid;border-radius:0.2em}.enchantment-clickblock{box-shadow:inset 0 0 0 0.5vmax;display:block;color:rgba(65,105,225,0.5);transition:color 0.2s ease-in-out}.enchantment-clickblock:hover{color:rgba(0,191,255,0.5)}.enchantment-clickblock:active{color:rgba(222,78,59,0.5)}html{margin:0;height:100%;overflow-x:hidden}*,:before,:after{position:relative;box-sizing:inherit}body{margin:0;height:100%}tw-storydata{display:none}tw-story{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:vertical;-webkit-flex-direction:column;-moz-flex-direction:column;-ms-flex-direction:column;flex-direction:column;font:100% Georgia, serif;box-sizing:border-box;width:100%;min-height:100%;font-size:1.5em;line-height:1.5em;padding:5% 20%;margin:0;background-color:#000;color:#fff}tw-passage{display:block}br+br{display:block;height:0;margin:0.8ex 0}tw-sidebar{left:-5em;width:3em;position:absolute;text-align:center;display:block}tw-icon{display:block;margin:0.5em 0;opacity:0.1;font-size:2.75em}tw-icon:hover{opacity:0.3}tw-hook:empty,tw-expression:empty{display:none}tw-error{display:inline-block;border-radius:0.2em;padding:0.2em;font-size:1rem;cursor:help}tw-error.error{background-color:rgba(223,58,190,0.4);color:#fff}tw-error.warning{background-color:rgba(223,140,58,0.4);color:#fff;display:none}.debug-mode tw-error.warning{display:inline}tw-error-explanation{display:block;font-size:0.8rem;line-height:1rem}tw-error-explanation-button{cursor:pointer;line-height:0em;border-radius:1px;border:1px solid black;font-size:0.8rem;margin:0 0.4rem;opacity:0.5}tw-error-explanation-button .folddown-arrowhead{display:inline-block}tw-notifier{border-radius:0.2em;padding:0.2em;font-size:1rem;background-color:rgba(223,182,58,0.4);display:none}.debug-mode tw-notifier{display:inline}tw-notifier::before{content:attr(message)}tw-colour{border:1px solid black;display:inline-block;width:1em;height:1em}h1{font-size:3em}h2{font-size:2.25em}h3{font-size:1.75em}h1,h2,h3,h4,h5,h6{line-height:1em;margin:0.3em 0 0.6em 0}pre{font-size:1rem}small{font-size:70%}big{font-size:120%}mark{color:rgba(0,0,0,0.6);background-color:#ff9}ins{color:rgba(0,0,0,0.6);background-color:rgba(255,242,204,0.5);border-radius:0.5em;box-shadow:0em 0em 0.2em #ffe699;text-decoration:none}center{text-align:center;margin:0 auto;width:60%}blink{text-decoration:none;animation:fade-in-out 1s steps(1, end) infinite alternate;-webkit-animation:fade-in-out 1s steps(1, end) infinite alternate}tw-align{display:block}tw-columns{display:-webkit-box;display:-webkit-flex;display:-moz-flex;display:-ms-flexbox;display:flex;-webkit-box-direction:normal;-webkit-box-orient:horizontal;-webkit-flex-direction:row;-moz-flex-direction:row;-ms-flex-direction:row;flex-direction:row;-webkit-box-pack:justify;-ms-flex-pack:justify;-webkit-justify-content:space-between;-moz-justify-content:space-between;justify-content:space-between}tw-outline{color:white;text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000}tw-shadow{text-shadow:0.08em 0.08em 0.08em #000}tw-emboss{text-shadow:0.08em 0.08em 0em #000;color:white}tw-condense{letter-spacing:-0.08em}tw-expand{letter-spacing:0.1em}tw-blur{color:transparent;text-shadow:0em 0em 0.08em #000}tw-blurrier{color:transparent;text-shadow:0em 0em 0.2em #000}tw-blurrier::selection{background-color:transparent;color:transparent}tw-blurrier::-moz-selection{background-color:transparent;color:transparent}tw-smear{color:transparent;text-shadow:0em 0em 0.02em rgba(0,0,0,0.75),-0.2em 0em 0.5em rgba(0,0,0,0.5),0.2em 0em 0.5em rgba(0,0,0,0.5)}tw-mirror{display:inline-block;transform:scaleX(-1);-webkit-transform:scaleX(-1)}tw-upside-down{display:inline-block;transform:scaleY(-1);-webkit-transform:scaleY(-1)}tw-fade-in-out{text-decoration:none;animation:fade-in-out 2s ease-in-out infinite alternate;-webkit-animation:fade-in-out 2s ease-in-out infinite alternate}tw-rumble{-webkit-animation:rumble linear 0.1s 0s infinite;animation:rumble linear 0.1s 0s infinite;display:inline-block}tw-shudder{-webkit-animation:shudder linear 0.1s 0s infinite;animation:shudder linear 0.1s 0s infinite;display:inline-block}tw-shudder-in{animation:shudder-in 1s ease-out;-webkit-animation:shudder-in 1s ease-out}.transition-in{-webkit-animation:appear 0ms step-start;animation:appear 0ms step-start}.transition-out{-webkit-animation:appear 0ms step-end;animation:appear 0ms step-end}[data-t8n^=fade-in].transition-in{-webkit-animation:appear .8s;animation:appear .8s}[data-t8n^=fade-in].transition-out{display:none}[data-t8n^=dissolve].transition-in{-webkit-animation:appear .8s;animation:appear .8s}[data-t8n^=dissolve].transition-out{-webkit-animation:appear .8s reverse;animation:appear .8s reverse}[data-t8n^=shudder-in].transition-in,.transition-in[data-t8n^=shudder]{display:inline-block;-webkit-animation:shudder-in .8s;animation:shudder-in .8s}[data-t8n^=shudder-out].transition-out,.transition-out[data-t8n^=shudder]{display:inline-block;-webkit-animation:shudder-out .8s;animation:shudder-out .8s}[data-t8n^=boxflash].transition-in{-webkit-animation:box-flash .8s;animation:box-flash .8s}[data-t8n^=pulse].transition-in{-webkit-animation:pulse .8s;animation:pulse .8s;display:inline-block}[data-t8n^=pulse].transition-out{-webkit-animation:pulse .8s reverse;animation:pulse .8s reverse;display:inline-block}[data-t8n$=fast]{animation-duration:.4s;-webkit-animation-duration:.4s}[data-t8n$=slow]{animation-duration:1.6s;-webkit-animation-duration:1.6s}
 </style>
 </head>
@@ -335,9 +386,9 @@ There is no ambiguity here — this jersey is not legitimate.
 (if: $unsure > 0)[
 &lt;hr&gt;
 &lt;b&gt;You answered &quot;not sure&quot; on $unsure check(s):&lt;/b&gt;
-(for: each _item, ...$unsurenames)[
+&lt;div class=&quot;unsure-list&quot;&gt;(for: each _item, ...$unsurenames)[
 - _item
-]
+]&lt;/div&gt;
 Consider having an expert look at these specifically, or post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
 ]
 
@@ -488,12 +539,14 @@ Big disclaimer: &#39;&#39;We cannot guarantee everything with this guide.&#39;&#
 
 Let&#39;s get started. Who is the manufacturer of your jersey?
 
+&lt;div class=&quot;manu-grid&quot;&gt;
 |mAdidas>[ &lt;img src=&quot;images/logos/adidas.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Adidas ](click: ?mAdidas)[(set: $manu to &quot;adidas&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;ebay-ask&quot;)]
 |mFanatics>[ &lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Fanatics ](click: ?mFanatics)[(set: $manu to &quot;fanatics&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;fanatics-ask&quot;)]
 |mReebok>[ &lt;img src=&quot;images/logos/reebok.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Reebok ](click: ?mReebok)[(set: $manu to &quot;reebok&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;ebay-ask&quot;)]
 |mCCM>[ &lt;img src=&quot;images/logos/ccm.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; CCM ](click: ?mCCM)[(set: $manu to &quot;CCM&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;ebay-ask&quot;)]
 |mKoho>[ &lt;img src=&quot;images/logos/koho.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Koho ](click: ?mKoho)[(set: $manu to &quot;CCM&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;ebay-ask&quot;)]
 |mStarter>[ &lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Starter or Pro Player ](click: ?mStarter)[(set: $manu to &quot;Starter&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;Starter&quot;)]
+&lt;/div&gt;
 (link: &quot;Other&quot;)[(set: $manu to &quot;Other&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;ask&quot;)]
 
 
@@ -509,16 +562,7 @@ This is an interactive guide to help you determine the legitimacy of your Reebok
 
 What size is it? 
 
-[[ 46 -&gt;edge]] 
-[[ 48 -&gt;Fake]] 
-[[ 50 -&gt;edge]] 
-[[ 52 -&gt;edge]]
-[[ 54 -&gt;edge]]
-[[ 56 -&gt;edge]]
-[[ 58 -&gt;edge]]
-[[ 58(+/G/K) -&gt;edge]] 
-[[ 60 -&gt;edge]]
-[[ S/M/L/XL/XXL -&gt;reebok-replica]] </tw-passagedata><tw-passagedata pid="18" name="CCM" tags="" position="1650,225" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/ccm.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;CCM&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;size-grid&quot;&gt;[[ 46 -&gt;edge]] [[ 48 -&gt;Fake]] [[ 50 -&gt;edge]] [[ 52 -&gt;edge]] [[ 54 -&gt;edge]] [[ 56 -&gt;edge]] [[ 58 -&gt;edge]] [[ 58(+/G/K) -&gt;edge]] [[ 60 -&gt;edge]] [[ S/M/L/XL/XXL -&gt;reebok-replica]]&lt;/div&gt;</tw-passagedata><tw-passagedata pid="18" name="CCM" tags="" position="1650,225" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/ccm.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;CCM&quot;&gt;&lt;/div&gt;
 
 This is an interactive guide to help you determine the legitimacy of your CCM or Koho jersey.
 
@@ -529,16 +573,7 @@ Is your jersey a CCM &quot;Vintage&quot; Jersey?
 [[ ✅ Yes -&gt;ccm-vintage]]
 [[ ❌ No -&gt;ccm-novintage]] </tw-passagedata><tw-passagedata pid="19" name="adidas-size" tags="" position="425,325" size="100,100">What size is it?
 
-[[42 -&gt;adidas-button]]
-[[44 -&gt;adidas-button]]
-[[46 -&gt;adidas-button]]
-[[48 -&gt;Fake]]
-[[50 -&gt;adidas-button]]
-[[52 -&gt;adidas-button]]
-[[54 -&gt;adidas-button]]
-[[56 -&gt;adidas-button]]
-[[58 -&gt;adidas-button]]
-[[60 -&gt;adidas-button]]</tw-passagedata><tw-passagedata pid="20" name="Lettering" tags="" position="825,600" size="100,100">Do the letters look shiny or oily, like this?
+&lt;div class=&quot;size-grid&quot;&gt;[[42 -&gt;adidas-button]] [[44 -&gt;adidas-button]] [[46 -&gt;adidas-button]] [[48 -&gt;Fake]] [[50 -&gt;adidas-button]] [[52 -&gt;adidas-button]] [[54 -&gt;adidas-button]] [[56 -&gt;adidas-button]] [[58 -&gt;adidas-button]] [[60 -&gt;adidas-button]]&lt;/div&gt;</tw-passagedata><tw-passagedata pid="20" name="Lettering" tags="" position="825,600" size="100,100">Do the letters look shiny or oily, like this?
 
 Proper twill is usually flat and matte, and the stitching should be clean and tight. Shiny, bubbly, or &quot;oily&quot; lettering is a sign of a fake jersey.
 
@@ -747,6 +782,7 @@ If you have a jersey with a fight strap and a jock tag, it&#39;s one of the foll
 
 
 (if: $flags > 0)[&lt;div class=&quot;flag-badge&quot;&gt;🚩 $flags red flag(s) so far&lt;/div&gt;]
+(if: $unsure > 0)[&lt;div class=&quot;unsure-badge&quot;&gt;🤔 $unsure unsure&lt;/div&gt;]
 &lt;div class=&quot;footer-nav&quot;&gt;(link: &quot;◀ Back&quot;)[(undo:)] &amp;nbsp;&amp;nbsp; (link: &quot;↺ Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;
 &lt;img src=&quot;images/logo.png&quot; id=&quot;site-logo&quot; alt=&quot;Logo&quot;&gt;
 </tw-passagedata><tw-passagedata pid="58" name="Starter" tags="" position="1267,594" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Starter / Pro Player&quot;&gt;&lt;/div&gt;
@@ -823,9 +859,9 @@ If you&apos;re still not 100% sure, feel free to post a link or pictures in the 
 Only one issue was found. This could be a fake, a limited edition, or just wear and tear. We recommend getting a second opinion.
 
 &lt;b&gt;Red flag found:&lt;/b&gt;
-(for: each _item, ...$flagnames)[
+&lt;div class=&quot;flags-list&quot;&gt;(for: each _item, ...$flagnames)[
 - _item
-]
+]&lt;/div&gt;
 
 For a second opinion, post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
 &lt;/div&gt;
@@ -835,9 +871,9 @@ For a second opinion, post photos in the &lt;a href=&quot;https://reddit.com/r/h
 $flags red flags were found. This jersey is suspicious and should be verified further.
 
 &lt;b&gt;Red flags found:&lt;/b&gt;
-(for: each _item, ...$flagnames)[
+&lt;div class=&quot;flags-list&quot;&gt;(for: each _item, ...$flagnames)[
 - _item
-]
+]&lt;/div&gt;
 
 For a definitive answer, post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
 &lt;/div&gt;
@@ -847,9 +883,9 @@ For a definitive answer, post photos in the &lt;a href=&quot;https://reddit.com/
 $flags red flags were found. A jersey with this many issues is almost certainly not legitimate.
 
 &lt;b&gt;Red flags found:&lt;/b&gt;
-(for: each _item, ...$flagnames)[
+&lt;div class=&quot;flags-list&quot;&gt;(for: each _item, ...$flagnames)[
 - _item
-]
+]&lt;/div&gt;
 
 Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; if you&apos;re looking for a legitimate jersey.
 &lt;/div&gt;
@@ -926,15 +962,7 @@ Where is the site based?
 [[✅ No -&gt;strap]]</tw-passagedata>
 <tw-passagedata pid="78" name="fanatics-size" tags="" position="800,200" size="100,100">What size is it?
 
-[[44 -&gt;fanatics-button]]
-[[46 -&gt;fanatics-button]]
-[[48 -&gt;fanatics-button]]
-[[50 -&gt;fanatics-button]]
-[[52 -&gt;fanatics-button]]
-[[54 -&gt;fanatics-button]]
-[[56 -&gt;fanatics-button]]
-[[58 -&gt;fanatics-button]]
-[[60 -&gt;fanatics-button]]</tw-passagedata>
+&lt;div class=&quot;size-grid&quot;&gt;[[44 -&gt;fanatics-button]] [[46 -&gt;fanatics-button]] [[48 -&gt;fanatics-button]] [[50 -&gt;fanatics-button]] [[52 -&gt;fanatics-button]] [[54 -&gt;fanatics-button]] [[56 -&gt;fanatics-button]] [[58 -&gt;fanatics-button]] [[60 -&gt;fanatics-button]]&lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="79" name="fanatics-button" tags="" position="800,300" size="100,100">Does your jersey have a button at the bottom?
 
 Fanatics Authentic jerseys should never have a button. If it does, it is a fake.
