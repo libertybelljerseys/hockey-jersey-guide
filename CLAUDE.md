@@ -103,7 +103,7 @@ See `docs/passage-routing.md` for the complete routing map.
 - No NHL shield present (`shield` passage)
 - Fake fight strap image (`fight-strap` passage)
 - Fanatics jersey has a button (`fanatics-button` passage)
-- Fantasy/crap design (`fantasy-design` passage)
+- Fantasy/crap design (`fake-design` passage)
 - CCM: inconsistent size tag (`ccm-non-vintage-sizes`)
 - CCM: drop stitches on crest/patches (`ccm-non-vintage-stitching`)
 - CCM vintage: gray-banded neck tag (`ccm-vintage-number`)
@@ -119,7 +119,7 @@ These passages add to `$flags` and `$flagnames` then continue to the next check:
 ### Adidas
 ```
 manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
-→ lettering → crest → fantasy-design → checkpoint → manu-switch → adidas-size
+→ lettering → crest → fake-design → checkpoint → manu-switch → adidas-size
 → adidas-button → [button checks if yes] → adidas-neck → band → hangar
 → shield → shield-present → adidas-box → dimples → laces → cut
 → legit-disclaimer → result
@@ -128,7 +128,7 @@ manufacturer → source-ask → [source checks] → strap → fight-strap/no-str
 ### Fanatics Premium/Pro Authentic
 ```
 manufacturer → fanatics-intro → source-ask → [source checks] → strap
-→ fight-strap/no-strap → lettering → crest → fantasy-design → checkpoint
+→ fight-strap/no-strap → lettering → crest → fake-design → checkpoint
 → manu-switch → fanatics-size → fanatics-button → fanatics-neck → band
 → hangar → shield → shield-present → fanatics-box → laces → cut
 → legit-disclaimer → result
@@ -143,7 +143,7 @@ Breakaway jerseys are generally not faked — the `fanatics-breakaway` passage s
 ### Reebok Edge
 ```
 manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
-→ lettering → crest → fantasy-design → checkpoint → manu-switch → reebok-edge-or-premier
+→ lettering → crest → fake-design → checkpoint → manu-switch → reebok-edge-or-premier
 → reebok-intro → [size check, 48=fake] → reebok-edge → reebok-neck → reebok-neck-vector
 or reebok-neck-wordmark → reebok-laces-ask → reebok-laces-yes/no
 → legit-disclaimer → result
@@ -157,7 +157,7 @@ or reebok-neck-wordmark → reebok-laces-ask → reebok-laces-yes/no
 ### CCM/Koho
 ```
 manufacturer → source-ask → [source checks] → strap → fight-strap/no-strap
-→ lettering → crest → fantasy-design → checkpoint → manu-switch → ccm-intro
+→ lettering → crest → fake-design → checkpoint → manu-switch → ccm-intro
 → ccm-vintage or ccm-non-vintage → [vintage/non-vintage checks]
 → legit-disclaimer → result
 ```

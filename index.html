@@ -600,13 +600,13 @@ Laces should be tight, flat, and securely attached to the jersey. They should no
 
 The crest should be flat and smooth, with clean stitching. Shiny, oily, bubbly, or diagonal streaks on the crest are a sign of a fake jersey.
 
-(link: &quot;❌ Shiny, oily, bubbly, diagonal streaks&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fantasy-design&quot;)]
-|fakeCrest1>[ &lt;img src=&quot;images/crest-fake.png&quot; width=&quot;300&quot;&gt; ](click: ?fakeCrest1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fantasy-design&quot;)]
+(link: &quot;❌ Shiny, oily, bubbly, diagonal streaks&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fake-design&quot;)]
+|fakeCrest1>[ &lt;img src=&quot;images/crest-fake.png&quot; width=&quot;300&quot;&gt; ](click: ?fakeCrest1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fake-design&quot;)]
 
-[[ ✅ Flat, smooth -&gt;fantasy-design]]
-[[ &lt;img src=&quot;images/crest-legit.png&quot; width=&quot;300&quot; -&gt;fantasy-design]]
+[[ ✅ Flat, smooth -&gt;fake-design]]
+[[ &lt;img src=&quot;images/crest-legit.png&quot; width=&quot;300&quot; -&gt;fake-design]]
 
-(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;fantasy-design&quot;)] </tw-passagedata><tw-passagedata pid="23" name="checkpoint" tags="" position="1125,700" size="100,100">&lt;div class=&quot;checkpoint-block&quot;&gt;&#x2705; Things are looking good so far — no definitive issues found.&lt;/div&gt;
+(link: &quot;🤔 I'm not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;fake-design&quot;)] </tw-passagedata><tw-passagedata pid="23" name="checkpoint" tags="" position="1125,700" size="100,100">&lt;div class=&quot;checkpoint-block&quot;&gt;&#x2705; Things are looking good so far — no definitive issues found.&lt;/div&gt;
 
 [[ Let&#39;s continue with some manufacturer specific traits -&gt;manu-switch]]</tw-passagedata><tw-passagedata pid="24" name="manu-switch" tags="" position="1000,800" size="100,100">(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;reebok-edge-or-premier&quot;)]
 (else-if: $manu is &#39;adidas&#39; ) [(go-to: &quot;adidas-size&quot;)]
@@ -658,7 +658,7 @@ Gray bands = Fake | Blue bands = Legit</tw-passagedata><tw-passagedata pid="35" 
 
 However, you can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; if you&#39;re not sure.
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt; </tw-passagedata><tw-passagedata pid="36" name="fantasy-design" tags="" position="1125,580" size="100,100">Is it one of these designs? A fake jersey will sometimes use a design the team never actually wore.
+&lt;div class=&quot;start-over-wrap&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt; </tw-passagedata><tw-passagedata pid="36" name="fake-design" tags="" position="1125,580" size="100,100">Is it one of these designs? A fake jersey will sometimes use a design the team never actually wore.
 
 &lt;img src=&quot;images/crap-design-01.png&quot; width=&quot;300&quot;&gt;&lt;img src=&quot;images/crap-design-02.png&quot; width=&quot;300&quot;&gt;
 &lt;img src=&quot;images/crap-design-03.png&quot; width=&quot;300&quot;&gt;&lt;img src=&quot;images/crap-design-04.png&quot; width=&quot;300&quot;&gt;
