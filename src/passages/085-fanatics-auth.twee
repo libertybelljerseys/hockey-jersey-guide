@@ -1,4 +1,4 @@
 :: fanatics-auth {"position": "800,600", "size": "100,100"}
-This is the Fanatics Authentic check section.
+This is the Fanatics Authentic check section. 
 
 (if: $manu is "fanatics")[(go-to: "legit-disclaimer")]
