@@ -1,16 +1,15 @@
 tw-story {
-  background-color: #1c2228;
-  color: #ffffff;
+  background-color: #1C2228;
+  color: #E8E4DC;
 }
 
-tw-link
-{
-  color: #ffffff;
+tw-link {
+  color: #E8E4DC;
 }
 
 tw-link.hover {
-color:#c2c2c2;
+  color: #CF4002;
 }
 tw-link.visited {
-color:#FFFFFF;
+  color: #E8E4DC;
 }

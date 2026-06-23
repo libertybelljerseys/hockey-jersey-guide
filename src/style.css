@@ -1,14 +1,24 @@
-/* ── Link colors (override Harlowe 3.x defaults back to ice-blue theme) ── */
+:root {
+  --lbj-orange:     #CF4002;
+  --lbj-orange-dim: #A33201;
+  --lbj-bg:         #1C2228;
+  --lbj-bg-card:    #242B33;
+  --lbj-text:       #E8E4DC;
+  --lbj-text-muted: #7A8491;
+  --lbj-border:     rgba(255, 255, 255, 0.09);
+}
+
+/* ── Link colors ── */
 tw-link, .enchantment-link {
-  color: #e8e8e8;
+  color: var(--lbj-text);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
 }
-tw-link:hover, .enchantment-link:hover { color: #7ee8fa; }
-tw-link:active, .enchantment-link:active { color: #dd4b39; }
-a { color: #8dd4ea; text-decoration: underline; }
-a:hover { color: #7ee8fa; }
+tw-link:hover, .enchantment-link:hover { color: var(--lbj-orange); }
+tw-link:active, .enchantment-link:active { color: var(--lbj-orange-dim); }
+a { color: var(--lbj-orange); text-decoration: underline; }
+a:hover { color: var(--lbj-orange-dim); }
 
 #site-logo {
   position: fixed;
@@ -41,7 +51,7 @@ tw-hook[name] {
 }
 tw-hook[name]:hover {
   opacity: 0.8;
-  outline: 2px solid #7ee8fa;
+  outline: 2px solid var(--lbj-orange);
   outline-offset: 3px;
 }
 tw-hook[name^=m]:hover {
@@ -102,16 +112,16 @@ tw-hook[name=mCCM], tw-hook[name=mKoho], tw-hook[name=mStarter] {
   gap: 0.5em;
   padding: 0.4em 0.7em;
   margin: 0.3em 0;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.4em;
-  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--lbj-border);
+  border-radius: 3px;
+  background: rgba(207, 64, 2, 0.05);
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 tw-hook[name=mAdidas]:hover, tw-hook[name=mFanatics]:hover, tw-hook[name=mReebok]:hover,
 tw-hook[name=mCCM]:hover, tw-hook[name=mKoho]:hover, tw-hook[name=mStarter]:hover {
-  background: rgba(125,211,252,0.12);
-  border-color: #7ee8fa;
+  background: rgba(207, 64, 2, 0.14);
+  border-color: var(--lbj-orange);
 }
 tw-hook[name=mAdidas] img, tw-hook[name=mFanatics] img, tw-hook[name=mReebok] img,
 tw-hook[name=mCCM] img, tw-hook[name=mKoho] img, tw-hook[name=mStarter] img {
@@ -140,18 +150,18 @@ tw-passage .enchantment-link {
   display: inline-block;
   margin: 0.3em 0;
   padding: 0.4em 0.7em;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 0.4em;
-  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--lbj-border);
+  border-radius: 3px;
+  background: rgba(207, 64, 2, 0.05);
   transition: background 0.15s ease, border-color 0.15s ease;
   font-weight: normal;
   min-width: 8em;
 }
 tw-passage tw-link:hover,
 tw-passage .enchantment-link:hover {
-  background: rgba(125,211,252,0.12);
-  border-color: #7ee8fa;
-  color: #7ee8fa;
+  background: rgba(207, 64, 2, 0.14);
+  border-color: var(--lbj-orange);
+  color: var(--lbj-text);
 }
 /* Footer nav links should stay inline, not block */
 .footer-nav tw-link,
@@ -171,7 +181,7 @@ tw-passage .enchantment-link:hover {
 .footer-nav {
   margin-top: 2em;
   padding-top: 0.8em;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  border-top: 1px solid var(--lbj-border);
   font-size: 0.85em;
   opacity: 0.8;
 }
@@ -181,17 +191,17 @@ tw-passage .enchantment-link:hover {
   display: inline-block;
   margin: 0.3em 0;
   padding: 0.4em 0.9em;
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 0.4em;
-  background: rgba(255,255,255,0.06);
-  color: #8dd4ea;
+  border: 1px solid var(--lbj-border);
+  border-radius: 3px;
+  background: rgba(207, 64, 2, 0.05);
+  color: var(--lbj-text);
   text-decoration: none;
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .about-cta-link:hover {
-  background: rgba(125,211,252,0.12);
-  border-color: #7ee8fa;
-  color: #7ee8fa;
+  background: rgba(207, 64, 2, 0.14);
+  border-color: var(--lbj-orange);
+  color: var(--lbj-text);
   text-decoration: none;
 }
 
@@ -199,7 +209,7 @@ tw-passage .enchantment-link:hover {
 .checkpoint-block {
   padding: 0.8em 1em 0.8em 1.2em;
   border-left: 4px solid #4ade80;
-  border-radius: 0 0.4em 0.4em 0;
+  border-radius: 0 3px 3px 0;
   background: rgba(74,222,128,0.07);
   margin: 0.3em 0 1em;
 }
@@ -208,7 +218,7 @@ tw-passage .enchantment-link:hover {
 .meta-nav {
   margin-top: 1em;
   padding-top: 0.8em;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid var(--lbj-border);
 }
 .meta-nav tw-link,
 .meta-nav .enchantment-link {
@@ -233,8 +243,8 @@ tw-passage .enchantment-link:hover {
 .start-over-wrap tw-link,
 .start-over-wrap .enchantment-link {
   background: none !important;
-  border: 1px solid rgba(255,255,255,0.15) !important;
-  color: rgba(255,255,255,0.45) !important;
+  border: 1px solid var(--lbj-border) !important;
+  color: rgba(232, 228, 220, 0.45) !important;
   font-size: 0.85em;
   min-width: unset !important;
 }
@@ -248,7 +258,7 @@ tw-passage .enchantment-link:hover {
 /* ── HR styling ── */
 hr {
   border: none;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  border-top: 1px solid var(--lbj-border);
   margin: 1.2em 0;
 }
 
@@ -256,7 +266,7 @@ hr {
 .verdict-block {
   padding: 0.8em 1em 0.8em 1.2em;
   border-left: 4px solid;
-  border-radius: 0 0.4em 0.4em 0;
+  border-radius: 0 3px 3px 0;
   margin: 0.3em 0 1em;
 }
 .verdict-legit { border-color: #4ade80; background: rgba(74,222,128,0.07); }
@@ -274,11 +284,15 @@ hr {
 }
 
 /* ── Max-width content column ── */
-body { background-color: #1c2228; }
+body {
+  background-color: var(--lbj-bg);
+  font-family: 'Barlow', sans-serif;
+}
 tw-story {
   max-width: 1400px !important;
   margin: 0 auto !important;
-  font-family: system-ui, -apple-system, sans-serif !important;
+  font-family: 'Barlow', sans-serif !important;
+  color: var(--lbj-text) !important;
 }
 
 /* ── Size choices as horizontal pills ── */
