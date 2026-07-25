@@ -286,13 +286,31 @@ hr {
 /* ── Max-width content column ── */
 body {
   background-color: var(--lbj-bg);
+  background-image: url('images/backgrounds/texture.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
   font-family: 'Barlow', sans-serif;
 }
+
+/* Card: passage content floats over the textured background */
 tw-story {
   max-width: 1400px !important;
-  margin: 0 auto !important;
+  min-height: auto !important;
+  margin: 2em auto !important;
   font-family: 'Barlow', sans-serif !important;
   color: var(--lbj-text) !important;
+  background-color: rgba(36, 43, 51, 0.92) !important;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+@media (max-width: 700px) {
+  tw-story {
+    max-width: calc(100% - 1em) !important;
+    margin: 0.8em auto !important;
+    border-radius: 8px;
+  }
 }
 
 /* ── Size choices as horizontal pills ── */
