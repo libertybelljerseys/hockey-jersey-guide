@@ -6,6 +6,24 @@
   --lbj-text:       #E8E4DC;
   --lbj-text-muted: #7A8491;
   --lbj-border:     rgba(255, 255, 255, 0.09);
+  --lbj-radius:     12px;
+}
+
+/* ── Typography ──
+   Barlow Condensed for display/headings (tight, negative tracking, condensed
+   weight already loaded — no new font cost). Barlow for body/UI, near-zero
+   tracking, roomier leading. Sizes flow from rem so a user's browser text-size
+   setting still scales the whole guide. */
+h1, h2, h3 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+h1 { letter-spacing: -0.02em; }
+p, li { letter-spacing: 0; }
+small, .footer-nav, .meta-nav, .flag-badge, .unsure-badge {
+  letter-spacing: 0.01em;
 }
 
 /* ── Link colors ── */
@@ -13,12 +31,21 @@ tw-link, .enchantment-link {
   color: var(--lbj-text);
   font-weight: bold;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.1s ease-out, background 0.15s ease, border-color 0.15s ease;
 }
 tw-link:hover, .enchantment-link:hover { color: var(--lbj-orange); }
 tw-link:active, .enchantment-link:active { color: var(--lbj-orange-dim); }
 a { color: var(--lbj-orange); text-decoration: underline; }
 a:hover { color: var(--lbj-orange-dim); }
+
+/* ── Press feedback (respond on press, not just hover/release) ── */
+tw-passage tw-link:active,
+tw-passage .enchantment-link:active,
+.about-cta-link:active,
+tw-hook[name]:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out;
+}
 
 #site-logo {
   position: fixed;
@@ -27,9 +54,10 @@ a:hover { color: var(--lbj-orange-dim); }
   width: 32px !important;
   max-width: 32px !important;
   height: auto !important;
-  opacity: 0.6;
+  opacity: 0.85;
   z-index: 9999;
   pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(207, 64, 2, 0.7)) drop-shadow(0 0 10px rgba(207, 64, 2, 0.4));
 }
 
 /* ── Mobile-friendly improvements ── */
@@ -38,6 +66,14 @@ a:hover { color: var(--lbj-orange-dim); }
 img:not(#site-logo) {
   max-width: 100%;
   height: auto;
+}
+/* Reference/choice photos (e.g. neck-tag close-ups) are often tall portrait
+   crops — cap their height so one image can't force .passage-actions past
+   its flex-shrink:0 budget and crush .passage-content to near-zero. */
+.passage-content img:not(.brand-logo-header),
+.passage-actions img {
+  max-height: 30vh;
+  width: auto;
 }
 .BTG-header img {
   width: 120px !important;
@@ -59,11 +95,65 @@ tw-hook[name^=m]:hover {
   outline: none;
 }
 
+/* ── App shell ──
+   tw-story is a fixed-height card; .passage-content is the ONLY region that
+   scrolls. .passage-actions (the next-step choices) and the footer nav are
+   plain flex children with no grow — they just sit at the bottom of the
+   column, always on screen, so there's never anything to scroll to find. */
+tw-story {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 !important;
+  overflow: hidden;
+}
+tw-passage {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.passage-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.2em 1.4em 0.6em;
+}
+.passage-actions,
+.footer-nav,
+.flag-badge,
+.unsure-badge {
+  flex: 0 0 auto;
+}
+.passage-actions {
+  padding: 0.8em 1.4em;
+  max-height: 55vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -8px 16px -8px rgba(0, 0, 0, 0.35);
+}
+.flag-badge, .unsure-badge {
+  padding: 0 1.4em;
+}
+.footer-nav {
+  padding: 0.6em 1.4em 0.8em;
+}
+
 /* Responsive layout */
 @media (max-width: 700px) {
   tw-story {
     font-size: 1.1em;
-    padding: 4% 5% !important;
+  }
+  .passage-content {
+    padding: 4% 5% 0.6em;
+  }
+  .passage-actions {
+    padding: 0.7em 5%;
+  }
+  .footer-nav {
+    padding: 0.5em 5% 0.7em;
   }
   img {
     max-width: 100% !important;
@@ -116,7 +206,7 @@ tw-hook[name=mCCM], tw-hook[name=mKoho], tw-hook[name=mStarter] {
   border-radius: 3px;
   background: rgba(207, 64, 2, 0.05);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out;
 }
 tw-hook[name=mAdidas]:hover, tw-hook[name=mFanatics]:hover, tw-hook[name=mReebok]:hover,
 tw-hook[name=mCCM]:hover, tw-hook[name=mKoho]:hover, tw-hook[name=mStarter]:hover {
@@ -144,22 +234,22 @@ tw-hook[name=mCCM] img, tw-hook[name=mKoho] img, tw-hook[name=mStarter] img {
   margin-bottom: 0.5em;
 }
 
-/* ── Choice options styled as tappable buttons ── */
+/* ── Choice options styled as tappable buttons/"material" pills ── */
 tw-passage tw-link,
 tw-passage .enchantment-link {
   display: inline-block;
   margin: 0.3em 0;
-  padding: 0.4em 0.7em;
+  padding: 0.45em 0.8em;
   border: 1px solid var(--lbj-border);
-  border-radius: 3px;
-  background: rgba(207, 64, 2, 0.05);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  border-radius: 8px;
+  background: rgba(207, 64, 2, 0.06);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out;
   font-weight: normal;
   min-width: 8em;
 }
 tw-passage tw-link:hover,
 tw-passage .enchantment-link:hover {
-  background: rgba(207, 64, 2, 0.14);
+  background: rgba(207, 64, 2, 0.16);
   border-color: var(--lbj-orange);
   color: var(--lbj-text);
 }
@@ -177,10 +267,7 @@ tw-passage .enchantment-link:hover {
   background: none;
   border: none;
 }
-/* Footer nav styling */
 .footer-nav {
-  margin-top: 2em;
-  padding-top: 0.8em;
   border-top: 1px solid var(--lbj-border);
   font-size: 0.85em;
   opacity: 0.8;
@@ -192,81 +279,27 @@ tw-passage .enchantment-link:hover {
   margin: 0.3em 0;
   padding: 0.4em 0.9em;
   border: 1px solid var(--lbj-border);
-  border-radius: 3px;
-  background: rgba(207, 64, 2, 0.05);
+  border-radius: 8px;
+  background: rgba(207, 64, 2, 0.06);
   color: var(--lbj-text);
   text-decoration: none;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease-out;
 }
 .about-cta-link:hover {
-  background: rgba(207, 64, 2, 0.14);
+  background: rgba(207, 64, 2, 0.16);
   border-color: var(--lbj-orange);
   color: var(--lbj-text);
   text-decoration: none;
 }
 
-/* ── Checkpoint callout ── */
-.checkpoint-block {
-  padding: 0.8em 1em 0.8em 1.2em;
-  border-left: 4px solid #4ade80;
-  border-radius: 0 3px 3px 0;
-  background: rgba(74,222,128,0.07);
-  margin: 0.3em 0 1em;
-}
-
-/* ── Meta nav (About link on start page) ── */
-.meta-nav {
-  margin-top: 1em;
-  padding-top: 0.8em;
-  border-top: 1px solid var(--lbj-border);
-}
-.meta-nav tw-link,
-.meta-nav .enchantment-link {
-  font-size: 0.8em;
-  opacity: 0.55;
-  background: none !important;
-  border: none !important;
-  padding: 0.2em 0 !important;
-  min-width: unset !important;
-}
-.meta-nav tw-link:hover,
-.meta-nav .enchantment-link:hover {
-  opacity: 1;
-  background: none !important;
-  border: none !important;
-}
-
-/* ── Start Over (inline, on terminal/dead-end passages) ── */
-.start-over-wrap {
-  margin-top: 1.2em;
-}
-.start-over-wrap tw-link,
-.start-over-wrap .enchantment-link {
-  background: none !important;
-  border: 1px solid var(--lbj-border) !important;
-  color: rgba(232, 228, 220, 0.45) !important;
-  font-size: 0.85em;
-  min-width: unset !important;
-}
-.start-over-wrap tw-link:hover,
-.start-over-wrap .enchantment-link:hover {
-  background: rgba(248,113,113,0.08) !important;
-  border-color: rgba(248,113,113,0.5) !important;
-  color: #f87171 !important;
-}
-
-/* ── HR styling ── */
-hr {
-  border: none;
-  border-top: 1px solid var(--lbj-border);
-  margin: 1.2em 0;
-}
-
-/* ── Result verdict styling ── */
+/* ── Checkpoint / verdict callouts — "materialized" cards ── */
+.checkpoint-block,
 .verdict-block {
   padding: 0.8em 1em 0.8em 1.2em;
-  border-left: 4px solid;
-  border-radius: 0 3px 3px 0;
+  border-left: 4px solid #4ade80;
+  border-radius: 0 10px 10px 0;
+  background: rgba(74,222,128,0.07);
+  backdrop-filter: blur(8px);
   margin: 0.3em 0 1em;
 }
 .verdict-legit { border-color: #4ade80; background: rgba(74,222,128,0.07); }
@@ -283,7 +316,7 @@ hr {
   font-size: 0.85em;
 }
 
-/* ── Max-width content column ── */
+/* ── Card: passage floats over the textured background ── */
 body {
   background-color: var(--lbj-bg);
   background-image: url('images/backgrounds/texture.jpg');
@@ -293,21 +326,25 @@ body {
   font-family: 'Barlow', sans-serif;
 }
 
-/* Card: passage content floats over the textured background */
 tw-story {
-  max-width: 1400px !important;
-  min-height: auto !important;
+  max-width: 680px !important;
+  height: calc(100dvh - 4em) !important;
+  max-height: 760px;
   margin: 2em auto !important;
   font-family: 'Barlow', sans-serif !important;
   color: var(--lbj-text) !important;
-  background-color: rgba(36, 43, 51, 0.92) !important;
-  border-radius: 12px;
+  background-color: rgba(36, 43, 51, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(160%);
+  border-radius: var(--lbj-radius);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 700px) {
   tw-story {
     max-width: calc(100% - 1em) !important;
+    height: calc(100dvh - 1.6em) !important;
+    max-height: none;
     margin: 0.8em auto !important;
     border-radius: 8px;
   }
@@ -351,3 +388,73 @@ tw-story {
 }
 .flags-list ul li::before { content: "❌ "; }
 .unsure-list ul li::before { content: "🤔 "; }
+
+/* ── Meta nav (About link on start page) ── */
+.meta-nav {
+  margin-top: 1em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--lbj-border);
+}
+.meta-nav tw-link,
+.meta-nav .enchantment-link {
+  font-size: 0.8em;
+  opacity: 0.55;
+  background: none !important;
+  border: none !important;
+  padding: 0.2em 0 !important;
+  min-width: unset !important;
+}
+.meta-nav tw-link:hover,
+.meta-nav .enchantment-link:hover {
+  opacity: 1;
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Start Over (inline, on terminal/dead-end passages) ── */
+.start-over-wrap tw-link,
+.start-over-wrap .enchantment-link {
+  background: none !important;
+  border: 1px solid var(--lbj-border) !important;
+  color: rgba(232, 228, 220, 0.45) !important;
+  font-size: 0.85em;
+  min-width: unset !important;
+}
+.start-over-wrap tw-link:hover,
+.start-over-wrap .enchantment-link:hover {
+  background: rgba(248,113,113,0.08) !important;
+  border-color: rgba(248,113,113,0.5) !important;
+  color: #f87171 !important;
+}
+
+/* ── HR styling ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--lbj-border);
+  margin: 1.2em 0;
+}
+
+/* ── Reduced motion / transparency / contrast (Apple HIG-style fallbacks) ── */
+@media (prefers-reduced-motion: reduce) {
+  *, tw-link, .enchantment-link, tw-hook[name] {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  tw-story {
+    background-color: var(--lbj-bg-card) !important;
+    backdrop-filter: none;
+  }
+  .passage-actions {
+    background: var(--lbj-bg-card);
+    backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  tw-story { border: 1px solid var(--lbj-text); }
+  .passage-actions { border-top: 1px solid var(--lbj-text); }
+  tw-passage tw-link, tw-passage .enchantment-link {
+    border-color: var(--lbj-text);
+  }
+}

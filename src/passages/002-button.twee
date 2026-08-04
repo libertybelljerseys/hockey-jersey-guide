@@ -1,6 +1,9 @@
 :: button {"position": "250,500", "size": "100,100"}
+<div class="passage-content">
+Does it have the adidas button?
+</div>
 
- Does it have the adidas button?
-
+<div class="passage-actions">
 - (if: $manu is "fanatics")[(link: "❌ Yes")[(go-to: "fake")]](else:)[(link: "✅ Yes")[(go-to: "button-check")]]
 - (link: "❌ No")[(go-to: "neck")]
+</div>

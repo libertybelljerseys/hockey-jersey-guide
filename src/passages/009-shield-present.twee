@@ -1,8 +1,11 @@
 :: shield-present {"position": "525,775", "size": "100,100"}
+<div class="passage-content">
 What does your shield look like?
 
-The NHL shield should be smooth, flat, and uniform. The stitching should be basically invisible. 
+The NHL shield should be smooth, flat, and uniform. The stitching should be basically invisible.
+</div>
 
+<div class="passage-actions">
 (link: "❌ Oddly shaped, rough stitching")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Poorly stitched NHL shield"))(if: $manu is "fanatics")[(go-to: "fanatics-box")](else:)[(go-to: "box")]]
 |fakeShield1>[ <img src="images/adidas-shield-fake.png" alt="Fake NHL shield on Adidas jersey"> ](click: ?fakeShield1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Poorly stitched NHL shield"))(if: $manu is "fanatics")[(go-to: "fanatics-box")](else:)[(go-to: "box")]]
 
@@ -15,3 +18,4 @@ The NHL shield should be smooth, flat, and uniform. The stitching should be basi
   |legitShieldB>[ <img src="images/adidas-shield-legit.png" alt="Legit NHL shield on Adidas jersey"> ](click: ?legitShieldB)[(go-to: "box")]
   (link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "NHL shield check"))(go-to: "box")]
 ]
+</div>

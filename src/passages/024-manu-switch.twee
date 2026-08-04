@@ -1,7 +1,9 @@
 :: manu-switch {"position": "1000,800", "size": "100,100"}
+<div class="passage-content">
 (if: $manu is 'reebok' ) [(go-to: "reebok-edge-or-premier")]
 (else-if: $manu is 'adidas' ) [(go-to: "adidas-size")]
 (else-if: $manu is 'fanatics' ) [(go-to: "fanatics-size")]
 (else-if: $manu is 'CCM' ) [(go-to: "ccm-intro")]
 (else-if: $manu is 'Starter' ) [(go-to: "legit-disclaimer")]
 (else:)["Ah fuck, look what you've done. PM Dex."]
+</div>

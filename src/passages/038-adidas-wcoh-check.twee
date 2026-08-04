@@ -1,7 +1,11 @@
 :: adidas-wcoh-check {"position": "1700,1175", "size": "100,100"}
+<div class="passage-content">
 Does it have a jock tag that looks like this?
 
 <img src="images/jock-tag-adidas.png" width="400" alt="Adidas jersey jock tag">
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->legit-disclaimer]]
 [[ ❌ No ->fringe-case]]
+</div>

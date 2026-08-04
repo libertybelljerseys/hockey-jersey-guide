@@ -1,4 +1,5 @@
 :: manufacturer {"position": "825,150", "size": "100,100"}
+<div class="passage-content">
 <div class="BTG-header"><a href="https://libertybelljerseys.com" title="Liberty Bell Jerseys" target="_blank"><img src="images/logo.png" alt="Liberty Bell Jerseys" style="width:120px;height:auto;display:block;margin-bottom:1em;"></a></div>
 
 Welcome to the <a href="https://libertybelljerseys.com" title="Liberty Bell Jerseys" target="_blank">Liberty Bell Jerseys</a> NHL Jersey Legit Check Guide!
@@ -7,6 +8,14 @@ This guide was created by <a href="https://libertybelljerseys.com" title="Libert
 
 Let's get started. Who is the manufacturer of your jersey?
 
+Other brands, as well as Minor and international leagues have their own quirks and are more fringe cases. You should ask about them in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a>.
+
+Big disclaimer: ''We cannot guarantee everything with this guide.'' It is a general guide, and if you're still not sure, you should post a link or pictures in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a>.
+
+<div class="meta-nav">[[About this guide ->about]]</div>
+</div>
+
+<div class="passage-actions">
 <div class="manu-grid">
 |mAdidas>[ <img src="images/logos/adidas.png" class="brand-logo-inline" alt=""> Adidas ](click: ?mAdidas)[(set: $manu to "adidas")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "source-ask")]
 |mFanatics>[ <img src="images/logos/fanatics.png" class="brand-logo-inline" alt=""> Fanatics ](click: ?mFanatics)[(set: $manu to "fanatics")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "fanatics-intro")]
@@ -15,8 +24,4 @@ Let's get started. Who is the manufacturer of your jersey?
 |mKoho>[ <img src="images/logos/koho.png" class="brand-logo-inline" alt=""> Koho ](click: ?mKoho)[(set: $manu to "CCM")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "source-ask")]
 |mStarter>[ <img src="images/logos/starter.png" class="brand-logo-inline" alt=""> Starter or Pro Player ](click: ?mStarter)[(set: $manu to "Starter")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "starter-intro")]
 </div>
-Other brands, as well as Minor and international leagues have their own quirks and are more fringe cases. You should ask about them in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a>.
-
-Big disclaimer: ''We cannot guarantee everything with this guide.'' It is a general guide, and if you're still not sure, you should post a link or pictures in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a>.
-
-<div class="meta-nav">[[About this guide ->about]]</div>
+</div>

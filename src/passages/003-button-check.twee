@@ -1,4 +1,5 @@
 :: button-check {"position": "400,500", "size": "100,100"}
+<div class="passage-content">
 ''Let's look at the button.''
 The following jersey sets have the correct button style for the 2017-18 season. 
 Nothing past this should have the button. 
@@ -8,7 +9,11 @@ Is your jersey one of these?
 - Initial Home/Away Jersey (the team's original 2017-18 jersey set)
   - 2018 Winter Classic (Rangers v. Sabres)
   - 2018 Stadium Series (Capitals v. Toronto)
-  
+
+</div>
+
+<div class="passage-actions">
  [[ ✅ Yes ->button-older]]
  (link: "❌ No")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Button style wrong for this jersey era"))(go-to: "adidas-neck")]
- [[ Oops, I don't have a button ->neck]] 
+ [[ Oops, I don't have a button ->neck]]
+</div>

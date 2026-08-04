@@ -1,8 +1,11 @@
 :: fanatics-neck {"position": "800,400", "size": "100,100"}
+<div class="passage-content">
 Can you see the Fanatics logo through the neck?
 
 The Fanatics logo should be a patch on the back of the jersey. It should not be visible through the neck or embroidered directly.
+</div>
 
+<div class="passage-actions">
 (link: "❌ Yes")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fanatics logo visible inside neck"))(go-to: "band")]
 |fakeFNeck1>[ <img src="images/inside-fake.png" alt="Fake jersey interior (neck area)"> ](click: ?fakeFNeck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fanatics logo visible inside neck"))(go-to: "band")]
 
@@ -10,3 +13,4 @@ The Fanatics logo should be a patch on the back of the jersey. It should not be 
 |imgLink1>[ <img src="images/inside-legit.png" alt="Legit jersey interior (neck area)"> ](click: ?imgLink1)[(go-to: "band")]
 
 (link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Inside neck check"))(go-to: "band")]
+</div>

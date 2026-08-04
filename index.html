@@ -28,6 +28,24 @@
   --lbj-text:       #E8E4DC;
   --lbj-text-muted: #7A8491;
   --lbj-border:     rgba(255, 255, 255, 0.09);
+  --lbj-radius:     12px;
+}
+
+/* ── Typography ──
+   Barlow Condensed for display/headings (tight, negative tracking, condensed
+   weight already loaded — no new font cost). Barlow for body/UI, near-zero
+   tracking, roomier leading. Sizes flow from rem so a user's browser text-size
+   setting still scales the whole guide. */
+h1, h2, h3 {
+  font-family: 'Barlow Condensed', 'Barlow', sans-serif;
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+h1 { letter-spacing: -0.02em; }
+p, li { letter-spacing: 0; }
+small, .footer-nav, .meta-nav, .flag-badge, .unsure-badge {
+  letter-spacing: 0.01em;
 }
 
 /* ── Link colors ── */
@@ -35,12 +53,21 @@ tw-link, .enchantment-link {
   color: var(--lbj-text);
   font-weight: bold;
   text-decoration: none;
-  transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, transform 0.1s ease-out, background 0.15s ease, border-color 0.15s ease;
 }
 tw-link:hover, .enchantment-link:hover { color: var(--lbj-orange); }
 tw-link:active, .enchantment-link:active { color: var(--lbj-orange-dim); }
 a { color: var(--lbj-orange); text-decoration: underline; }
 a:hover { color: var(--lbj-orange-dim); }
+
+/* ── Press feedback (respond on press, not just hover/release) ── */
+tw-passage tw-link:active,
+tw-passage .enchantment-link:active,
+.about-cta-link:active,
+tw-hook[name]:active {
+  transform: scale(0.97);
+  transition: transform 0.1s ease-out;
+}
 
 #site-logo {
   position: fixed;
@@ -49,9 +76,10 @@ a:hover { color: var(--lbj-orange-dim); }
   width: 32px !important;
   max-width: 32px !important;
   height: auto !important;
-  opacity: 0.6;
+  opacity: 0.85;
   z-index: 9999;
   pointer-events: none;
+  filter: drop-shadow(0 0 4px rgba(207, 64, 2, 0.7)) drop-shadow(0 0 10px rgba(207, 64, 2, 0.4));
 }
 
 /* ── Mobile-friendly improvements ── */
@@ -60,6 +88,14 @@ a:hover { color: var(--lbj-orange-dim); }
 img:not(#site-logo) {
   max-width: 100%;
   height: auto;
+}
+/* Reference/choice photos (e.g. neck-tag close-ups) are often tall portrait
+   crops — cap their height so one image can't force .passage-actions past
+   its flex-shrink:0 budget and crush .passage-content to near-zero. */
+.passage-content img:not(.brand-logo-header),
+.passage-actions img {
+  max-height: 30vh;
+  width: auto;
 }
 .BTG-header img {
   width: 120px !important;
@@ -81,11 +117,65 @@ tw-hook[name^=m]:hover {
   outline: none;
 }
 
+/* ── App shell ──
+   tw-story is a fixed-height card; .passage-content is the ONLY region that
+   scrolls. .passage-actions (the next-step choices) and the footer nav are
+   plain flex children with no grow — they just sit at the bottom of the
+   column, always on screen, so there's never anything to scroll to find. */
+tw-story {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 !important;
+  overflow: hidden;
+}
+tw-passage {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.passage-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1.2em 1.4em 0.6em;
+}
+.passage-actions,
+.footer-nav,
+.flag-badge,
+.unsure-badge {
+  flex: 0 0 auto;
+}
+.passage-actions {
+  padding: 0.8em 1.4em;
+  max-height: 55vh;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -8px 16px -8px rgba(0, 0, 0, 0.35);
+}
+.flag-badge, .unsure-badge {
+  padding: 0 1.4em;
+}
+.footer-nav {
+  padding: 0.6em 1.4em 0.8em;
+}
+
 /* Responsive layout */
 @media (max-width: 700px) {
   tw-story {
     font-size: 1.1em;
-    padding: 4% 5% !important;
+  }
+  .passage-content {
+    padding: 4% 5% 0.6em;
+  }
+  .passage-actions {
+    padding: 0.7em 5%;
+  }
+  .footer-nav {
+    padding: 0.5em 5% 0.7em;
   }
   img {
     max-width: 100% !important;
@@ -138,7 +228,7 @@ tw-hook[name=mCCM], tw-hook[name=mKoho], tw-hook[name=mStarter] {
   border-radius: 3px;
   background: rgba(207, 64, 2, 0.05);
   cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out;
 }
 tw-hook[name=mAdidas]:hover, tw-hook[name=mFanatics]:hover, tw-hook[name=mReebok]:hover,
 tw-hook[name=mCCM]:hover, tw-hook[name=mKoho]:hover, tw-hook[name=mStarter]:hover {
@@ -166,22 +256,22 @@ tw-hook[name=mCCM] img, tw-hook[name=mKoho] img, tw-hook[name=mStarter] img {
   margin-bottom: 0.5em;
 }
 
-/* ── Choice options styled as tappable buttons ── */
+/* ── Choice options styled as tappable buttons/"material" pills ── */
 tw-passage tw-link,
 tw-passage .enchantment-link {
   display: inline-block;
   margin: 0.3em 0;
-  padding: 0.4em 0.7em;
+  padding: 0.45em 0.8em;
   border: 1px solid var(--lbj-border);
-  border-radius: 3px;
-  background: rgba(207, 64, 2, 0.05);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  border-radius: 8px;
+  background: rgba(207, 64, 2, 0.06);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease-out;
   font-weight: normal;
   min-width: 8em;
 }
 tw-passage tw-link:hover,
 tw-passage .enchantment-link:hover {
-  background: rgba(207, 64, 2, 0.14);
+  background: rgba(207, 64, 2, 0.16);
   border-color: var(--lbj-orange);
   color: var(--lbj-text);
 }
@@ -199,10 +289,7 @@ tw-passage .enchantment-link:hover {
   background: none;
   border: none;
 }
-/* Footer nav styling */
 .footer-nav {
-  margin-top: 2em;
-  padding-top: 0.8em;
   border-top: 1px solid var(--lbj-border);
   font-size: 0.85em;
   opacity: 0.8;
@@ -214,81 +301,27 @@ tw-passage .enchantment-link:hover {
   margin: 0.3em 0;
   padding: 0.4em 0.9em;
   border: 1px solid var(--lbj-border);
-  border-radius: 3px;
-  background: rgba(207, 64, 2, 0.05);
+  border-radius: 8px;
+  background: rgba(207, 64, 2, 0.06);
   color: var(--lbj-text);
   text-decoration: none;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.1s ease-out;
 }
 .about-cta-link:hover {
-  background: rgba(207, 64, 2, 0.14);
+  background: rgba(207, 64, 2, 0.16);
   border-color: var(--lbj-orange);
   color: var(--lbj-text);
   text-decoration: none;
 }
 
-/* ── Checkpoint callout ── */
-.checkpoint-block {
-  padding: 0.8em 1em 0.8em 1.2em;
-  border-left: 4px solid #4ade80;
-  border-radius: 0 3px 3px 0;
-  background: rgba(74,222,128,0.07);
-  margin: 0.3em 0 1em;
-}
-
-/* ── Meta nav (About link on start page) ── */
-.meta-nav {
-  margin-top: 1em;
-  padding-top: 0.8em;
-  border-top: 1px solid var(--lbj-border);
-}
-.meta-nav tw-link,
-.meta-nav .enchantment-link {
-  font-size: 0.8em;
-  opacity: 0.55;
-  background: none !important;
-  border: none !important;
-  padding: 0.2em 0 !important;
-  min-width: unset !important;
-}
-.meta-nav tw-link:hover,
-.meta-nav .enchantment-link:hover {
-  opacity: 1;
-  background: none !important;
-  border: none !important;
-}
-
-/* ── Start Over (inline, on terminal/dead-end passages) ── */
-.start-over-wrap {
-  margin-top: 1.2em;
-}
-.start-over-wrap tw-link,
-.start-over-wrap .enchantment-link {
-  background: none !important;
-  border: 1px solid var(--lbj-border) !important;
-  color: rgba(232, 228, 220, 0.45) !important;
-  font-size: 0.85em;
-  min-width: unset !important;
-}
-.start-over-wrap tw-link:hover,
-.start-over-wrap .enchantment-link:hover {
-  background: rgba(248,113,113,0.08) !important;
-  border-color: rgba(248,113,113,0.5) !important;
-  color: #f87171 !important;
-}
-
-/* ── HR styling ── */
-hr {
-  border: none;
-  border-top: 1px solid var(--lbj-border);
-  margin: 1.2em 0;
-}
-
-/* ── Result verdict styling ── */
+/* ── Checkpoint / verdict callouts — "materialized" cards ── */
+.checkpoint-block,
 .verdict-block {
   padding: 0.8em 1em 0.8em 1.2em;
-  border-left: 4px solid;
-  border-radius: 0 3px 3px 0;
+  border-left: 4px solid #4ade80;
+  border-radius: 0 10px 10px 0;
+  background: rgba(74,222,128,0.07);
+  backdrop-filter: blur(8px);
   margin: 0.3em 0 1em;
 }
 .verdict-legit { border-color: #4ade80; background: rgba(74,222,128,0.07); }
@@ -305,7 +338,7 @@ hr {
   font-size: 0.85em;
 }
 
-/* ── Max-width content column ── */
+/* ── Card: passage floats over the textured background ── */
 body {
   background-color: var(--lbj-bg);
   background-image: url('images/backgrounds/texture.jpg');
@@ -315,21 +348,25 @@ body {
   font-family: 'Barlow', sans-serif;
 }
 
-/* Card: passage content floats over the textured background */
 tw-story {
-  max-width: 1400px !important;
-  min-height: auto !important;
+  max-width: 680px !important;
+  height: calc(100dvh - 4em) !important;
+  max-height: 760px;
   margin: 2em auto !important;
   font-family: 'Barlow', sans-serif !important;
   color: var(--lbj-text) !important;
-  background-color: rgba(36, 43, 51, 0.92) !important;
-  border-radius: 12px;
+  background-color: rgba(36, 43, 51, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(160%);
+  border-radius: var(--lbj-radius);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 @media (max-width: 700px) {
   tw-story {
     max-width: calc(100% - 1em) !important;
+    height: calc(100dvh - 1.6em) !important;
+    max-height: none;
     margin: 0.8em auto !important;
     border-radius: 8px;
   }
@@ -373,6 +410,76 @@ tw-story {
 }
 .flags-list ul li::before { content: "❌ "; }
 .unsure-list ul li::before { content: "🤔 "; }
+
+/* ── Meta nav (About link on start page) ── */
+.meta-nav {
+  margin-top: 1em;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--lbj-border);
+}
+.meta-nav tw-link,
+.meta-nav .enchantment-link {
+  font-size: 0.8em;
+  opacity: 0.55;
+  background: none !important;
+  border: none !important;
+  padding: 0.2em 0 !important;
+  min-width: unset !important;
+}
+.meta-nav tw-link:hover,
+.meta-nav .enchantment-link:hover {
+  opacity: 1;
+  background: none !important;
+  border: none !important;
+}
+
+/* ── Start Over (inline, on terminal/dead-end passages) ── */
+.start-over-wrap tw-link,
+.start-over-wrap .enchantment-link {
+  background: none !important;
+  border: 1px solid var(--lbj-border) !important;
+  color: rgba(232, 228, 220, 0.45) !important;
+  font-size: 0.85em;
+  min-width: unset !important;
+}
+.start-over-wrap tw-link:hover,
+.start-over-wrap .enchantment-link:hover {
+  background: rgba(248,113,113,0.08) !important;
+  border-color: rgba(248,113,113,0.5) !important;
+  color: #f87171 !important;
+}
+
+/* ── HR styling ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--lbj-border);
+  margin: 1.2em 0;
+}
+
+/* ── Reduced motion / transparency / contrast (Apple HIG-style fallbacks) ── */
+@media (prefers-reduced-motion: reduce) {
+  *, tw-link, .enchantment-link, tw-hook[name] {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  tw-story {
+    background-color: var(--lbj-bg-card) !important;
+    backdrop-filter: none;
+  }
+  .passage-actions {
+    background: var(--lbj-bg-card);
+    backdrop-filter: none;
+  }
+}
+@media (prefers-contrast: more) {
+  tw-story { border: 1px solid var(--lbj-text); }
+  .passage-actions { border-top: 1px solid var(--lbj-text); }
+  tw-passage tw-link, tw-passage .enchantment-link {
+    border-color: var(--lbj-text);
+  }
+}
 </style>
 </head>
 
@@ -397,8 +504,87 @@ tw-link.visited {
   color: #E8E4DC;
 }
 </style><script role="script" id="twine-user-script" type="text/twine-javascript">
+(function () {
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-</script><tw-passagedata pid="1" name="fake" tags="" position="51,275" size="100,100">&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
+  // Minimal damped-spring integrator (Apple's damping/response model from
+  // "Designing Fluid Interfaces", WWDC18). damping 1 = critically damped, no
+  // overshoot — correct here since a passage change is a click, not a flick
+  // with momentum to carry through.
+  function spring(from, to, damping, response, onUpdate, onDone, token) {
+    var wn = 2 * Math.PI / response;
+    var k = wn * wn;
+    var c = 2 * damping * wn;
+    var x = from, v = 0, last = performance.now();
+    function tick(now) {
+      if (token.cancelled) return;
+      var dt = Math.min((now - last) / 1000, 0.032);
+      last = now;
+      v += (-k * (x - to) - c * v) * dt;
+      x += v * dt;
+      onUpdate(x);
+      if (Math.abs(x - to) < 0.002 && Math.abs(v) < 0.002) {
+        onUpdate(to);
+        if (onDone) onDone();
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // Harlowe's undo/redo path can fire onMutate more than once for what is
+  // logically a single navigation. Without cancelling the stale run, two
+  // spring loops end up writing the same element's opacity every frame and
+  // it never converges — always cancel the previous run before starting one.
+  var activeToken = null;
+  function animateIn(passage) {
+    if (!passage) return;
+    if (activeToken) activeToken.cancelled = true;
+    var token = { cancelled: false };
+    activeToken = token;
+    if (reduceMotion) {
+      passage.style.opacity = '1';
+      passage.style.transform = 'none';
+      return;
+    }
+    spring(0, 1, 1, 0.35, function (p) {
+      passage.style.opacity = p;
+      passage.style.transform = 'translateY(' + ((1 - p) * 10) + 'px) scale(' + (0.98 + 0.02 * p) + ')';
+    }, function () {
+      passage.style.transform = '';
+    }, token);
+  }
+
+  // Harlowe swaps passage content in place rather than firing a documented
+  // lifecycle event, so a MutationObserver is the reliable hook — but it also
+  // wraps/unwraps content in its own tw-transition-container over several
+  // ticks as part of its internal (unused) transition machinery. Those extra
+  // mutations carry the same text, so fingerprint the rendered content and
+  // only animate on an actual passage change, not Harlowe's own housekeeping.
+  var scheduled = false;
+  var lastContent = null;
+  function onMutate() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function () {
+      scheduled = false;
+      var passage = document.querySelector('tw-story > tw-passage');
+      if (!passage) return;
+      var fingerprint = passage.textContent;
+      if (fingerprint === lastContent) return;
+      lastContent = fingerprint;
+      animateIn(passage);
+    });
+  }
+
+  var story = document.querySelector('tw-story');
+  if (story) {
+    new MutationObserver(onMutate).observe(story, { childList: true, subtree: true });
+  }
+})();
+</script><tw-passagedata pid="1" name="fake" tags="" position="51,275" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
 &lt;h2 style=&quot;color:#f87171&quot;&gt;❌ Definitive Fake&lt;/h2&gt;
 This is a definitive fake jersey based on a single clear indicator.
 
@@ -413,14 +599,19 @@ There is no ambiguity here — this jersey is not legitimate.
 ]&lt;/div&gt;
 Consider having an expert look at these specifically, or post photos in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
 ]
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="2" name="button" tags="" position="250,500" size="100,100">
- Does it have the adidas button?
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="2" name="button" tags="" position="250,500" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does it have the adidas button?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 - (if: $manu is &quot;fanatics&quot;)[(link: &quot;❌ Yes&quot;)[(go-to: &quot;fake&quot;)]](else:)[(link: &quot;✅ Yes&quot;)[(go-to: &quot;button-check&quot;)]]
-- (link: &quot;❌ No&quot;)[(go-to: &quot;neck&quot;)]</tw-passagedata>
-<tw-passagedata pid="3" name="button-check" tags="" position="400,500" size="100,100">&#39;&#39;Let&#39;s look at the button.&#39;&#39;
+- (link: &quot;❌ No&quot;)[(go-to: &quot;neck&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="3" name="button-check" tags="" position="400,500" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&#39;&#39;Let&#39;s look at the button.&#39;&#39;
 The following jersey sets have the correct button style for the 2017-18 season. 
 Nothing past this should have the button. 
 
@@ -429,39 +620,54 @@ Is your jersey one of these?
 - Initial Home/Away Jersey (the team&#39;s original 2017-18 jersey set)
   - 2018 Winter Classic (Rangers v. Sabres)
   - 2018 Stadium Series (Capitals v. Toronto)
-  
+
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
  [[ ✅ Yes -&gt;button-older]]
  (link: &quot;❌ No&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Button style wrong for this jersey era&quot;))(go-to: &quot;adidas-neck&quot;)]
- [[ Oops, I don&#39;t have a button -&gt;neck]] </tw-passagedata>
-<tw-passagedata pid="4" name="button-older" tags="" position="400,650" size="100,100">Which does the button look like?
+ [[ Oops, I don&#39;t have a button -&gt;neck]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="4" name="button-older" tags="" position="400,650" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Which does the button look like?
 
 The button should be round, smooth, and rubbery with clean stitching. 
 
 
 &lt;small&gt;Tap the image that matches your button.&lt;/small&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 |legitBtn&gt;[ &lt;img src=&quot;images/button-legit.png&quot; width=&quot;250&quot; alt=&quot;Legit Adidas button&quot;&gt; ](click: ?legitBtn)[(go-to: &quot;adidas-neck&quot;)]
 |fakeBtn1&gt;[ &lt;img src=&quot;images/button-fake-stitched.png&quot; width=&quot;250&quot; alt=&quot;Fake button stitched over&quot;&gt; ](click: ?fakeBtn1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style stitched button&quot;))(go-to: &quot;adidas-neck&quot;)] 
 |fakeBtn2&gt;[ &lt;img src=&quot;images/button-fake.png&quot; width=&quot;250&quot; alt=&quot;Fake Adidas button&quot;&gt; ](click: ?fakeBtn2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style button&quot;))(go-to: &quot;adidas-neck&quot;)] 
 
 (link: &quot;I don&#39;t have a button.&quot;)[(go-to: &quot;adidas-neck&quot;)]
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Button style check&quot;))(go-to: &quot;adidas-neck&quot;)] </tw-passagedata>
-<tw-passagedata pid="5" name="neck" tags="" position="250,775" size="100,100">Can you see the Adidas/Fanatics logo through the neck?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Button style check&quot;))(go-to: &quot;adidas-neck&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="5" name="neck" tags="" position="250,775" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Can you see the Adidas/Fanatics logo through the neck?
 
 The Adidas or Fanatics logo should be a patch on the back of the jersey. It should not be embroidered directly to the jersey.
-The exception to this is the 2016 World Cup of Hockey jerseys. 
+The exception to this is the 2016 World Cup of Hockey jerseys.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Yes&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Adidas/Fanatics logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 |fakeNeck1&gt;[ &lt;img src=&quot;images/inside-fake.png&quot; alt=&quot;Fake jersey interior (neck area)&quot;&gt; ](click: ?fakeNeck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Adidas/Fanatics logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 
 [[ ❌ No -&gt;band]]
 |imgLink1&gt;[ &lt;img src=&quot;images/inside-legit.png&quot; alt=&quot;Legit jersey interior (neck area)&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;band&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)] </tw-passagedata>
-<tw-passagedata pid="6" name="band" tags="" position="250,950" size="100,100">What does the information band look like?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="6" name="band" tags="" position="250,950" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What does the information band look like?
 
-The band should be flat and matte, with clear, legible text. 
+The band should be flat and matte, with clear, legible text.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Band is shiny, text is not clear, stitched through the text&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style information band&quot;))(go-to: &quot;hangar&quot;)]
 |fakeBand1&gt;[ &lt;img src=&quot;images/band-fake.png&quot; width=&quot;300&quot; alt=&quot;Fake information band&quot;&gt; ](click: ?fakeBand1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style information band&quot;))(go-to: &quot;hangar&quot;)]
 
@@ -471,11 +677,15 @@ The band should be flat and matte, with clear, legible text.
 [[ ✅ Band is flat, text and stitching are clear and clean -&gt;hangar]]
 |imgLink1&gt;[ &lt;img src=&quot;images/band-legit.png&quot; width=&quot;300&quot; alt=&quot;Legit information band&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;hangar&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Information band check&quot;))(go-to: &quot;hangar&quot;)] </tw-passagedata>
-<tw-passagedata pid="7" name="hangar" tags="" position="400,775" size="100,100">What is the hangar text like?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Information band check&quot;))(go-to: &quot;hangar&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="7" name="hangar" tags="" position="400,775" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What is the hangar text like?
 
 Hangar text should be either screenprinted or sublimated, and should be clean and legible.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Hangar text is sewn or sloppy&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Sewn or sloppy hangar text&quot;))(go-to: &quot;shield&quot;)]
 |fakeHangar1&gt;[ &lt;img src=&quot;images/hangar-fake.png&quot; alt=&quot;Fake hangar/jock tag text&quot;&gt; ](click: ?fakeHangar1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Sewn or sloppy hangar text&quot;))(go-to: &quot;shield&quot;)]
 
@@ -484,15 +694,23 @@ Hangar text should be either screenprinted or sublimated, and should be clean an
 
 [[ My jersey does not have hangar text-&gt;shield]] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Hangar text check&quot;))(go-to: &quot;shield&quot;)] </tw-passagedata>
-<tw-passagedata pid="8" name="shield" tags="" position="400,950" size="100,100">Does the jersey have an NHL Shield on the front?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Hangar text check&quot;))(go-to: &quot;shield&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="8" name="shield" tags="" position="400,950" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does the jersey have an NHL Shield on the front?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;shield-present]]
-[[ ❌ No -&gt;fake]]</tw-passagedata>
-<tw-passagedata pid="9" name="shield-present" tags="" position="525,775" size="100,100">What does your shield look like?
+[[ ❌ No -&gt;fake]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="9" name="shield-present" tags="" position="525,775" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What does your shield look like?
 
-The NHL shield should be smooth, flat, and uniform. The stitching should be basically invisible. 
+The NHL shield should be smooth, flat, and uniform. The stitching should be basically invisible.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Oddly shaped, rough stitching&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Poorly stitched NHL shield&quot;))(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;fanatics-box&quot;)](else:)[(go-to: &quot;box&quot;)]]
 |fakeShield1&gt;[ &lt;img src=&quot;images/adidas-shield-fake.png&quot; alt=&quot;Fake NHL shield on Adidas jersey&quot;&gt; ](click: ?fakeShield1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Poorly stitched NHL shield&quot;))(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;fanatics-box&quot;)](else:)[(go-to: &quot;box&quot;)]]
 
@@ -504,8 +722,10 @@ The NHL shield should be smooth, flat, and uniform. The stitching should be basi
   (link: &quot;✅ Flat, clean stitching&quot;)[(go-to: &quot;box&quot;)]
   |legitShieldB&gt;[ &lt;img src=&quot;images/adidas-shield-legit.png&quot; alt=&quot;Legit NHL shield on Adidas jersey&quot;&gt; ](click: ?legitShieldB)[(go-to: &quot;box&quot;)]
   (link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;NHL shield check&quot;))(go-to: &quot;box&quot;)]
-]</tw-passagedata>
-<tw-passagedata pid="10" name="box" tags="" position="525,950" size="100,100">Let&#39;s look at the back of your jersey.
+]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="10" name="box" tags="" position="525,950" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Let&#39;s look at the back of your jersey.
 
 Look at the adidas logo on the back of the neck.
 
@@ -514,42 +734,58 @@ It should be a patch, with the backing material being the same color as the jers
 The &quot;box&quot; it sits in should be just big enough for it, and the logo should sit level.
 
 What describes your logo?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Crooked or box too big&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;dimples&quot;)]
 |fakeBox1&gt;[ &lt;img src=&quot;images/neck-fake.png&quot; alt=&quot;Fake back-of-neck logo placement&quot;&gt; ](click: ?fakeBox1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;dimples&quot;)]
 
 (link: &quot;✅ Flat, centered&quot;)[(go-to: &quot;dimples&quot;)]
 |legitBox1&gt;[ &lt;img src=&quot;images/neck-legit.png&quot; alt=&quot;Legit back-of-neck logo placement&quot;&gt; ](click: ?legitBox1)[(go-to: &quot;dimples&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;dimples&quot;)] </tw-passagedata>
-<tw-passagedata pid="11" name="dimples" tags="" position="650,775" size="100,100">(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;laces&quot;)](else:)[
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;dimples&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="11" name="dimples" tags="" position="650,775" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;laces&quot;)](else:)[
 Look at the shoulder dimples. What are they like?
 
 The dimples on jerseys are an odd feature, and are often a giveaway for fakes. They should be subtle, even, and part of the fabric. Shiny or printed dimples are a sign of a fake jersey.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Very shiny or printed&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shoulder dimples shiny or printed&quot;))(go-to: &quot;laces&quot;)]
 |fakeDimples1&gt;[ &lt;img src=&quot;images/dimples-fake.png&quot; alt=&quot;Fake jersey eyelets/dimples&quot;&gt; ](click: ?fakeDimples1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shoulder dimples shiny or printed&quot;))(go-to: &quot;laces&quot;)]
 
 (link: &quot;✅ Subtle &amp; even, part of the fabric&quot;)[(go-to: &quot;laces&quot;)]
 |legitDimples1&gt;[ &lt;img src=&quot;images/dimples-legit.png&quot; alt=&quot;Legit jersey eyelets/dimples&quot;&gt; ](click: ?legitDimples1)[(go-to: &quot;laces&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Shoulder dimples check&quot;))(go-to: &quot;laces&quot;)] ]</tw-passagedata>
-<tw-passagedata pid="12" name="cut" tags="" position="650,950" size="100,100">Overall, what does the cut look like?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Shoulder dimples check&quot;))(go-to: &quot;laces&quot;)] ]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="12" name="cut" tags="" position="650,950" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Overall, what does the cut look like?
 It should smoothly taper out towards the bottom, sort of like a bell shape. It should not be boxy or straight cut.
 
 &lt;small&gt;Tap the image that matches your jersey&amp;apos;s cut.&lt;/small&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 |fakeCut1&gt;[ &lt;img src=&quot;images/adidas-cut-fake-01.png&quot; height=&quot;300&quot; alt=&quot;Fake Adidas jersey cut — example 1&quot;&gt; ](click: ?fakeCut1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Wrong jersey cut shape&quot;))(go-to: &quot;legit-disclaimer&quot;)]
 
 |fakeCut2&gt;[ &lt;img src=&quot;images/adidas-cut-fake-02.png&quot; height=&quot;300&quot; alt=&quot;Fake Adidas jersey cut — example 2&quot;&gt; ](click: ?fakeCut2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Wrong jersey cut shape&quot;))(go-to: &quot;legit-disclaimer&quot;)]
 
 |imgLink1&gt;[ &lt;img src=&quot;images/adidas-cut-legit.png&quot; height=&quot;300&quot; alt=&quot;Legit Adidas jersey cut&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;legit-disclaimer&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Jersey cut check&quot;))(go-to: &quot;fringe-case&quot;)] </tw-passagedata>
-<tw-passagedata pid="13" name="legit-disclaimer" tags="" position="1125,1025" size="100,100">(go-to: &quot;result&quot;)</tw-passagedata>
-<tw-passagedata pid="14" name="fight-strap" tags="" position="825,425" size="100,100">&#39;&#39;What does your fight strap look like:&#39;&#39;
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Jersey cut check&quot;))(go-to: &quot;fringe-case&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="13" name="legit-disclaimer" tags="" position="1125,1025" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+(go-to: &quot;result&quot;)
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="14" name="fight-strap" tags="" position="825,425" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&#39;&#39;What does your fight strap look like:&#39;&#39;
+&lt;/div&gt;
 
-[[ Just kidding, I don&#39;t have a fight strap -&gt;no-strap]] 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ Just kidding, I don&#39;t have a fight strap -&gt;no-strap]]
 (link: &quot;I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Fight strap check&quot;))(go-to: &quot;lettering&quot;)] 
 
 &lt;small&gt;Tap the image that matches your strap.&lt;/small&gt;
@@ -560,8 +796,10 @@ It should smoothly taper out towards the bottom, sort of like a bell shape. It s
 
 |imgLink2&gt;[ &lt;img src=&quot;images/fightstrap-retail.png&quot; width=&quot;400&quot; alt=&quot;Legit retail fight strap&quot;&gt; ](click: ?imgLink2)[(go-to: &quot;lettering&quot;)]
 
-|imgLink1&gt;[ &lt;img src=&quot;images/fightstrap-ti.png&quot; width=&quot;400&quot; alt=&quot;Legit TI fight strap&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;lettering&quot;)] </tw-passagedata>
-<tw-passagedata pid="15" name="manufacturer" tags="" position="825,150" size="100,100">&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;width:120px;height:auto;display:block;margin-bottom:1em;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+|imgLink1&gt;[ &lt;img src=&quot;images/fightstrap-ti.png&quot; width=&quot;400&quot; alt=&quot;Legit TI fight strap&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;lettering&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="15" name="manufacturer" tags="" position="825,150" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;width:120px;height:auto;display:block;margin-bottom:1em;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
 
 Welcome to the &lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;Liberty Bell Jerseys&lt;/a&gt; NHL Jersey Legit Check Guide!
 
@@ -569,6 +807,14 @@ This guide was created by &lt;a href=&quot;https://libertybelljerseys.com&quot; 
 
 Let&#39;s get started. Who is the manufacturer of your jersey?
 
+Other brands, as well as Minor and international leagues have their own quirks and are more fringe cases. You should ask about them in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
+
+Big disclaimer: &#39;&#39;We cannot guarantee everything with this guide.&#39;&#39; It is a general guide, and if you&#39;re still not sure, you should post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
+
+&lt;div class=&quot;meta-nav&quot;&gt;[[About this guide -&gt;about]]&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
 &lt;div class=&quot;manu-grid&quot;&gt;
 |mAdidas&gt;[ &lt;img src=&quot;images/logos/adidas.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Adidas ](click: ?mAdidas)[(set: $manu to &quot;adidas&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;source-ask&quot;)]
 |mFanatics&gt;[ &lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Fanatics ](click: ?mFanatics)[(set: $manu to &quot;fanatics&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;fanatics-intro&quot;)]
@@ -577,46 +823,61 @@ Let&#39;s get started. Who is the manufacturer of your jersey?
 |mKoho&gt;[ &lt;img src=&quot;images/logos/koho.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Koho ](click: ?mKoho)[(set: $manu to &quot;CCM&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;source-ask&quot;)]
 |mStarter&gt;[ &lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-inline&quot; alt=&quot;&quot;&gt; Starter or Pro Player ](click: ?mStarter)[(set: $manu to &quot;Starter&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;starter-intro&quot;)]
 &lt;/div&gt;
-Other brands, as well as Minor and international leagues have their own quirks and are more fringe cases. You should ask about them in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
-
-Big disclaimer: &#39;&#39;We cannot guarantee everything with this guide.&#39;&#39; It is a general guide, and if you&#39;re still not sure, you should post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;.
-
-&lt;div class=&quot;meta-nav&quot;&gt;[[About this guide -&gt;about]]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="17" name="reebok-intro" tags="" position="1691,14" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/reebok.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Reebok&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="17" name="reebok-intro" tags="" position="1691,14" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/reebok.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Reebok&quot;&gt;&lt;/div&gt;
 
 This is an interactive guide to help you determine the legitimacy of your Reebok Edge jersey.
 
-What size is it? 
+What size is it?
+&lt;/div&gt;
 
-&lt;div class=&quot;size-grid&quot;&gt;[[ 46 -&gt;reebok-edge]] [[ 48 -&gt;fake]] [[ 50 -&gt;reebok-edge]] [[ 52 -&gt;reebok-edge]] [[ 54 -&gt;reebok-edge]] [[ 56 -&gt;reebok-edge]] [[ 58 -&gt;reebok-edge]] [[ 58(+/G/K) -&gt;reebok-edge]] [[ 60 -&gt;reebok-edge]] [[ S/M/L/XL/XXL -&gt;reebok-replica]]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="18" name="ccm-intro" tags="" position="1650,225" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/ccm.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;CCM&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;passage-actions&quot;&gt;
+&lt;div class=&quot;size-grid&quot;&gt;[[ 46 -&gt;reebok-edge]] [[ 48 -&gt;fake]] [[ 50 -&gt;reebok-edge]] [[ 52 -&gt;reebok-edge]] [[ 54 -&gt;reebok-edge]] [[ 56 -&gt;reebok-edge]] [[ 58 -&gt;reebok-edge]] [[ 58(+/G/K) -&gt;reebok-edge]] [[ 60 -&gt;reebok-edge]] [[ S/M/L/XL/XXL -&gt;reebok-replica]]&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="18" name="ccm-intro" tags="" position="1650,225" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/ccm.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;CCM&quot;&gt;&lt;/div&gt;
 
 This is an interactive guide to help you determine the legitimacy of your CCM or Koho jersey.
 
 Is your jersey a CCM &quot;Vintage&quot; Jersey?
 
 &lt;img src=&#39;images/ccmvintage-legitlettered.png&#39; width=&#39;400&#39; alt=&quot;Legit CCM vintage lettered jersey neck tag&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;ccm-vintage]]
-[[ ❌ No -&gt;ccm-non-vintage]] </tw-passagedata>
-<tw-passagedata pid="19" name="adidas-size" tags="" position="425,325" size="100,100">What size is it?
+[[ ❌ No -&gt;ccm-non-vintage]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="19" name="adidas-size" tags="" position="425,325" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What size is it?
+&lt;/div&gt;
 
-&lt;div class=&quot;size-grid&quot;&gt;[[42 -&gt;adidas-button]] [[44 -&gt;adidas-button]] [[46 -&gt;adidas-button]] [[48 -&gt;fake]] [[50 -&gt;adidas-button]] [[52 -&gt;adidas-button]] [[54 -&gt;adidas-button]] [[56 -&gt;adidas-button]] [[58 -&gt;adidas-button]] [[60 -&gt;adidas-button]]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="20" name="lettering" tags="" position="825,600" size="100,100">Do the letters look shiny or oily, like this?
+&lt;div class=&quot;passage-actions&quot;&gt;
+&lt;div class=&quot;size-grid&quot;&gt;[[42 -&gt;adidas-button]] [[44 -&gt;adidas-button]] [[46 -&gt;adidas-button]] [[48 -&gt;fake]] [[50 -&gt;adidas-button]] [[52 -&gt;adidas-button]] [[54 -&gt;adidas-button]] [[56 -&gt;adidas-button]] [[58 -&gt;adidas-button]] [[60 -&gt;adidas-button]]&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="20" name="lettering" tags="" position="825,600" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Do the letters look shiny or oily, like this?
 
 Proper twill is usually flat and matte, and the stitching should be clean and tight. Shiny, bubbly, or &quot;oily&quot; lettering is a sign of a fake jersey.
 
+&lt;img src=&quot;images/lettering-fake.png&quot; width=&quot;400&quot; alt=&quot;Fake jersey lettering&quot;&gt;
+&lt;img src=&quot;images/lettering-fake-patch.png&quot; width=&quot;400&quot; alt=&quot;Fake jersey lettering — patch style&quot;&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Yes, looks like one of these&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or oily lettering&quot;))(go-to: &quot;crest&quot;)]
 [[ ✅ No -&gt;crest]]
 
 (link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Lettering check&quot;))(go-to: &quot;crest&quot;)]
-
-&lt;img src=&quot;images/lettering-fake.png&quot; width=&quot;400&quot; alt=&quot;Fake jersey lettering&quot;&gt;
-&lt;img src=&quot;images/lettering-fake-patch.png&quot; width=&quot;400&quot; alt=&quot;Fake jersey lettering — patch style&quot;&gt;</tw-passagedata>
-<tw-passagedata pid="21" name="laces" tags="" position="774,800" size="100,100">If your jersey has laces, what do they look like?
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="21" name="laces" tags="" position="774,800" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+If your jersey has laces, what do they look like?
 
 Laces should be tight, flat, and securely attached to the jersey. They should not be loose, thin, or easily detached.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Loose, thin, or detached&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style neck laces&quot;))(go-to: &quot;cut&quot;)]
 |fakeLaces1&gt;[ &lt;img src=&quot;images/adidas-laces-fake-01.png&quot; alt=&quot;Fake Adidas lace hole — example 1&quot;&gt; ](click: ?fakeLaces1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style neck laces&quot;))(go-to: &quot;cut&quot;)]
 |fakeLaces2&gt;[ &lt;img src=&quot;images/adidas-laces-fake-02.png&quot; alt=&quot;Fake Adidas lace hole — example 2&quot;&gt; ](click: ?fakeLaces2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style neck laces&quot;))(go-to: &quot;cut&quot;)]
@@ -626,222 +887,347 @@ Laces should be tight, flat, and securely attached to the jersey. They should no
 
 [[ I don&#39;t have laces -&gt;cut]] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Neck laces check&quot;))(go-to: &quot;cut&quot;)] </tw-passagedata>
-<tw-passagedata pid="22" name="crest" tags="" position="975,600" size="100,100">How does the crest on the front look?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Neck laces check&quot;))(go-to: &quot;cut&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="22" name="crest" tags="" position="975,600" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+How does the crest on the front look?
 
 The crest should be flat and smooth, with clean stitching. Shiny, oily, bubbly, or diagonal streaks on the crest are a sign of a fake jersey.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Shiny, oily, bubbly, diagonal streaks&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fake-design&quot;)]
 |fakeCrest1&gt;[ &lt;img src=&quot;images/crest-fake.png&quot; width=&quot;300&quot; alt=&quot;Fake jersey crest stitching&quot;&gt; ](click: ?fakeCrest1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Shiny or bubbly crest&quot;))(go-to: &quot;fake-design&quot;)]
 
 [[ ✅ Flat, smooth -&gt;fake-design]]
 [[ &lt;img src=&quot;images/crest-legit.png&quot; width=&quot;300&quot; alt=&quot;Legit jersey crest stitching&quot; -&gt;fake-design]]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;fake-design&quot;)] </tw-passagedata>
-<tw-passagedata pid="23" name="checkpoint" tags="" position="1125,700" size="100,100">&lt;div class=&quot;checkpoint-block&quot;&gt;✅ Things are looking good so far — no definitive issues found.&lt;/div&gt;
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Crest check&quot;))(go-to: &quot;fake-design&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="23" name="checkpoint" tags="" position="1125,700" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;checkpoint-block&quot;&gt;✅ Things are looking good so far — no definitive issues found.&lt;/div&gt;
+&lt;/div&gt;
 
-[[ Let&#39;s continue with some manufacturer specific traits -&gt;manu-switch]]</tw-passagedata>
-<tw-passagedata pid="24" name="manu-switch" tags="" position="1000,800" size="100,100">(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;reebok-edge-or-premier&quot;)]
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ Let&#39;s continue with some manufacturer specific traits -&gt;manu-switch]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="24" name="manu-switch" tags="" position="1000,800" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;reebok-edge-or-premier&quot;)]
 (else-if: $manu is &#39;adidas&#39; ) [(go-to: &quot;adidas-size&quot;)]
 (else-if: $manu is &#39;fanatics&#39; ) [(go-to: &quot;fanatics-size&quot;)]
 (else-if: $manu is &#39;CCM&#39; ) [(go-to: &quot;ccm-intro&quot;)]
 (else-if: $manu is &#39;Starter&#39; ) [(go-to: &quot;legit-disclaimer&quot;)]
-(else:)[&quot;Ah fuck, look what you&#39;ve done. PM Dex.&quot;]</tw-passagedata>
-<tw-passagedata pid="25" name="no-strap" tags="" position="996,398" size="100,100">(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;reebok-replica&quot;)]
+(else:)[&quot;Ah fuck, look what you&#39;ve done. PM Dex.&quot;]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="25" name="no-strap" tags="" position="996,398" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+(if: $manu is &#39;reebok&#39; ) [(go-to: &quot;reebok-replica&quot;)]
 (else-if: $manu is &#39;CCM&#39; ) [(go-to: &quot;ccm-intro&quot;)]
 (else-if: $manu is &#39;fanatics&#39; ) [(go-to: &quot;lettering&quot;)]
 (else-if: $manu is &#39;adidas&#39; ) [(go-to: &quot;adidas-wcoh&quot;)]
 (else-if: $manu is &#39;Starter&#39; ) [(go-to: &quot;legit-disclaimer&quot;)]
-(else:)[You can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for help.]</tw-passagedata>
-<tw-passagedata pid="26" name="fanatics-breakaway" tags="" position="1675,925" size="100,100">In general, Fanatics Breakaway jerseys are not faked.
+(else:)[You can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for help.]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="26" name="fanatics-breakaway" tags="" position="1675,925" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+In general, Fanatics Breakaway jerseys are not faked.
 
 If the jersey does &#39;&#39;not&#39;&#39; have a fight strap, and has a jock tag that looks like this, it is more than likely legit.
 
 &lt;img src=&quot;images/jock-tag-fanatics.png&quot; width=&quot;500&quot; alt=&quot;Fanatics jersey jock tag&quot;&gt;
 
 If you&#39;re not completely sure, you can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="27" name="strap" tags="" position="825,300" size="100,100">Does your jersey have a fight strap?
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="27" name="strap" tags="" position="825,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does your jersey have a fight strap?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;✅ Yes&quot;)[(set: $strap to &quot;true&quot;)(go-to: &quot;fight-strap&quot;)]
-(link: &quot;❌ No&quot;)[(set: $strap to &quot;false&quot;)(go-to: &quot;no-strap&quot;)]</tw-passagedata>
-<tw-passagedata pid="28" name="reebok-replica" tags="" position="1275,800" size="100,100">Does your jersey have a jock tag?
+(link: &quot;❌ No&quot;)[(set: $strap to &quot;false&quot;)(go-to: &quot;no-strap&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="28" name="reebok-replica" tags="" position="1275,800" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does your jersey have a jock tag?
 
 &lt;img src=&quot;images/jock-tag-reebok.png&quot; width=&quot;400&quot; alt=&quot;Reebok jersey jock tag&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;reebok-premier-legit]]
-[[ ❌ No -&gt;reebok-replica-wc]]</tw-passagedata>
-<tw-passagedata pid="29" name="reebok-premier-legit" tags="" position="1375,1025" size="100,100">It looks like you have a legit Reebok premier. 
+[[ ❌ No -&gt;reebok-replica-wc]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="29" name="reebok-premier-legit" tags="" position="1375,1025" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+It looks like you have a legit Reebok premier.
 
-If you&#39;re still not 100% sure, feel free to post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.</tw-passagedata>
-<tw-passagedata pid="30" name="reebok-replica-wc" tags="" position="1500,1025" size="100,100">Is your jersey a Winter Classic jersey?
+If you&#39;re still not 100% sure, feel free to post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="30" name="reebok-replica-wc" tags="" position="1500,1025" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is your jersey a Winter Classic jersey?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;reebok-premier-legit]]
-[[ ❌ No -&gt;reebok-premier-size]]</tw-passagedata>
-<tw-passagedata pid="31" name="fringe-case" tags="" position="825,1175" size="100,100">Sounds like you&#39;ve got a fringe case.
+[[ ❌ No -&gt;reebok-premier-size]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="31" name="fringe-case" tags="" position="825,1175" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Sounds like you&#39;ve got a fringe case.
 
-Post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for help with fringe cases.</tw-passagedata>
-<tw-passagedata pid="32" name="reebok-premier-size" tags="" position="1425,1200" size="100,100">Is your jersey a lettered size? (S/M/L/XL)
+Post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for help with fringe cases.
+&lt;/div&gt;
 
-[[ ✅ Yes -&gt;reebok-premier-legit]] 
-[[ ❌ No -&gt;fringe-case]]</tw-passagedata>
-<tw-passagedata pid="33" name="ccm-vintage" tags="" position="1575,375" size="100,100">What kind of sizing does your jersey have?
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="32" name="reebok-premier-size" tags="" position="1425,1200" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is your jersey a lettered size? (S/M/L/XL)
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ ✅ Yes -&gt;reebok-premier-legit]]
+[[ ❌ No -&gt;fringe-case]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="33" name="ccm-vintage" tags="" position="1575,375" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What kind of sizing does your jersey have?
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
 - [[ Numbered -&gt;ccm-vintage-number]]
-- [[ Lettered -&gt;ccm-vintage-lettered]]</tw-passagedata>
-<tw-passagedata pid="34" name="ccm-vintage-number" tags="" position="1625,625" size="100,100">What color are the bands on the neck tag?
+- [[ Lettered -&gt;ccm-vintage-lettered]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="34" name="ccm-vintage-number" tags="" position="1625,625" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What color are the bands on the neck tag?
 
 The gray banded tag is a fake. The blue banded tag is legitimate.
 
+Gray bands = Fake | Blue bands = Legit
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
 |imgLink2&gt;[ &lt;img src=&quot;images/ccmvintage-fake.png&quot; width=&quot;300&quot; alt=&quot;Fake CCM vintage jersey neck tag&quot;&gt; ](click: ?imgLink2)[(go-to: &quot;fake&quot;)]
 |imgLink1&gt;[ &lt;img src=&quot;images/ccmvintage-legit.png&quot; width=&quot;300&quot; alt=&quot;Courtesy of classicvintagejerseys on ebay&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;legit-disclaimer&quot;)]
-
-Gray bands = Fake | Blue bands = Legit</tw-passagedata>
-<tw-passagedata pid="35" name="ccm-vintage-lettered" tags="" position="1400,500" size="100,100">In general, CCM Vintage jerseys in lettered sizes are not faked.
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="35" name="ccm-vintage-lettered" tags="" position="1400,500" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+In general, CCM Vintage jerseys in lettered sizes are not faked.
 
 However, you can ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; if you&#39;re not sure.
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt; </tw-passagedata>
-<tw-passagedata pid="36" name="fake-design" tags="" position="1125,580" size="100,100">Is it one of these designs? A fake jersey will sometimes use a design the team never actually wore.
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="36" name="fake-design" tags="" position="1125,580" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is it one of these designs? A fake jersey will sometimes use a design the team never actually wore.
 
 &lt;img src=&quot;images/crap-design-01.png&quot; width=&quot;300&quot; alt=&quot;Fantasy/fake jersey design example 1&quot;&gt;&lt;img src=&quot;images/crap-design-02.png&quot; width=&quot;300&quot; alt=&quot;Fantasy/fake jersey design example 2&quot;&gt;
 &lt;img src=&quot;images/crap-design-03.png&quot; width=&quot;300&quot; alt=&quot;Fantasy/fake jersey design example 3&quot;&gt;&lt;img src=&quot;images/crap-design-04.png&quot; width=&quot;300&quot; alt=&quot;Fantasy/fake jersey design example 4&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ❌ Yes, it matches one of these -&gt;fake]]
-[[ ✅ No -&gt;checkpoint]]</tw-passagedata>
-<tw-passagedata pid="37" name="adidas-wcoh" tags="" position="1675,1025" size="100,100">Is your jersey from the World Cup of Hockey (WCH)?
+[[ ✅ No -&gt;checkpoint]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="37" name="adidas-wcoh" tags="" position="1675,1025" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is your jersey from the World Cup of Hockey (WCH)?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;adidas-wcoh-check]]
-[[ ❌ No -&gt;fringe-case]]</tw-passagedata>
-<tw-passagedata pid="38" name="adidas-wcoh-check" tags="" position="1700,1175" size="100,100">Does it have a jock tag that looks like this?
+[[ ❌ No -&gt;fringe-case]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="38" name="adidas-wcoh-check" tags="" position="1700,1175" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does it have a jock tag that looks like this?
 
 &lt;img src=&quot;images/jock-tag-adidas.png&quot; width=&quot;400&quot; alt=&quot;Adidas jersey jock tag&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;legit-disclaimer]]
-[[ ❌ No -&gt;fringe-case]]</tw-passagedata>
-<tw-passagedata pid="39" name="reebok-edge" tags="" position="1975,150" size="100,100">What does the NHL Shield look like?
+[[ ❌ No -&gt;fringe-case]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="39" name="reebok-edge" tags="" position="1975,150" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What does the NHL Shield look like?
 
 Reebok used two different shields. Earlier shields used a plain black and silver embroidered logo, and later designs used a felt-ish shield with a scalloped background design. Both are legitimate, but the plain embroidered shield is more commonly faked.
 
 &lt;small&gt;Tap the image that matches your shield.&lt;/small&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 |imgLink2&gt;[ &lt;img src=&quot;images/reebok-shield-legit-01.png&quot; width=&quot;300&quot; alt=&quot;Legit NHL shield on Reebok jersey — example 1&quot;&gt; ](click: ?imgLink2)[(go-to: &quot;reebok-neck&quot;)] |imgLink1&gt;[ &lt;img src=&quot;images/reebok-shield-legit-02.png&quot; width=&quot;300&quot; alt=&quot;Legit NHL shield on Reebok jersey — example 2&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;reebok-neck&quot;)]
 
 |fakeEdge1&gt;[ &lt;img src=&quot;images/reebok-shield-fake-01.png&quot; width=&quot;300&quot; alt=&quot;Fake NHL shield on Reebok jersey — example 1&quot;&gt; ](click: ?fakeEdge1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style NHL shield (Reebok)&quot;))(go-to: &quot;reebok-neck&quot;)]
 |fakeEdge2&gt;[ &lt;img src=&quot;images/reebok-shield-fake-02.png&quot; width=&quot;300&quot; alt=&quot;Fake NHL shield on Reebok jersey — example 2&quot;&gt; ](click: ?fakeEdge2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fake-style NHL shield (Reebok)&quot;))(go-to: &quot;reebok-neck&quot;)] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok NHL shield check&quot;))(go-to: &quot;reebok-neck&quot;)] </tw-passagedata>
-<tw-passagedata pid="40" name="ccm-non-vintage" tags="" position="1694,376" size="100,100">Is it a lettered size (S/M/L/XL)?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok NHL shield check&quot;))(go-to: &quot;reebok-neck&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="40" name="ccm-non-vintage" tags="" position="1694,376" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is it a lettered size (S/M/L/XL)?
+&lt;/div&gt;
 
-[[ ✅ Yes -&gt;ccm-non-vintage-sizes]] 
-[[ ❌ No -&gt;legit-disclaimer]] </tw-passagedata>
-<tw-passagedata pid="41" name="reebok-6100" tags="" position="1825,375" size="100,100">The Reebok 6100 was used in 2005-07, and has same boxy style as older CCM/Koho jerseys. Generally not faked, but it is best to ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;. They are *extremely* rare, especially in size 48.
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ ✅ Yes -&gt;ccm-non-vintage-sizes]]
+[[ ❌ No -&gt;legit-disclaimer]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="41" name="reebok-6100" tags="" position="1825,375" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+The Reebok 6100 was used in 2005-07, and has same boxy style as older CCM/Koho jerseys. Generally not faked, but it is best to ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt;. They are *extremely* rare, especially in size 48.
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt; </tw-passagedata>
-<tw-passagedata pid="42" name="reebok-edge-or-premier" tags="" position="1774,148" size="100,100">Is your jersey a Reebok Edge, Premier, or 6100?
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="42" name="reebok-edge-or-premier" tags="" position="1774,148" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is your jersey a Reebok Edge, Premier, or 6100?
 
-- [[ Edge -&gt;reebok-intro]] 
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
+- [[ Edge -&gt;reebok-intro]]
 - [[ Premier -&gt;fake-premier]] 
 - [[ reebok-6100 -&gt;reebok-6100]] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok Edge/Premier/6100 identification&quot;))(go-to: &quot;reebok-edge&quot;)] </tw-passagedata>
-<tw-passagedata pid="43" name="reebok-laces-ask" tags="" position="2075,625" size="100,100">Does your jersey have neck laces?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok Edge/Premier/6100 identification&quot;))(go-to: &quot;reebok-edge&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="43" name="reebok-laces-ask" tags="" position="2075,625" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does your jersey have neck laces?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;reebok-laces-yes]]
-[[ ✅ No -&gt;reebok-laces-no]]</tw-passagedata>
-<tw-passagedata pid="44" name="reebok-laces-yes" tags="" position="1950,650" size="100,100">How does the NHL Shield sit behind the laces?
+[[ ✅ No -&gt;reebok-laces-no]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="44" name="reebok-laces-yes" tags="" position="1950,650" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+How does the NHL Shield sit behind the laces?
 
 The NHL should never sit behind the laces. It should be on its own piece of fabric, centered and well above the &quot;V&quot; of the neck. Be aware that sometimes the way the jersey is laid out can make it look like the shield is behind the laces when it&#39;s not, so be sure to check carefully.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Behind the laces&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield sits behind neck laces&quot;))(go-to: &quot;legit-disclaimer&quot;)]
 |fakeRLaces1&gt;[ &lt;img src=&quot;images/reebok-laces-fake.png&quot; width=&quot;300&quot; alt=&quot;Fake Reebok lace hole&quot;&gt; ](click: ?fakeRLaces1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield sits behind neck laces&quot;))(go-to: &quot;legit-disclaimer&quot;)] 
 
 [[ ✅ Above -&gt;legit-disclaimer]] 
 |legitRLaces1&gt;[ &lt;img src=&quot;images/reebok-laces-legit.png&quot; width=&quot;300&quot; alt=&quot;Legit Reebok lace hole&quot;&gt; ](click: ?legitRLaces1)[(go-to: &quot;legit-disclaimer&quot;)] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok laces shield position check&quot;))(go-to: &quot;fringe-case&quot;)] </tw-passagedata>
-<tw-passagedata pid="45" name="reebok-laces-no" tags="" position="1950,525" size="100,100">Is the NHL Shield on its own piece of fabric, centered and well above the &quot;V&quot; of the neck?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok laces shield position check&quot;))(go-to: &quot;fringe-case&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="45" name="reebok-laces-no" tags="" position="1950,525" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the NHL Shield on its own piece of fabric, centered and well above the &quot;V&quot; of the neck?
 
 The NHL should never sit behind the laces. It should be on its own piece of fabric, centered and well above the &quot;V&quot; of the neck.
+&lt;/div&gt;
 
-[[ ✅ Yes -&gt;legit-disclaimer]] 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ ✅ Yes -&gt;legit-disclaimer]]
 |imgLink1&gt;[ &lt;img src=&quot;images/reebok-vneck-legit.png&quot; width=&quot;300&quot; alt=&quot;Legit Reebok v-neck interior&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;legit-disclaimer&quot;)] 
 
 (link: &quot;❌ No&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield poorly placed on V-neck&quot;))(go-to: &quot;legit-disclaimer&quot;)]
 |fakeRVneck1&gt;[ &lt;img src=&quot;images/reebok-vneck-fake.png&quot; width=&quot;300&quot; alt=&quot;Fake Reebok v-neck interior&quot;&gt; ](click: ?fakeRVneck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;NHL shield poorly placed on V-neck&quot;))(go-to: &quot;legit-disclaimer&quot;)] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok V-neck shield position check&quot;))(go-to: &quot;fringe-case&quot;)] </tw-passagedata>
-<tw-passagedata pid="46" name="reebok-neck" tags="" position="2075,300" size="100,100">Look at the back of the neck of your jersey.
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok V-neck shield position check&quot;))(go-to: &quot;fringe-case&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="46" name="reebok-neck" tags="" position="2075,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Look at the back of the neck of your jersey.
 
-Which logo does it have? 
+Which logo does it have?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ Vector Logo -&gt;reebok-neck-vector]]
 |imgLink2&gt;[ &lt;img src=&quot;images/reebok-vector-legit.png&quot; width=&quot;400&quot;  alt=&quot;Legit Reebok vector mark inside collar&quot;&gt; ](click: ?imgLink2)[(go-to: &quot;reebok-neck-vector&quot;)]
 
 [[ Wordmark Logo -&gt;reebok-neck-wordmark]]
-|imgLink1&gt;[ &lt;img src=&quot;images/reebok-wordmark-legit.png&quot; width=&quot;400&quot;  alt=&quot;Legit Reebok wordmark inside collar&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;reebok-neck-wordmark&quot;)]</tw-passagedata>
-<tw-passagedata pid="47" name="reebok-neck-vector" tags="" position="2100,475" size="100,100">Is the Vector logo a patch or stitched directly?
+|imgLink1&gt;[ &lt;img src=&quot;images/reebok-wordmark-legit.png&quot; width=&quot;400&quot;  alt=&quot;Legit Reebok wordmark inside collar&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;reebok-neck-wordmark&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="47" name="reebok-neck-vector" tags="" position="2100,475" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the Vector logo a patch or stitched directly?
 
 On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing material being the same color as the jersey itself (in most cases). The logo should sit level and centered on the neck.
+&lt;/div&gt;
 
-[[Patch -&gt;reebok-laces-ask]] 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[Patch -&gt;reebok-laces-ask]]
 |imgLink1&gt;[ &lt;img src=&quot;images/reebok-vector-legit.png&quot; width=&quot;400&quot;  alt=&quot;Legit Reebok vector mark inside collar&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;reebok-laces-ask&quot;)]
 
 (link: &quot;❌ Stitched Directly&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok vector logo stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
 |fakeRVec1&gt;[ &lt;img src=&quot;images/reebok-vector-fake.png&quot; width=&quot;400&quot; alt=&quot;Fake Reebok vector mark inside collar&quot;&gt; ](click: ?fakeRVec1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok vector logo stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata>
-<tw-passagedata pid="48" name="reebok-neck-wordmark" tags="" position="2225,475" size="100,100">Is the Wordmark logo a patch or stitched directly?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="48" name="reebok-neck-wordmark" tags="" position="2225,475" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the Wordmark logo a patch or stitched directly?
 
 On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing material being the same color as the jersey itself (in most cases). The logo should sit level and centered on the neck.
+&lt;/div&gt;
 
-[[Patch -&gt;reebok-laces-ask]] 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[Patch -&gt;reebok-laces-ask]]
 |imgLink1&gt;[ &lt;img src=&quot;images/reebok-wordmark-legit.png&quot; width=&quot;400&quot;  alt=&quot;Legit Reebok wordmark inside collar&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;reebok-laces-ask&quot;)]
 
 (link: &quot;❌ Stitched Directly&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok wordmark stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
 |fakeRWord1&gt;[ &lt;img src=&quot;images/reebok-wordmark-fake.png&quot; width=&quot;400&quot; alt=&quot;Fake Reebok wordmark inside collar&quot;&gt; ](click: ?fakeRWord1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Reebok wordmark stitched directly, not a patch&quot;))(go-to: &quot;reebok-laces-ask&quot;)] 
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)] </tw-passagedata>
-<tw-passagedata pid="49" name="source-site-check" tags="" position="1375,50" size="100,100">Is the website something like &quot;officialpredtorsshop.com&quot; or &quot;legitnhljerseys.com&quot;? Or is it DHGate/AliExpress/Ecrater? 
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Reebok neck logo check&quot;))(go-to: &quot;reebok-laces-ask&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="49" name="source-site-check" tags="" position="1375,50" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the website something like &quot;officialpredtorsshop.com&quot; or &quot;legitnhljerseys.com&quot;? Or is it DHGate/AliExpress/Ecrater?
+&lt;/div&gt;
 
-[[❌ Yes-&gt;fake-site]] 
-[[✅ No-&gt;source-ddos]]</tw-passagedata>
-<tw-passagedata pid="50" name="fake-site" tags="" position="50,125" size="100,100">&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[❌ Yes-&gt;fake-site]]
+[[✅ No-&gt;source-ddos]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="50" name="fake-site" tags="" position="50,125" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;verdict-block verdict-fake&quot;&gt;
 &lt;h2 style=&quot;color:#f87171&quot;&gt;❌ Fake Site or Seller&lt;/h2&gt;
 Do not order from them.
 &lt;/div&gt;
 
-Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; for a list of shops that are known to be trustworthy, or ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; if you&#39;re still unsure.</tw-passagedata>
-<tw-passagedata pid="51" name="source-ebay" tags="" position="990,260" size="100,100">Where is the seller located?
+Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; for a list of shops that are known to be trustworthy, or ask in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; if you&#39;re still unsure.
+&lt;/div&gt;
 
-[[North America-&gt;strap]] 
-[[Europe -&gt;strap]] 
-[[Asia -&gt;fake-site]] </tw-passagedata>
-<tw-passagedata pid="52" name="source-ask" tags="" position="1225,50" size="100,100">Did you or are you buying a jersey on eBay?
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="51" name="source-ebay" tags="" position="990,260" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Where is the seller located?
+&lt;/div&gt;
 
-[[✅ Yes-&gt;source-ebay]] 
-[[❌ No-&gt;source-insta]] 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[North America-&gt;strap]]
+[[Europe -&gt;strap]]
+[[Asia -&gt;fake-site]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="52" name="source-ask" tags="" position="1225,50" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Did you or are you buying a jersey on eBay?
+&lt;/div&gt;
 
-[[I&#39;m not worried about the source, skip this step-&gt;strap]] </tw-passagedata>
-<tw-passagedata pid="53" name="source-whois" tags="" position="1375,300" size="100,100">Look up the website in a &lt;a href=&quot;http://whois.domaintools.com/&quot;&gt;WHOIS database&lt;/a&gt;.
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[✅ Yes-&gt;source-ebay]]
+[[❌ No-&gt;source-insta]]
+
+[[I&#39;m not worried about the source, skip this step-&gt;strap]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="53" name="source-whois" tags="" position="1375,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Look up the website in a &lt;a href=&quot;http://whois.domaintools.com/&quot;&gt;WHOIS database&lt;/a&gt;.
 
 Where is the site based?
 
-[[North America-&gt;source-too-good]] 
-[[Europe -&gt;source-too-good]] 
-[[Asia -&gt;fake-site]] </tw-passagedata>
-<tw-passagedata pid="54" name="source-ddos" tags="" position="1375,175" size="100,100">Did you have to go through DDOS protection to get to the site, like CloudFlare?
+&lt;/div&gt;
 
-[[❌ Yes-&gt;fake-site]] 
-[[✅ No-&gt;source-whois]] </tw-passagedata>
-<tw-passagedata pid="55" name="fake-premier" tags="" position="2102,33" size="100,100">Premiers don&#39;t have fight straps.
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[North America-&gt;source-too-good]]
+[[Europe -&gt;source-too-good]] 
+[[Asia -&gt;fake-site]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="54" name="source-ddos" tags="" position="1375,175" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Did you have to go through DDOS protection to get to the site, like CloudFlare?
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[❌ Yes-&gt;fake-site]]
+[[✅ No-&gt;source-whois]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="55" name="fake-premier" tags="" position="2102,33" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Premiers don&#39;t have fight straps.
 If you have a jersey with a fight strap and a jock tag, it&#39;s one of the following:
 	- A Practice jersey
 	- A protoype jersey (unlikely)
 	- A Fake (most likely)
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt; </tw-passagedata>
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="56" name="HEADER" tags="" position="100,1000" size="100,100">&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;height:2em;width:auto;vertical-align:middle;&quot;&gt;&lt;/a&gt;&lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="57" name="FOOTER" tags="footer" position="100,1125" size="100,100">
 
@@ -851,55 +1237,83 @@ If you have a jersey with a fight strap and a jock tag, it&#39;s one of the foll
 (if: $unsure &gt; 0)[&lt;div class=&quot;unsure-badge&quot;&gt;🤔 $unsure unsure&lt;/div&gt;]
 &lt;div class=&quot;footer-nav&quot;&gt;(link: &quot;◀ Back&quot;)[(undo:)] &amp;nbsp;&amp;nbsp; (link: &quot;↺ Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;
 &lt;img src=&quot;images/logo.png&quot; id=&quot;site-logo&quot; alt=&quot;Logo&quot;&gt;</tw-passagedata>
-<tw-passagedata pid="58" name="starter-intro" tags="" position="1267,594" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Starter / Pro Player&quot;&gt;&lt;/div&gt;
+<tw-passagedata pid="58" name="starter-intro" tags="" position="1267,594" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Starter / Pro Player&quot;&gt;&lt;/div&gt;
 
 In general, Starter and Pro Player jerseys are not faked.
 
-If it is a &quot;concept&quot; jersey, like one of the ones below, it is 100% fake. 
+If it is a &quot;concept&quot; jersey, like one of the ones below, it is 100% fake.
 
 &lt;img src=&quot;images/blues_concept.jpg&quot; width=300 height=220 alt=&quot;Example fantasy/concept jersey (Blues)&quot;&gt;    &lt;img src=&quot;images/flyers_concept.jpeg&quot; width=300 height=220 alt=&quot;Example fantasy/concept jersey (Flyers)&quot;&gt;
 &lt;img src=&quot;images/pens_concept.jpg&quot; width=300 height=220 alt=&quot;Example fantasy/concept jersey (Penguins)&quot;&gt;    &lt;img src=&quot;images/kings_concept.jpg&quot; width=300 height=220 alt=&quot;Example fantasy/concept jersey (Kings)&quot;&gt;
 
+If you&#39;re still not 100% sure, feel free to post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
 Check through the rest of the guide to double-check:
-[[ Continue -&gt;strap]] 
+[[ Continue -&gt;strap]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="59" name="source-insta" tags="" position="1225,175" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is it an ad on a social media site like Instagram/FB/Snapchat?
+&lt;/div&gt;
 
-
-If you&#39;re still not 100% sure, feel free to post a link or pictures in the &lt;a href=&quot;https://reddit.com/r/hockeyjerseys/about/sticky&quot;&gt;r/hockeyjerseys monthly legit check thread&lt;/a&gt; or the &lt;a href=&quot;https://discord.com/invite/hockeyjerseys&quot;&gt;Hockey Jerseys Discord&lt;/a&gt; for a second opinion.</tw-passagedata>
-<tw-passagedata pid="59" name="source-insta" tags="" position="1225,175" size="100,100">Is it an ad on a social media site like Instagram/FB/Snapchat? 
-
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ✅ Yes -&gt;source-major-corp]]
-[[ ❌ No -&gt;source-site-check]] </tw-passagedata>
-<tw-passagedata pid="60" name="source-major-corp" tags="" position="1225,300" size="100,100">Is the ad for a reputable corporation like Fanatics or Dick&#39;s Sporting Goods?
+[[ ❌ No -&gt;source-site-check]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="60" name="source-major-corp" tags="" position="1225,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the ad for a reputable corporation like Fanatics or Dick&#39;s Sporting Goods?
+&lt;/div&gt;
 
-[[ ✅ Yes -&gt;strap]] 
-[[ ❌ No -&gt;source-sketch]]</tw-passagedata>
-<tw-passagedata pid="61" name="source-sketch" tags="" position="1225,425" size="100,100">Is the ad kinda sketchy sounding, or offering something that&#39;s too good to be true, like this? 
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ ✅ Yes -&gt;strap]]
+[[ ❌ No -&gt;source-sketch]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="61" name="source-sketch" tags="" position="1225,425" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the ad kinda sketchy sounding, or offering something that&#39;s too good to be true, like this?
 
-&lt;img src=&#39;images/insta.png&#39; height=400 alt=&quot;Example of a suspicious Instagram jersey ad&quot;&gt; 
+&lt;img src=&#39;images/insta.png&#39; height=400 alt=&quot;Example of a suspicious Instagram jersey ad&quot;&gt;
+&lt;/div&gt;
 
-[[ ❌ Yes -&gt;fake-site]] 
-[[ ✅ No -&gt;source-ddos]] </tw-passagedata>
-<tw-passagedata pid="62" name="source-too-good" tags="" position="1500,175" size="100,100">Are the deals just simply too good to be true, like a brand new, star player jersey for &lt;$40? 
-
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ❌ Yes -&gt;fake-site]]
-[[ ✅ No -&gt;strap]] </tw-passagedata>
-<tw-passagedata pid="63" name="ccm-non-vintage-sizes" tags="" position="2450,100" size="100,100">Look at the size tag.
+[[ ✅ No -&gt;source-ddos]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="62" name="source-too-good" tags="" position="1500,175" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Are the deals just simply too good to be true, like a brand new, star player jersey for &lt;$40?
+&lt;/div&gt;
+
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ ❌ Yes -&gt;fake-site]]
+[[ ✅ No -&gt;strap]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="63" name="ccm-non-vintage-sizes" tags="" position="2450,100" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Look at the size tag.
 
 Are all the sizes consistent? For example, XXL/TTG/EEG or L/G/G?
 
 &lt;img src=&#39;images/ccm_fake_tag.jpg&#39; height=&#39;300&#39; alt=&quot;Fake CCM size tag&quot;&gt; &lt;img src=&#39;images/ccm_tag_korea.jpg&#39; height=&#39;300&#39; alt=&quot;CCM size tag with Korea origin&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[✅ Yes -&gt;ccm-non-vintage-stitching]]
-[[❌ No -&gt;fake]] </tw-passagedata>
-<tw-passagedata pid="64" name="ccm-non-vintage-stitching" tags="" position="2300,250" size="100,100">Look at the patches and crest of the jersey. Are there drop stitches, like this? 
+[[❌ No -&gt;fake]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="64" name="ccm-non-vintage-stitching" tags="" position="2300,250" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Look at the patches and crest of the jersey. Are there drop stitches, like this?
 
 &lt;img src=&#39;images/ccm_fake_stitching_crest.jpg&#39; width=&#39;400&#39; alt=&quot;Fake CCM jersey — crest stitching detail&quot;&gt;
 
 &lt;img src=&#39;images/ccm_fake_stitching_patch.jpg&#39; width=&#39;400&#39; alt=&quot;Fake CCM jersey — patch stitching detail&quot;&gt;
+&lt;/div&gt;
 
-[[❌ Yes -&gt;fake]] 
-[[✅ No -&gt;ccm-non-vintage-lettering]]</tw-passagedata>
-<tw-passagedata pid="65" name="ccm-non-vintage-lettering" tags="" position="2450,250" size="100,100">Is the customization kind of bubbly, or maybe just a little too wrong?
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[❌ Yes -&gt;fake]]
+[[✅ No -&gt;ccm-non-vintage-lettering]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="65" name="ccm-non-vintage-lettering" tags="" position="2450,250" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Is the customization kind of bubbly, or maybe just a little too wrong?
 
 Proper customization should be flat and smooth, with clean stitching. Bubbly, shiny, or off-color lettering can be the sign a sign of a fake jersey, however it could just be poor workmanship or wear and tear, so be sure to check carefully.
 
@@ -908,11 +1322,15 @@ Proper customization should be flat and smooth, with clean stitching. Bubbly, sh
 &lt;img src=&#39;images/ccm_fake_lettering_tb.jpg&#39; width=&#39;450&#39; alt=&quot;Fake CCM jersey lettering (Tampa Bay)&quot;&gt;
 
 &lt;img src=&#39;images/ccm_fake_lettering_edm.jpg&#39; width=&#39;450&#39; alt=&quot;Fake CCM jersey lettering (Edmonton)&quot;&gt;
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 - (link: &quot;❌ Yes, bubbly or off&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Bubbly or off-color CCM customization&quot;))(go-to: &quot;legit-disclaimer&quot;)] 
 - [[No, clean -&gt;legit-disclaimer]]
-- (link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;CCM lettering check&quot;))(go-to: &quot;legit-disclaimer&quot;)]</tw-passagedata>
-<tw-passagedata pid="66" name="result" tags="" position="300,1225" size="100,100">(if: $flags is 0)[
+- (link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;CCM lettering check&quot;))(go-to: &quot;legit-disclaimer&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="66" name="result" tags="" position="300,1225" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+(if: $flags is 0)[
 &lt;div class=&quot;verdict-block verdict-legit&quot;&gt;
 &lt;h2 style=&quot;color:#4ade80&quot;&gt;✅ Probably Legit&lt;/h2&gt;
 No red flags were detected. Your jersey appears to be legitimate!
@@ -956,20 +1374,26 @@ $flags red flags were found. A jersey with this many issues is almost certainly 
 Check out the list of &lt;a href=&quot;https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A&quot;&gt;trusted sellers&lt;/a&gt; if you&#39;re looking for a legitimate jersey.
 &lt;/div&gt;
 ]
+&lt;/div&gt;
 
-&lt;div class=&quot;start-over-wrap&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="67" name="fanatics-intro" tags="" position="1675,800" size="100,100">&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Fanatics&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;(link: &quot;Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="67" name="fanatics-intro" tags="" position="1675,800" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/fanatics.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Fanatics&quot;&gt;&lt;/div&gt;
 
 What type of Fanatics jersey are you checking?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[Breakaway -&gt;fanatics-breakaway]]
 [[Premium (Retail, Indonesian-made) -&gt;source-ask]]
 [[Authentic Pro (Made in Canada) -&gt;source-ask]]
 
 Counterfeit Premiums and Authentic Pros generally have the same red flags. 
 
-[[&lt; Back -&gt;manufacturer]]</tw-passagedata>
-<tw-passagedata pid="68" name="about" tags="" position="600,100" size="100,100">&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;width:120px;height:auto;display:block;margin-bottom:1em;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
+[[&lt; Back -&gt;manufacturer]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="68" name="about" tags="" position="600,100" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;width:120px;height:auto;display:block;margin-bottom:1em;&quot;&gt;&lt;/a&gt;&lt;/div&gt;
 &lt;h2&gt;About This Guide&lt;/h2&gt;
 
 This guide was researched, written, and maintained by &lt;a href=&quot;https://libertybelljerseys.com&quot; target=&quot;_blank&quot;&gt;Liberty Bell Jerseys&lt;/a&gt;. It exists because determining whether an NHL jersey is legitimate can be genuinely difficult, and there was no single comprehensive interactive resource to help people do that.
@@ -1004,79 +1428,112 @@ This site is hosted on GitHub Pages. GitHub may collect standard server-side acc
 Copyright (c) 2026 Liberty Bell Jerseys — All Rights Reserved
 
 The source is publicly available for viewing and personal study only. You may not copy, deploy, host, repackage, or use this project (or any derivative) in any form without explicit written permission.
+&lt;/div&gt;
 
-[[ &lt; Back to start -&gt;manufacturer]]</tw-passagedata>
-<tw-passagedata pid="78" name="fanatics-size" tags="" position="800,200" size="100,100">What size is it?
+&lt;div class=&quot;passage-actions&quot;&gt;
+[[ &lt; Back to start -&gt;manufacturer]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="78" name="fanatics-size" tags="" position="800,200" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+What size is it?
+&lt;/div&gt;
 
-&lt;div class=&quot;size-grid&quot;&gt;[[44 -&gt;fanatics-button]] [[46 -&gt;fanatics-button]] [[48 -&gt;fanatics-button]] [[50 -&gt;fanatics-button]] [[52 -&gt;fanatics-button]] [[54 -&gt;fanatics-button]] [[56 -&gt;fanatics-button]] [[58 -&gt;fanatics-button]] [[60 -&gt;fanatics-button]]&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="79" name="fanatics-button" tags="" position="800,300" size="100,100">Does your jersey have a button at the bottom?
+&lt;div class=&quot;passage-actions&quot;&gt;
+&lt;div class=&quot;size-grid&quot;&gt;[[44 -&gt;fanatics-button]] [[46 -&gt;fanatics-button]] [[48 -&gt;fanatics-button]] [[50 -&gt;fanatics-button]] [[52 -&gt;fanatics-button]] [[54 -&gt;fanatics-button]] [[56 -&gt;fanatics-button]] [[58 -&gt;fanatics-button]] [[60 -&gt;fanatics-button]]&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="79" name="fanatics-button" tags="" position="800,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does your jersey have a button at the bottom?
 
 Fanatics Authentic jerseys should never have a button. If it does, it is a fake.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 [[ ❌ Yes, it has a button -&gt;fake]]
-[[ ✅ No button -&gt;fanatics-neck]]</tw-passagedata>
-<tw-passagedata pid="80" name="fanatics-neck" tags="" position="800,400" size="100,100">Can you see the Fanatics logo through the neck?
+[[ ✅ No button -&gt;fanatics-neck]]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="80" name="fanatics-neck" tags="" position="800,400" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Can you see the Fanatics logo through the neck?
 
 The Fanatics logo should be a patch on the back of the jersey. It should not be visible through the neck or embroidered directly.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Yes&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fanatics logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 |fakeFNeck1&gt;[ &lt;img src=&quot;images/inside-fake.png&quot; alt=&quot;Fake jersey interior (neck area)&quot;&gt; ](click: ?fakeFNeck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Fanatics logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 
 [[ ✅ No -&gt;band]]
 |imgLink1&gt;[ &lt;img src=&quot;images/inside-legit.png&quot; alt=&quot;Legit jersey interior (neck area)&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;band&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)]</tw-passagedata>
-<tw-passagedata pid="81" name="fanatics-box" tags="" position="800,500" size="100,100">Let&#39;s look at the back of your jersey.
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="81" name="fanatics-box" tags="" position="800,500" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Let&#39;s look at the back of your jersey.
 
 Look at the Fanatics logo on the back of the neck.
 
 It should be a patch, with the backing material being the same color as the jersey itself (in most cases). The &quot;box&quot; it sits in should be just big enough for it, and the logo should sit level.
 
 What describes your logo?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Crooked or box too big&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;laces&quot;)]
 |fakeFBox1&gt;[ &lt;img src=&quot;images/neck-fake.png&quot; alt=&quot;Fake back-of-neck logo placement&quot;&gt; ](click: ?fakeFBox1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;laces&quot;)]
 
 [[ ✅ Flat, centered -&gt;laces]]
 |legitFBox1&gt;[ &lt;img src=&quot;images/neck-legit.png&quot; alt=&quot;Legit back-of-neck logo placement&quot;&gt; ](click: ?legitFBox1)[(go-to: &quot;laces&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;laces&quot;)]</tw-passagedata>
-<tw-passagedata pid="82" name="adidas-button" tags="" position="300,300" size="100,100">Does it have the adidas button?
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;laces&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="82" name="adidas-button" tags="" position="300,300" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Does it have the adidas button?
 
 Only certain early Adidas jerseys have this button. If yours does, we need to check it.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;✅ Yes&quot;)[(go-to: &quot;button-check&quot;)]
-(link: &quot;❌ No&quot;)[(go-to: &quot;adidas-neck&quot;)]</tw-passagedata>
-<tw-passagedata pid="83" name="adidas-neck" tags="" position="300,400" size="100,100">Can you see the Adidas logo through the neck?
+(link: &quot;❌ No&quot;)[(go-to: &quot;adidas-neck&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="83" name="adidas-neck" tags="" position="300,400" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Can you see the Adidas logo through the neck?
 
 The Adidas logo should be a patch on the back of the jersey. It should not be visible through the neck or embroidered directly to the jersey.
 The exception to this is the 2016 World Cup of Hockey jerseys.
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Yes&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Adidas logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 |fakeANeck1&gt;[ &lt;img src=&quot;images/inside-fake.png&quot; alt=&quot;Fake jersey interior (neck area)&quot;&gt; ](click: ?fakeANeck1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Adidas logo visible inside neck&quot;))(go-to: &quot;band&quot;)]
 
 [[ ✅ No -&gt;band]]
 |imgLink1&gt;[ &lt;img src=&quot;images/inside-legit.png&quot; alt=&quot;Legit jersey interior (neck area)&quot;&gt; ](click: ?imgLink1)[(go-to: &quot;band&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)]</tw-passagedata>
-<tw-passagedata pid="84" name="adidas-box" tags="" position="300,500" size="100,100">Let&#39;s look at the back of your jersey.
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Inside neck check&quot;))(go-to: &quot;band&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="84" name="adidas-box" tags="" position="300,500" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+Let&#39;s look at the back of your jersey.
 
 Look at the Adidas logo on the back of the neck.
 
 It should be a patch, with the backing material being the same color as the jersey itself (in most cases). The &quot;box&quot; it sits in should be just big enough for it, and the logo should sit level.
 
 What describes your logo?
+&lt;/div&gt;
 
+&lt;div class=&quot;passage-actions&quot;&gt;
 (link: &quot;❌ Crooked or box too big&quot;)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;dimples&quot;)]
 |fakeABox1&gt;[ &lt;img src=&quot;images/neck-fake.png&quot; alt=&quot;Fake back-of-neck logo placement&quot;&gt; ](click: ?fakeABox1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: &quot;Back logo crooked or box too large&quot;))(go-to: &quot;dimples&quot;)]
 
 [[ Flat, centered -&gt;dimples]]
 |legitABox1&gt;[ &lt;img src=&quot;images/neck-legit.png&quot; alt=&quot;Legit back-of-neck logo placement&quot;&gt; ](click: ?legitABox1)[(go-to: &quot;dimples&quot;)]
 
-(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;dimples&quot;)]</tw-passagedata>
-<tw-passagedata pid="85" name="fanatics-auth" tags="" position="800,600" size="100,100">This is the Fanatics Authentic check section.
+(link: &quot;🤔 I&#39;m not sure&quot;)[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: &quot;Back logo box check&quot;))(go-to: &quot;dimples&quot;)]
+&lt;/div&gt;</tw-passagedata>
+<tw-passagedata pid="85" name="fanatics-auth" tags="" position="800,600" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
+This is the Fanatics Authentic check section.
 
-(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;legit-disclaimer&quot;)]</tw-passagedata>
+(if: $manu is &quot;fanatics&quot;)[(go-to: &quot;legit-disclaimer&quot;)]
+&lt;/div&gt;</tw-passagedata>
 </tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";

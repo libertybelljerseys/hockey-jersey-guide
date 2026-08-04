@@ -1,7 +1,11 @@
 :: reebok-replica {"position": "1275,800", "size": "100,100"}
+<div class="passage-content">
 Does your jersey have a jock tag?
 
 <img src="images/jock-tag-reebok.png" width="400" alt="Reebok jersey jock tag">
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->reebok-premier-legit]]
 [[ ❌ No ->reebok-replica-wc]]
+</div>

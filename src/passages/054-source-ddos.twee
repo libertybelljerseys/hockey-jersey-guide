@@ -1,5 +1,9 @@
 :: source-ddos {"position": "1375,175", "size": "100,100"}
+<div class="passage-content">
 Did you have to go through DDOS protection to get to the site, like CloudFlare?
+</div>
 
-[[❌ Yes->fake-site]] 
-[[✅ No->source-whois]] 
+<div class="passage-actions">
+[[❌ Yes->fake-site]]
+[[✅ No->source-whois]]
+</div>

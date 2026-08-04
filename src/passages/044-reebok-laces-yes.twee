@@ -1,12 +1,16 @@
 :: reebok-laces-yes {"position": "1950,650", "size": "100,100"}
+<div class="passage-content">
 How does the NHL Shield sit behind the laces?
 
 The NHL should never sit behind the laces. It should be on its own piece of fabric, centered and well above the "V" of the neck. Be aware that sometimes the way the jersey is laid out can make it look like the shield is behind the laces when it's not, so be sure to check carefully.
+</div>
 
+<div class="passage-actions">
 (link: "❌ Behind the laces")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "NHL shield sits behind neck laces"))(go-to: "legit-disclaimer")]
 |fakeRLaces1>[ <img src="images/reebok-laces-fake.png" width="300" alt="Fake Reebok lace hole"> ](click: ?fakeRLaces1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "NHL shield sits behind neck laces"))(go-to: "legit-disclaimer")] 
 
 [[ ✅ Above ->legit-disclaimer]] 
 |legitRLaces1>[ <img src="images/reebok-laces-legit.png" width="300" alt="Legit Reebok lace hole"> ](click: ?legitRLaces1)[(go-to: "legit-disclaimer")] 
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok laces shield position check"))(go-to: "fringe-case")] 
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok laces shield position check"))(go-to: "fringe-case")]
+</div>

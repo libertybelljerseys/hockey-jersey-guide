@@ -1,4 +1,6 @@
 :: fanatics-auth {"position": "800,600", "size": "100,100"}
+<div class="passage-content">
 This is the Fanatics Authentic check section.
 
 (if: $manu is "fanatics")[(go-to: "legit-disclaimer")]
+</div>

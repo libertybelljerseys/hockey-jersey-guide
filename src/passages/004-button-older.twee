@@ -1,14 +1,18 @@
 :: button-older {"position": "400,650", "size": "100,100"}
+<div class="passage-content">
 Which does the button look like?
 
 The button should be round, smooth, and rubbery with clean stitching. 
 
 
 <small>Tap the image that matches your button.</small>
+</div>
 
+<div class="passage-actions">
 |legitBtn>[ <img src="images/button-legit.png" width="250" alt="Legit Adidas button"> ](click: ?legitBtn)[(go-to: "adidas-neck")]
 |fakeBtn1>[ <img src="images/button-fake-stitched.png" width="250" alt="Fake button stitched over"> ](click: ?fakeBtn1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style stitched button"))(go-to: "adidas-neck")] 
 |fakeBtn2>[ <img src="images/button-fake.png" width="250" alt="Fake Adidas button"> ](click: ?fakeBtn2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style button"))(go-to: "adidas-neck")] 
 
 (link: "I don't have a button.")[(go-to: "adidas-neck")]
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Button style check"))(go-to: "adidas-neck")] 
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Button style check"))(go-to: "adidas-neck")]
+</div>

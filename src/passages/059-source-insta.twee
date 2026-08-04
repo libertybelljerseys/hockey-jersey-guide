@@ -1,5 +1,9 @@
 :: source-insta {"position": "1225,175", "size": "100,100"}
-Is it an ad on a social media site like Instagram/FB/Snapchat? 
+<div class="passage-content">
+Is it an ad on a social media site like Instagram/FB/Snapchat?
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->source-major-corp]]
-[[ ❌ No ->source-site-check]] 
+[[ ❌ No ->source-site-check]]
+</div>

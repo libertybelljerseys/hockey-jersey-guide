@@ -1,12 +1,16 @@
 :: reebok-neck-wordmark {"position": "2225,475", "size": "100,100"}
+<div class="passage-content">
 Is the Wordmark logo a patch or stitched directly?
 
 On Reebok Edge Authentic jerseys, the logo should be a patch, with the backing material being the same color as the jersey itself (in most cases). The logo should sit level and centered on the neck.
+</div>
 
-[[Patch ->reebok-laces-ask]] 
+<div class="passage-actions">
+[[Patch ->reebok-laces-ask]]
 |imgLink1>[ <img src="images/reebok-wordmark-legit.png" width="400"  alt="Legit Reebok wordmark inside collar"> ](click: ?imgLink1)[(go-to: "reebok-laces-ask")]
 
 (link: "❌ Stitched Directly")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Reebok wordmark stitched directly, not a patch"))(go-to: "reebok-laces-ask")]
 |fakeRWord1>[ <img src="images/reebok-wordmark-fake.png" width="400" alt="Fake Reebok wordmark inside collar"> ](click: ?fakeRWord1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Reebok wordmark stitched directly, not a patch"))(go-to: "reebok-laces-ask")] 
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok neck logo check"))(go-to: "reebok-laces-ask")] 
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok neck logo check"))(go-to: "reebok-laces-ask")]
+</div>

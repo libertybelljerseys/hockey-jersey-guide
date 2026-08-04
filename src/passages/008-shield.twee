@@ -1,5 +1,9 @@
 :: shield {"position": "400,950", "size": "100,100"}
+<div class="passage-content">
 Does the jersey have an NHL Shield on the front?
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->shield-present]]
 [[ ❌ No ->fake]]
+</div>

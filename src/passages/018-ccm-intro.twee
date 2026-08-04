@@ -1,4 +1,5 @@
 :: ccm-intro {"position": "1650,225", "size": "100,100"}
+<div class="passage-content">
 <div class="brand-header"><img src="images/logos/ccm.png" class="brand-logo-header" alt="CCM"></div>
 
 This is an interactive guide to help you determine the legitimacy of your CCM or Koho jersey.
@@ -6,6 +7,9 @@ This is an interactive guide to help you determine the legitimacy of your CCM or
 Is your jersey a CCM "Vintage" Jersey?
 
 <img src='images/ccmvintage-legitlettered.png' width='400' alt="Legit CCM vintage lettered jersey neck tag">
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->ccm-vintage]]
-[[ ❌ No ->ccm-non-vintage]] 
+[[ ❌ No ->ccm-non-vintage]]
+</div>

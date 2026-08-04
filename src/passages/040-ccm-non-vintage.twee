@@ -1,5 +1,9 @@
 :: ccm-non-vintage {"position": "1694,376", "size": "100,100"}
+<div class="passage-content">
 Is it a lettered size (S/M/L/XL)?
+</div>
 
-[[ ✅ Yes ->ccm-non-vintage-sizes]] 
-[[ ❌ No ->legit-disclaimer]] 
+<div class="passage-actions">
+[[ ✅ Yes ->ccm-non-vintage-sizes]]
+[[ ❌ No ->legit-disclaimer]]
+</div>

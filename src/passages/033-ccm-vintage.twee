@@ -1,5 +1,9 @@
 :: ccm-vintage {"position": "1575,375", "size": "100,100"}
+<div class="passage-content">
 What kind of sizing does your jersey have?
+</div>
 
+<div class="passage-actions">
 - [[ Numbered ->ccm-vintage-number]]
 - [[ Lettered ->ccm-vintage-lettered]]
+</div>

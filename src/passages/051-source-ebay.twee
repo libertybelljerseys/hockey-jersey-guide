@@ -1,6 +1,10 @@
 :: source-ebay {"position": "990,260", "size": "100,100"}
+<div class="passage-content">
 Where is the seller located?
+</div>
 
-[[North America->strap]] 
-[[Europe ->strap]] 
-[[Asia ->fake-site]] 
+<div class="passage-actions">
+[[North America->strap]]
+[[Europe ->strap]]
+[[Asia ->fake-site]]
+</div>

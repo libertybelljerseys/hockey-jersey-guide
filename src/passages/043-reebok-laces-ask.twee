@@ -1,5 +1,9 @@
 :: reebok-laces-ask {"position": "2075,625", "size": "100,100"}
+<div class="passage-content">
 Does your jersey have neck laces?
+</div>
 
+<div class="passage-actions">
 [[ ✅ Yes ->reebok-laces-yes]]
 [[ ✅ No ->reebok-laces-no]]
+</div>

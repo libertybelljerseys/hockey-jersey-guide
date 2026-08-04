@@ -1,7 +1,10 @@
 :: fight-strap {"position": "825,425", "size": "100,100"}
+<div class="passage-content">
 ''What does your fight strap look like:''
+</div>
 
-[[ Just kidding, I don't have a fight strap ->no-strap]] 
+<div class="passage-actions">
+[[ Just kidding, I don't have a fight strap ->no-strap]]
 (link: "I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Fight strap check"))(go-to: "lettering")] 
 
 <small>Tap the image that matches your strap.</small>
@@ -12,4 +15,5 @@
 
 |imgLink2>[ <img src="images/fightstrap-retail.png" width="400" alt="Legit retail fight strap"> ](click: ?imgLink2)[(go-to: "lettering")]
 
-|imgLink1>[ <img src="images/fightstrap-ti.png" width="400" alt="Legit TI fight strap"> ](click: ?imgLink1)[(go-to: "lettering")] 
+|imgLink1>[ <img src="images/fightstrap-ti.png" width="400" alt="Legit TI fight strap"> ](click: ?imgLink1)[(go-to: "lettering")]
+</div>

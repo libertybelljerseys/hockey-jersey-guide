@@ -1,8 +1,11 @@
 :: band {"position": "250,950", "size": "100,100"}
+<div class="passage-content">
 What does the information band look like?
 
-The band should be flat and matte, with clear, legible text. 
+The band should be flat and matte, with clear, legible text.
+</div>
 
+<div class="passage-actions">
 (link: "❌ Band is shiny, text is not clear, stitched through the text")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style information band"))(go-to: "hangar")]
 |fakeBand1>[ <img src="images/band-fake.png" width="300" alt="Fake information band"> ](click: ?fakeBand1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style information band"))(go-to: "hangar")]
 
@@ -12,4 +15,5 @@ The band should be flat and matte, with clear, legible text.
 [[ ✅ Band is flat, text and stitching are clear and clean ->hangar]]
 |imgLink1>[ <img src="images/band-legit.png" width="300" alt="Legit information band"> ](click: ?imgLink1)[(go-to: "hangar")]
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Information band check"))(go-to: "hangar")] 
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Information band check"))(go-to: "hangar")]
+</div>
