@@ -1,11 +1,7 @@
 :: source-sketch {"position": "1225,425", "size": "100,100"}
-<div class="passage-content">
-Is the ad kinda sketchy sounding, or offering something that's too good to be true, like this?
+Is the ad kinda sketchy sounding, or offering something that's too good to be true, like this? 
 
-<img src='images/insta.png' height=400 alt="Example of a suspicious Instagram jersey ad">
-</div>
+<img src='images/insta.png' height=400 alt="Example of a suspicious Instagram jersey ad"> 
 
-<div class="passage-actions">
-[[ ❌ Yes ->fake-site]]
-[[ ✅ No ->source-ddos]]
-</div>
+[[ ❌ Yes ->fake-site]] 
+[[ ✅ No ->source-ddos]] 

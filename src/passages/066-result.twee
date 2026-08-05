@@ -1,5 +1,4 @@
 :: result {"position": "300,1225", "size": "100,100"}
-<div class="passage-content">
 (if: $flags is 0)[
 <div class="verdict-block verdict-legit">
 <h2 style="color:#4ade80">✅ Probably Legit</h2>
@@ -44,6 +43,5 @@ $flags red flags were found. A jersey with this many issues is almost certainly 
 Check out the list of <a href="https://old.reddit.com/r/hockeyjerseys/wiki/trustedsellers#wiki_retail_stores.3A">trusted sellers</a> if you're looking for a legitimate jersey.
 </div>
 ]
-</div>
 
-<div class="start-over-wrap passage-actions">(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>
+<div class="start-over-wrap">(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>

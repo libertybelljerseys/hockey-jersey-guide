@@ -1,16 +1,12 @@
 :: crest {"position": "975,600", "size": "100,100"}
-<div class="passage-content">
 How does the crest on the front look?
 
 The crest should be flat and smooth, with clean stitching. Shiny, oily, bubbly, or diagonal streaks on the crest are a sign of a fake jersey.
-</div>
 
-<div class="passage-actions">
 (link: "❌ Shiny, oily, bubbly, diagonal streaks")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Shiny or bubbly crest"))(go-to: "fake-design")]
 |fakeCrest1>[ <img src="images/crest-fake.png" width="300" alt="Fake jersey crest stitching"> ](click: ?fakeCrest1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Shiny or bubbly crest"))(go-to: "fake-design")]
 
 [[ ✅ Flat, smooth ->fake-design]]
 [[ <img src="images/crest-legit.png" width="300" alt="Legit jersey crest stitching" ->fake-design]]
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Crest check"))(go-to: "fake-design")]
-</div>
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Crest check"))(go-to: "fake-design")] 

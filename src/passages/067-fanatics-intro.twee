@@ -1,11 +1,8 @@
 :: fanatics-intro {"position": "1675,800", "size": "100,100"}
-<div class="passage-content">
 <div class="brand-header"><img src="images/logos/fanatics.png" class="brand-logo-header" alt="Fanatics"></div>
 
 What type of Fanatics jersey are you checking?
-</div>
 
-<div class="passage-actions">
 [[Breakaway ->fanatics-breakaway]]
 [[Premium (Retail, Indonesian-made) ->source-ask]]
 [[Authentic Pro (Made in Canada) ->source-ask]]
@@ -13,4 +10,3 @@ What type of Fanatics jersey are you checking?
 Counterfeit Premiums and Authentic Pros generally have the same red flags. 
 
 [[< Back ->manufacturer]]
-</div>

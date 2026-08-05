@@ -1,9 +1,5 @@
 :: strap {"position": "825,300", "size": "100,100"}
-<div class="passage-content">
 Does your jersey have a fight strap?
-</div>
 
-<div class="passage-actions">
 (link: "✅ Yes")[(set: $strap to "true")(go-to: "fight-strap")]
 (link: "❌ No")[(set: $strap to "false")(go-to: "no-strap")]
-</div>

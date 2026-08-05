@@ -1,9 +1,5 @@
 :: source-site-check {"position": "1375,50", "size": "100,100"}
-<div class="passage-content">
-Is the website something like "officialpredtorsshop.com" or "legitnhljerseys.com"? Or is it DHGate/AliExpress/Ecrater?
-</div>
+Is the website something like "officialpredtorsshop.com" or "legitnhljerseys.com"? Or is it DHGate/AliExpress/Ecrater? 
 
-<div class="passage-actions">
-[[❌ Yes->fake-site]]
+[[❌ Yes->fake-site]] 
 [[✅ No->source-ddos]]
-</div>

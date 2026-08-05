@@ -220,41 +220,13 @@ tw-passage tw-link, tw-passage .enchantment-link { display: inline-block; ... }
 /* 5. Mobile responsive */
 @media (max-width: 700px) { ... }
 
-/* 6. Watermark logo (has a soft brand-color glow via filter: drop-shadow) */
+/* 6. Watermark logo */
 #site-logo { position: fixed; bottom: 10px; right: 10px; width: 32px; ... }
 
 /* 7. Fluid images */
 img:not(#site-logo) { max-width: 100%; height: auto; }
 .BTG-header img { width: 120px !important; ... }
-
-/* 8. App-shell layout — see "Passage Layout Convention" below */
-tw-story { display: flex; flex-direction: column; height: calc(100dvh - 4em); ... }
-tw-passage { display: flex; flex-direction: column; overflow: hidden; }
-.passage-content { flex: 1 1 auto; overflow-y: auto; }
-.passage-actions { flex: 0 0 auto; max-height: 55vh; overflow-y: auto; }
 ```
-
-### Passage Layout Convention
-
-Every passage's visible content is split into two wrapper divs so the next-step choice is always in the same place on screen, with no scrolling required to find it:
-
-```
-:: my-passage {"position":"100,100","size":"100,100"}
-<div class="passage-content">
-  (prose, reference images, verdict/checkpoint blocks — everything the user reads)
-</div>
-
-<div class="passage-actions">
-  (the actual choice links/hooks the user clicks — always the LAST thing in the passage)
-</div>
-```
-
-- `.passage-content` is the only region that scrolls internally; `.passage-actions` (and the `FOOTER` passage that Harlowe appends after it) stay pinned below it, always visible.
-- `.passage-actions` must be the final element in the passage — if a passage has trailing secondary text (a disclaimer, an "About" link) after its choices in the natural reading order, move that text into `.passage-content` *above* the actions div instead (see `manufacturer.twee` for an example of this reordering).
-- **Cap image height** inside both divs (already handled globally by `.passage-content img, .passage-actions img { max-height: 30vh; }`) — a full-size reference photo used as a clickable choice will otherwise blow past `.passage-actions`'s budget and crush `.passage-content` to almost nothing. Don't remove that rule without re-checking image-heavy checks (neck-tag/lace/stitching comparisons).
-- Terminal passages with an existing wrapper (e.g. `<div class="start-over-wrap">`) just get `passage-actions` added as a second class — don't nest a new div around it.
-- Passages that are pure `(go-to:)`/`(if:)` dispatch logic with no visible choice (e.g. `manu-switch`, `legit-disclaimer`) only need `.passage-content` — there's nothing to put in `.passage-actions`.
-- A terminal/dead-end passage with **no** way to continue (no Start Over, no further link) is a bug, not a valid state — every passage should end in something clickable.
 
 ---
 
@@ -273,19 +245,13 @@ Open `src/passages/<pid>-<name>.twee`. The file starts with a Twee 3 header:
 ```
 :: passage-name [tags] {"position":"x,y","size":"w,h"}
 ```
-Content follows on the next line. Write real HTML and Harlowe macros — no XML escaping needed here. The build script handles that. Wrap content per the **Passage Layout Convention** above (`.passage-content` / `.passage-actions`).
+Content follows on the next line. Write real HTML and Harlowe macros — no XML escaping needed here. The build script handles that.
 
 ### To add a new passage
 Create `src/passages/<pid>-<name>.twee` with the next available pid (currently max is 85, available gaps: 16, 66, 69–77).
 ```
 :: my-passage {"position":"100,100","size":"100,100"}
-<div class="passage-content">
 passage content here
-</div>
-
-<div class="passage-actions">
-[[choice ->next-passage]]
-</div>
 ```
 Then run `python3 build.py`.
 
@@ -313,6 +279,5 @@ Then run `python3 build.py`.
 - **Harlowe does not support HTML inside `(link: "...")` text** — using `&quot;` inside link text breaks parsing. Use named hook + `(click:)` pattern for clickable images/complex elements.
 - **`[[ ]]` link syntax** can sometimes fail with emoji in display text. Prefer `(link:)` macro for choices that include emoji.
 - **Session state** is saved in the URL hash by Harlowe. Users resuming from a bookmarked URL will pick up where they left off. "Start Over" resets all variables and navigates to `manufacturer`.
-- **The `FOOTER` passage** (tagged `footer`) renders on every page. It contains the Back `(undo:)` button, Start Over link, and the watermark logo. It renders below `.passage-actions` inside the same flex column, so it's always visible too.
-- **`src/story-script.js`** runs a small vendored damped-spring animation on every real passage change (fade + slight rise-in on `tw-passage`), gated by `prefers-reduced-motion`. It fingerprints the passage's rendered text to tell a genuine navigation apart from Harlowe's own internal transition-wrapper housekeeping, and cancels any in-flight animation before starting a new one — if you touch this file, keep both of those, removing either reintroduces a stuck-opacity bug on rapid/undo navigation.
+- **The `FOOTER` passage** (tagged `footer`) renders on every page. It contains the Back `(undo:)` button, Start Over link, and the watermark logo.
 

@@ -1,13 +1,9 @@
 :: ccm-non-vintage-stitching {"position": "2300,250", "size": "100,100"}
-<div class="passage-content">
-Look at the patches and crest of the jersey. Are there drop stitches, like this?
+Look at the patches and crest of the jersey. Are there drop stitches, like this? 
 
 <img src='images/ccm_fake_stitching_crest.jpg' width='400' alt="Fake CCM jersey — crest stitching detail">
 
 <img src='images/ccm_fake_stitching_patch.jpg' width='400' alt="Fake CCM jersey — patch stitching detail">
-</div>
 
-<div class="passage-actions">
-[[❌ Yes ->fake]]
+[[❌ Yes ->fake]] 
 [[✅ No ->ccm-non-vintage-lettering]]
-</div>

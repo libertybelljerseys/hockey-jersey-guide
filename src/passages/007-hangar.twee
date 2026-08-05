@@ -1,11 +1,8 @@
 :: hangar {"position": "400,775", "size": "100,100"}
-<div class="passage-content">
 What is the hangar text like?
 
 Hangar text should be either screenprinted or sublimated, and should be clean and legible.
-</div>
 
-<div class="passage-actions">
 (link: "❌ Hangar text is sewn or sloppy")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Sewn or sloppy hangar text"))(go-to: "shield")]
 |fakeHangar1>[ <img src="images/hangar-fake.png" alt="Fake hangar/jock tag text"> ](click: ?fakeHangar1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Sewn or sloppy hangar text"))(go-to: "shield")]
 
@@ -14,5 +11,4 @@ Hangar text should be either screenprinted or sublimated, and should be clean an
 
 [[ My jersey does not have hangar text->shield]] 
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Hangar text check"))(go-to: "shield")]
-</div>
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Hangar text check"))(go-to: "shield")] 

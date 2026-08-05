@@ -1,13 +1,9 @@
 :: ccm-non-vintage-sizes {"position": "2450,100", "size": "100,100"}
-<div class="passage-content">
 Look at the size tag.
 
 Are all the sizes consistent? For example, XXL/TTG/EEG or L/G/G?
 
 <img src='images/ccm_fake_tag.jpg' height='300' alt="Fake CCM size tag"> <img src='images/ccm_tag_korea.jpg' height='300' alt="CCM size tag with Korea origin">
-</div>
 
-<div class="passage-actions">
 [[✅ Yes ->ccm-non-vintage-stitching]]
-[[❌ No ->fake]]
-</div>
+[[❌ No ->fake]] 

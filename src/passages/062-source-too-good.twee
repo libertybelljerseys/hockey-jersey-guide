@@ -1,9 +1,5 @@
 :: source-too-good {"position": "1500,175", "size": "100,100"}
-<div class="passage-content">
-Are the deals just simply too good to be true, like a brand new, star player jersey for <$40?
-</div>
+Are the deals just simply too good to be true, like a brand new, star player jersey for <$40? 
 
-<div class="passage-actions">
 [[ ❌ Yes ->fake-site]]
-[[ ✅ No ->strap]]
-</div>
+[[ ✅ No ->strap]] 

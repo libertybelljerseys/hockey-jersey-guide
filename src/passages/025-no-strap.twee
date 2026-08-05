@@ -1,9 +1,7 @@
 :: no-strap {"position": "996,398", "size": "100,100"}
-<div class="passage-content">
 (if: $manu is 'reebok' ) [(go-to: "reebok-replica")]
 (else-if: $manu is 'CCM' ) [(go-to: "ccm-intro")]
 (else-if: $manu is 'fanatics' ) [(go-to: "lettering")]
 (else-if: $manu is 'adidas' ) [(go-to: "adidas-wcoh")]
 (else-if: $manu is 'Starter' ) [(go-to: "legit-disclaimer")]
 (else:)[You can ask in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a> for help.]
-</div>

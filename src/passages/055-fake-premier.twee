@@ -1,10 +1,8 @@
 :: fake-premier {"position": "2102,33", "size": "100,100"}
-<div class="passage-content">
 Premiers don't have fight straps.
 If you have a jersey with a fight strap and a jock tag, it's one of the following:
 	- A Practice jersey
 	- A protoype jersey (unlikely)
 	- A Fake (most likely)
-</div>
 
-<div class="start-over-wrap passage-actions">[[ Start Over ->manufacturer]]</div>
+<div class="start-over-wrap">[[ Start Over ->manufacturer]]</div> 

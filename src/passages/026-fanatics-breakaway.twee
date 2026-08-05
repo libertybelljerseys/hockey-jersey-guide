@@ -1,5 +1,4 @@
 :: fanatics-breakaway {"position": "1675,925", "size": "100,100"}
-<div class="passage-content">
 In general, Fanatics Breakaway jerseys are not faked.
 
 If the jersey does ''not'' have a fight strap, and has a jock tag that looks like this, it is more than likely legit.
@@ -7,6 +6,5 @@ If the jersey does ''not'' have a fight strap, and has a jock tag that looks lik
 <img src="images/jock-tag-fanatics.png" width="500" alt="Fanatics jersey jock tag">
 
 If you're not completely sure, you can ask in the <a href="https://reddit.com/r/hockeyjerseys/about/sticky">r/hockeyjerseys monthly legit check thread</a> or the <a href="https://discord.com/invite/hockeyjerseys">Hockey Jerseys Discord</a> for a second opinion.
-</div>
 
-<div class="start-over-wrap passage-actions">(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>
+<div class="start-over-wrap">(link: "Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>

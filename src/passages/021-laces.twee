@@ -1,11 +1,8 @@
 :: laces {"position": "774,800", "size": "100,100"}
-<div class="passage-content">
 If your jersey has laces, what do they look like?
 
 Laces should be tight, flat, and securely attached to the jersey. They should not be loose, thin, or easily detached.
-</div>
 
-<div class="passage-actions">
 (link: "❌ Loose, thin, or detached")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style neck laces"))(go-to: "cut")]
 |fakeLaces1>[ <img src="images/adidas-laces-fake-01.png" alt="Fake Adidas lace hole — example 1"> ](click: ?fakeLaces1)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style neck laces"))(go-to: "cut")]
 |fakeLaces2>[ <img src="images/adidas-laces-fake-02.png" alt="Fake Adidas lace hole — example 2"> ](click: ?fakeLaces2)[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Fake-style neck laces"))(go-to: "cut")]
@@ -15,5 +12,4 @@ Laces should be tight, flat, and securely attached to the jersey. They should no
 
 [[ I don't have laces ->cut]] 
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Neck laces check"))(go-to: "cut")]
-</div>
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Neck laces check"))(go-to: "cut")] 

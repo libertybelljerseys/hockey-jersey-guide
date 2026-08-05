@@ -1,14 +1,10 @@
 :: reebok-neck {"position": "2075,300", "size": "100,100"}
-<div class="passage-content">
 Look at the back of the neck of your jersey.
 
-Which logo does it have?
-</div>
+Which logo does it have? 
 
-<div class="passage-actions">
 [[ Vector Logo ->reebok-neck-vector]]
 |imgLink2>[ <img src="images/reebok-vector-legit.png" width="400"  alt="Legit Reebok vector mark inside collar"> ](click: ?imgLink2)[(go-to: "reebok-neck-vector")]
 
 [[ Wordmark Logo ->reebok-neck-wordmark]]
 |imgLink1>[ <img src="images/reebok-wordmark-legit.png" width="400"  alt="Legit Reebok wordmark inside collar"> ](click: ?imgLink1)[(go-to: "reebok-neck-wordmark")]
-</div>

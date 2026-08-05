@@ -1,5 +1,4 @@
 :: ccm-non-vintage-lettering {"position": "2450,250", "size": "100,100"}
-<div class="passage-content">
 Is the customization kind of bubbly, or maybe just a little too wrong?
 
 Proper customization should be flat and smooth, with clean stitching. Bubbly, shiny, or off-color lettering can be the sign a sign of a fake jersey, however it could just be poor workmanship or wear and tear, so be sure to check carefully.
@@ -9,10 +8,7 @@ Proper customization should be flat and smooth, with clean stitching. Bubbly, sh
 <img src='images/ccm_fake_lettering_tb.jpg' width='450' alt="Fake CCM jersey lettering (Tampa Bay)">
 
 <img src='images/ccm_fake_lettering_edm.jpg' width='450' alt="Fake CCM jersey lettering (Edmonton)">
-</div>
 
-<div class="passage-actions">
 - (link: "❌ Yes, bubbly or off")[(set: $flags to $flags + 1)(set: $flagnames to $flagnames + (a: "Bubbly or off-color CCM customization"))(go-to: "legit-disclaimer")] 
 - [[No, clean ->legit-disclaimer]]
 - (link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "CCM lettering check"))(go-to: "legit-disclaimer")]
-</div>

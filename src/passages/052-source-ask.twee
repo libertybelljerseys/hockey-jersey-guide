@@ -1,11 +1,7 @@
 :: source-ask {"position": "1225,50", "size": "100,100"}
-<div class="passage-content">
 Did you or are you buying a jersey on eBay?
-</div>
 
-<div class="passage-actions">
-[[✅ Yes->source-ebay]]
-[[❌ No->source-insta]]
+[[✅ Yes->source-ebay]] 
+[[❌ No->source-insta]] 
 
-[[I'm not worried about the source, skip this step->strap]]
-</div>
+[[I'm not worried about the source, skip this step->strap]] 

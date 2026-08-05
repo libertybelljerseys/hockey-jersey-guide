@@ -1,13 +1,8 @@
 :: source-whois {"position": "1375,300", "size": "100,100"}
-<div class="passage-content">
 Look up the website in a <a href="http://whois.domaintools.com/">WHOIS database</a>.
 
 Where is the site based?
 
-</div>
-
-<div class="passage-actions">
-[[North America->source-too-good]]
+[[North America->source-too-good]] 
 [[Europe ->source-too-good]] 
-[[Asia ->fake-site]]
-</div>
+[[Asia ->fake-site]] 

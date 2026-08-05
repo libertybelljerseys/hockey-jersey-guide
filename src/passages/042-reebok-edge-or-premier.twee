@@ -1,13 +1,8 @@
 :: reebok-edge-or-premier {"position": "1774,148", "size": "100,100"}
-<div class="passage-content">
 Is your jersey a Reebok Edge, Premier, or 6100?
 
-</div>
-
-<div class="passage-actions">
-- [[ Edge ->reebok-intro]]
+- [[ Edge ->reebok-intro]] 
 - [[ Premier ->fake-premier]] 
 - [[ reebok-6100 ->reebok-6100]] 
 
-(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok Edge/Premier/6100 identification"))(go-to: "reebok-edge")]
-</div>
+(link: "🤔 I'm not sure")[(set: $unsure to $unsure + 1)(set: $unsurenames to $unsurenames + (a: "Reebok Edge/Premier/6100 identification"))(go-to: "reebok-edge")] 
