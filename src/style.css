@@ -95,6 +95,14 @@ tw-hook[name^=m]:hover {
   outline: none;
 }
 
+/* Harlowe's built-in undo/redo icon bar. Below the engine's own 576px
+   breakpoint it stays in normal flow (~90px) at the top of every passage —
+   dead space stolen from .passage-content's flex-grow budget on most phones.
+   FOOTER already provides Back/Start Over, so this bar is pure redundancy. */
+tw-sidebar {
+  display: none !important;
+}
+
 /* ── App shell ──
    tw-story is a fixed-height card; .passage-content is the ONLY region that
    scrolls. .passage-actions (the next-step choices) and the footer nav are

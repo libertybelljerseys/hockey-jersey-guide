@@ -1,9 +1,2 @@
 :: FOOTER [footer] {"position": "100,1125", "size": "100,100"}
-
-
-
-
-(if: $flags > 0)[<div class="flag-badge">🚩 $flags red flag(s) so far</div>]
-(if: $unsure > 0)[<div class="unsure-badge">🤔 $unsure unsure</div>]
-<div class="footer-nav">(link: "◀ Back")[(undo:)] &nbsp;&nbsp; (link: "↺ Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div>
-<img src="images/logo.png" id="site-logo" alt="Logo">
+(if: $flags > 0)[<div class="flag-badge">🚩 $flags red flag(s) so far</div>](if: $unsure > 0)[<div class="unsure-badge">🤔 $unsure unsure</div>]<div class="footer-nav">(link: "◀ Back")[(undo:)] &nbsp;&nbsp; (link: "↺ Start Over")[(set: $manu to "")(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: "manufacturer")]</div><img src="images/logo.png" id="site-logo" alt="Logo">

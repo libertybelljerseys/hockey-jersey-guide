@@ -117,6 +117,14 @@ tw-hook[name^=m]:hover {
   outline: none;
 }
 
+/* Harlowe's built-in undo/redo icon bar. Below the engine's own 576px
+   breakpoint it stays in normal flow (~90px) at the top of every passage —
+   dead space stolen from .passage-content's flex-grow budget on most phones.
+   FOOTER already provides Back/Start Over, so this bar is pure redundancy. */
+tw-sidebar {
+  display: none !important;
+}
+
 /* ── App shell ──
    tw-story is a fixed-height card; .passage-content is the ONLY region that
    scrolls. .passage-actions (the next-step choices) and the footer nav are
@@ -1229,14 +1237,7 @@ If you have a jersey with a fight strap and a jock tag, it&#39;s one of the foll
 
 &lt;div class=&quot;start-over-wrap passage-actions&quot;&gt;[[ Start Over -&gt;manufacturer]]&lt;/div&gt;</tw-passagedata>
 <tw-passagedata pid="56" name="HEADER" tags="" position="100,1000" size="100,100">&lt;div class=&quot;BTG-header&quot;&gt;&lt;a href=&quot;https://libertybelljerseys.com&quot; title=&quot;Liberty Bell Jerseys&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;images/logo.png&quot; alt=&quot;Liberty Bell Jerseys&quot; style=&quot;height:2em;width:auto;vertical-align:middle;&quot;&gt;&lt;/a&gt;&lt;/div&gt;</tw-passagedata>
-<tw-passagedata pid="57" name="FOOTER" tags="footer" position="100,1125" size="100,100">
-
-
-
-(if: $flags &gt; 0)[&lt;div class=&quot;flag-badge&quot;&gt;🚩 $flags red flag(s) so far&lt;/div&gt;]
-(if: $unsure &gt; 0)[&lt;div class=&quot;unsure-badge&quot;&gt;🤔 $unsure unsure&lt;/div&gt;]
-&lt;div class=&quot;footer-nav&quot;&gt;(link: &quot;◀ Back&quot;)[(undo:)] &amp;nbsp;&amp;nbsp; (link: &quot;↺ Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;
-&lt;img src=&quot;images/logo.png&quot; id=&quot;site-logo&quot; alt=&quot;Logo&quot;&gt;</tw-passagedata>
+<tw-passagedata pid="57" name="FOOTER" tags="footer" position="100,1125" size="100,100">(if: $flags &gt; 0)[&lt;div class=&quot;flag-badge&quot;&gt;🚩 $flags red flag(s) so far&lt;/div&gt;](if: $unsure &gt; 0)[&lt;div class=&quot;unsure-badge&quot;&gt;🤔 $unsure unsure&lt;/div&gt;]&lt;div class=&quot;footer-nav&quot;&gt;(link: &quot;◀ Back&quot;)[(undo:)] &amp;nbsp;&amp;nbsp; (link: &quot;↺ Start Over&quot;)[(set: $manu to &quot;&quot;)(set: $flags to 0)(set: $flagnames to (a:))(set: $unsure to 0)(set: $unsurenames to (a:))(go-to: &quot;manufacturer&quot;)]&lt;/div&gt;&lt;img src=&quot;images/logo.png&quot; id=&quot;site-logo&quot; alt=&quot;Logo&quot;&gt;</tw-passagedata>
 <tw-passagedata pid="58" name="starter-intro" tags="" position="1267,594" size="100,100">&lt;div class=&quot;passage-content&quot;&gt;
 &lt;div class=&quot;brand-header&quot;&gt;&lt;img src=&quot;images/logos/starter.png&quot; class=&quot;brand-logo-header&quot; alt=&quot;Starter / Pro Player&quot;&gt;&lt;/div&gt;
 
